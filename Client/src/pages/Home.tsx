@@ -9,10 +9,13 @@ export const Home: React.FC<Props> = (props) => {
   console.log(props);
 
   return (
-    <div>
+    <div >
       <header>
         <Nav />
       </header>
+      <main className="bg-slate-100 min-h-screen">
+        
+      </main>
     </div>
   );
 };

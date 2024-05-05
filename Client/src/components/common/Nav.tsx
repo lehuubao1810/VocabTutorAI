@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
+import { logOut } from "../../redux/authSlice";
 
 type Props = {
   // type of the props
@@ -15,39 +18,36 @@ export const Nav: React.FC<Props> = () => {
       text: "Characters AI",
     },
     {
-      to: "/add-collection",
-      text: "Add Collection",
-    },
-    {
       to: "/collection/:idCollection",
       text: "Collection",
     },
-    {
-      to: "/collection/:idCollection/edit",
-      text: "Edit Collection",
-    },
-    {
-      to: "/collection/:idCollection/learn",
-      text: "Learn",
-    },
-    {
-      to: "/roomai/:idCharacterAI",
-      text: "Room AI",
-    },
   ];
+
+  const [modalUser, setModalUser] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logOut())
+      .unwrap()
+      .then(() => {
+        console.log("Logout success");
+      });
+  };
 
   return (
     <div>
-      <nav>
-        <ul>
+      <nav className="p-4 flex items-center justify-between gap-4 fixed w-screen bg-white">
+        <h1 className="text-2xl font-bold text-cyan-500">TutorAI.</h1>
+        <ul className="flex gap-4 items-center">
           {navLink.map((link, index) => {
             return (
               <li key={index}>
                 <NavLink
                   className={({ isActive }) => `
-                        text-xl font-bold ${
+                        text-base font-semibold ${
                           isActive
-                            ? "text-blue-500 border-blue-500 border-b-2 pb-2"
+                            ? "text-blue-500 border-blue-500 border-b-4 pb-2 rounded-bl rounded-br"
                             : "text-gray-500"
                         }
                         `}
@@ -59,6 +59,47 @@ export const Nav: React.FC<Props> = () => {
             );
           })}
         </ul>
+        {/* dictionary */}
+        <div className="w-2/3">
+          <input
+            type="text"
+            placeholder="Type the word you want to search"
+            className="border-2 border-slate-300 rounded-3xl py-2 px-4 bg-slate-100 w-full"
+          />
+        </div>
+        {/* user */}
+        <div
+          className="flex gap-2 items-center cursor-pointer"
+          onClick={() => setModalUser(!modalUser)}
+        >
+          <img
+            src="https://randomuser.me/api/portraits/men/73.jpg"
+            alt=""
+            className="w-10 h-10 rounded-full"
+          />
+        </div>
+        {modalUser && (
+          <div className="absolute top-20 right-4 bg-white shadow-lg rounded-lg p-4">
+            <ul className="flex flex-col gap-4">
+              <li>
+                <NavLink
+                  to="/profile"
+                  className="font-semibold text-slate-500 hover:text-blue-500"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li>
+                <p
+                  onClick={handleLogout}
+                  className="font-semibold text-slate-500 cursor-pointer hover:text-red-500"
+                >
+                  Logout
+                </p>
+              </li>
+            </ul>
+          </div>
+        )}
       </nav>
     </div>
   );

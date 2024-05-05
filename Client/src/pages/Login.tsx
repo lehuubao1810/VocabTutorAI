@@ -5,6 +5,9 @@ import ggIcon from "../assets/icon/ggIcon.png";
 import bgIcon from "../assets/icon/book_hardset.png";
 import { Link } from "react-router-dom";
 import { NavAuth } from "../components/auth/NavAuth";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { LoadingScreen } from "../components/LoadingScreen";
+import { signInEmailPassword } from "../redux/authSlice";
 
 type LoginProps = {
   //
@@ -15,22 +18,34 @@ type FormState = {
   password: string;
 };
 
-export const Login: React.FC<LoginProps> = (props) => {
-  console.log("props", props);
-
+export const Login: React.FC<LoginProps> = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormState>();
+  } = useForm<FormState>({
+    defaultValues: {
+      email: "clienttest@gmail.com",
+      password: "Bao1234@",
+    },
+  });
 
-  const onSubmit: SubmitHandler<FormState> = (data) => {
+  const dispatch = useAppDispatch();
+
+  const { loading } = useAppSelector((state) => state.authReducer);
+
+  const handleLogin: SubmitHandler<FormState> = (data) => {
     console.log(data);
+    dispatch(signInEmailPassword(data))
+      .unwrap()
+      .then((res) => {
+        console.log("Login success", res);
+      });
   };
 
   return (
     <>
-      <header></header>
+      {loading && <LoadingScreen />}
       <main className="lg">
         <div className="flex h-screen ">
           {/* Left page */}
@@ -63,7 +78,7 @@ export const Login: React.FC<LoginProps> = (props) => {
             </p>
 
             <form
-              onSubmit={handleSubmit(onSubmit)}
+              onSubmit={handleSubmit(handleLogin)}
               className="flex flex-col gap-4"
             >
               <div className="flex flex-col gap-4">
@@ -117,7 +132,6 @@ export const Login: React.FC<LoginProps> = (props) => {
           </div>
         </div>
       </main>
-      <footer></footer>
     </>
   );
 };
