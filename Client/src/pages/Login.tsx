@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { NavAuth } from "../components/auth/NavAuth";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { LoadingScreen } from "../components/LoadingScreen";
-import { signInEmailPassword } from "../redux/authSlice";
+import { signInEmailPassword, SignInWithGoogle } from "../redux/authSlice";
 
 type LoginProps = {
   //
@@ -43,6 +43,15 @@ export const Login: React.FC<LoginProps> = () => {
       });
   };
 
+  const handleLoginGG = () => {
+    console.log("Login with Google");
+    dispatch(SignInWithGoogle())
+      .unwrap()
+      .then((res) => {
+        console.log("Login with Google success", res);
+      });
+  };
+
   return (
     <>
       {loading && <LoadingScreen />}
@@ -62,10 +71,13 @@ export const Login: React.FC<LoginProps> = () => {
           {/* Right page */}
           <div className="flex flex-col w-1/2 px-20 mt-10 max-lg:w-full max-md:w-full max-md:px-4">
             <NavAuth />
-            <button className="flex items-center justify-center gap-2 w-full border-2 border-gray-500 bg-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 py-2 px-4 rounded-lg">
+            <div
+              onClick={handleLoginGG}
+              className="flex items-center justify-center cursor-pointer gap-2 w-full border-2 border-gray-500 bg-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 py-2 px-4 rounded-lg"
+            >
               <img className="w-7 h-7" src={ggIcon} alt="" />
               Login with Google
-            </button>
+            </div>
             <div className="my-8 flex items-center justify-center">
               <span className="block w-full h-0.5 bg-slate-500"></span>
               <p className="w-full whitespace-nowrap px-4 text-center text-slate-500 font-medium">

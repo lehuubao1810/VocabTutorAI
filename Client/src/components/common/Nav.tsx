@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut } from "../../redux/authSlice";
 
 type Props = {
@@ -26,6 +26,7 @@ export const Nav: React.FC<Props> = () => {
   const [modalUser, setModalUser] = useState(false);
 
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.authReducer);
 
   const handleLogout = () => {
     dispatch(logOut())
@@ -79,12 +80,25 @@ export const Nav: React.FC<Props> = () => {
           />
         </div>
         {modalUser && (
-          <div className="absolute top-20 right-4 bg-white shadow-lg rounded-lg p-4">
-            <ul className="flex flex-col gap-4">
+          <div className="absolute top-20 right-4 bg-white shadow-lg rounded-lg p-4 pt-2">
+            <div className="flex gap-2 mb-4 p-2 border-b-slate-300 border-b-2">
+              <img
+                src="https://randomuser.me/api/portraits/men/73.jpg"
+                alt=""
+                className="w-10 h-10 rounded-full"
+              />
+              <div className="max-w-32">
+                <p className="font-semibold text-sm text-slate-500">
+                  {user?.username}
+                </p>
+                <p className="font-semibold text-sm text-slate-500 text-ellipsis overflow-hidden">{user?.email}</p>
+              </div>
+            </div>
+            <ul className="flex flex-col gap-2">
               <li>
                 <NavLink
                   to="/profile"
-                  className="font-semibold text-slate-500 hover:text-blue-500"
+                  className="font-semibold text-slate-500 rounded-lg px-2 py-2 w-full block hover:text-blue-500 hover:bg-slate-100 "
                 >
                   Profile
                 </NavLink>
@@ -92,7 +106,7 @@ export const Nav: React.FC<Props> = () => {
               <li>
                 <p
                   onClick={handleLogout}
-                  className="font-semibold text-slate-500 cursor-pointer hover:text-red-500"
+                  className="font-semibold cursor-pointer text-slate-500 rounded-lg px-2 py-2 w-full block hover:text-red-500 hover:bg-slate-100 "
                 >
                   Logout
                 </p>

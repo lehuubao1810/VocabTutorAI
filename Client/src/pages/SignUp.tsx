@@ -10,7 +10,7 @@ import { NavAuth } from "../components/auth/NavAuth";
 import { regPassword } from "../utils/validate";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { LoadingScreen } from "../components/LoadingScreen";
-import { signUpEmailPassword } from "../redux/authSlice";
+import { SignInWithGoogle, signUpEmailPassword } from "../redux/authSlice";
 
 type LoginProps = {
   //
@@ -63,6 +63,15 @@ export const SignUp: React.FC<LoginProps> = () => {
       });
   };
 
+  const handleLoginGG = () => {
+    console.log("Login with Google");
+    dispatch(SignInWithGoogle())
+      .unwrap()
+      .then((res) => {
+        console.log("Login with Google success", res);
+      });
+  };
+
   useEffect(() => {
     if (user) {
       console.log("User", user);
@@ -88,10 +97,13 @@ export const SignUp: React.FC<LoginProps> = () => {
           {/* Right page */}
           <div className="flex flex-col w-1/2 px-20 pt-10 overflow-y-auto max-lg:w-full max-md:w-full max-md:px-4">
             <NavAuth />
-            <button className="flex items-center justify-center gap-2 w-full border-2 border-gray-500 bg-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 py-2 px-4 rounded-lg">
+            <div
+              onClick={handleLoginGG}
+              className="flex items-center justify-center cursor-pointer gap-2 w-full border-2 border-gray-500 bg-transparent text-gray-500 hover:text-gray-800 hover:border-gray-800 py-2 px-4 rounded-lg"
+            >
               <img className="w-7 h-7" src={ggIcon} alt="" />
               Continue with Google
-            </button>
+            </div>
             <div className="my-8 flex items-center justify-center">
               <span className="block w-full h-0.5 bg-slate-500"></span>
               <p className="w-full whitespace-nowrap px-4 text-center text-slate-500 font-medium">

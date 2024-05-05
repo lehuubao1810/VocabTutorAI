@@ -2,9 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FulfilledAction, PendingAction, RejectedAction } from "./store";
 import {
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth, db } from "../firebase";
+import { auth, db, ggProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 type User = {
@@ -25,7 +27,6 @@ const initialState: authState = {
   error: undefined,
 };
 
-// optional: create a thunk function (for firebase request)
 export const signUpEmailPassword = createAsyncThunk(
   "signUpEmailPassword/auth", // type of the action, must be unique.
   async (
@@ -69,18 +70,51 @@ export const signInEmailPassword = createAsyncThunk(
         const user = userCredential.user;
         return user;
       })
-      .then( async (user) => {
+      .then(async (user) => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         const userData = userDoc.data();
         return {
-            email: user.email,
-            username: userData?.username,
-            uid: user.uid,
-          } as User;
+          email: user.email,
+          username: userData?.username,
+          uid: user.uid,
+        } as User;
       })
       .catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;
+        return rejectWithValue(errorMessage);
+      });
+  }
+);
+
+export const SignInWithGoogle = createAsyncThunk(
+  "SignInWithGoogle/auth", // type of the action, must be unique.
+  async (_, { rejectWithValue }) => {
+    return signInWithPopup(auth, ggProvider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        console.log(credential);
+        const user = result.user;
+        console.log(user);
+
+        // Add user to firestore
+        setDoc(doc(db, "users", user.uid), {
+          username: user.displayName,
+          email: user.email,
+        });
+
+        return {
+          email: user.email,
+          username: user.displayName,
+          uid: user.uid,
+        } as User;
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(error);
         return rejectWithValue(errorMessage);
       });
   }
@@ -120,6 +154,10 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(signInEmailPassword.fulfilled, (state, action) => {
+        // add this when you have fulfilled action
+        state.user = action.payload;
+      })
+      .addCase(SignInWithGoogle.fulfilled, (state, action) => {
         // add this when you have fulfilled action
         state.user = action.payload;
       })
