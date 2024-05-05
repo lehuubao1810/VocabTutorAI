@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
-  // updateProfile,
+  updateProfile,
 } from "firebase/auth";
 import { auth, db, ggProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -38,6 +38,12 @@ export const signUpEmailPassword = createAsyncThunk(
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
+        return user;
+      })
+      .then((user) => {
+        updateProfile(user, {
+          displayName: data.username,
+        });
         return user;
       })
       .then((user) => {
@@ -80,11 +86,6 @@ export const signInEmailPassword = createAsyncThunk(
           uid: user.uid,
         } as User;
       })
-      // .then((user) => {
-      //   updateProfile(user, {
-      //     displayName: "Jane Q. User"
-      //   })
-      // })
       .catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;

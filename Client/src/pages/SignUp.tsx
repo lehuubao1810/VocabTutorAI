@@ -53,6 +53,10 @@ export const SignUp: React.FC<LoginProps> = () => {
     resolver: yupResolver(schema),
   });
 
+  const [showPassword, setShowPassword] = React.useState("password");
+  const [showConfirmPassword, setShowConfirmPassword] =
+    React.useState("password");
+
   const handleSignUp: SubmitHandler<FormState> = (data) => {
     const { username, email, password } = data;
     console.log("data sign up", { username, email, password });
@@ -148,12 +152,30 @@ export const SignUp: React.FC<LoginProps> = () => {
                 <p className="mb-2 font-bold text-slate-500 text-sm">
                   Password
                 </p>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  className="border-2 border-gray-500 rounded-lg py-3 px-4 w-full"
-                  {...register("password")}
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword}
+                    placeholder="Password"
+                    className="border-2 border-gray-500 rounded-lg py-3 px-4 w-full"
+                    {...register("password")}
+                  />
+
+                  <div
+                    className={`absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer  
+                                  p-2 px-[10px] rounded-full hover:bg-slate-200 ${
+                                    showPassword === "password"
+                                      ? "text-gray-500"
+                                      : "text-blue-500"
+                                  }`}
+                    onClick={() =>
+                      setShowPassword(
+                        showPassword === "password" ? "text" : "password"
+                      )
+                    }
+                  >
+                    <i className="far fa-eye-slash"></i>
+                  </div>
+                </div>
                 <p className="text-red-500 text-sm font-semibold">
                   {errors.password?.message}
                 </p>
@@ -163,12 +185,30 @@ export const SignUp: React.FC<LoginProps> = () => {
                 <p className="mb-2 font-bold text-slate-500 text-sm">
                   Confirm Password
                 </p>
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  className="border-2 border-gray-500 rounded-lg py-3 px-4 w-full"
-                  {...register("confirmPassword")}
-                />
+                <div className="relative">
+                  <input
+                    type={showConfirmPassword}
+                    placeholder="Confirm Password"
+                    className="border-2 border-gray-500 rounded-lg py-3 px-4 w-full"
+                    {...register("confirmPassword")}
+                  />
+
+                  <div
+                    className={`absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer  
+                                  p-2 px-[10px] rounded-full hover:bg-slate-200 ${
+                                    showConfirmPassword === "password"
+                                      ? "text-gray-500"
+                                      : "text-blue-500"
+                                  }`}
+                    onClick={() =>
+                      setShowConfirmPassword(
+                        showConfirmPassword === "password" ? "text" : "password"
+                      )
+                    }
+                  >
+                    <i className="far fa-eye-slash"></i>
+                  </div>
+                </div>
                 <p className="text-red-500 text-sm font-semibold">
                   {errors.confirmPassword?.message}
                 </p>
@@ -183,7 +223,7 @@ export const SignUp: React.FC<LoginProps> = () => {
 
             <div className="py-6 flex items-center justify-center gap-2">
               <p className="text-slate-500">Did you have an account ?</p>{" "}
-              <Link className="text-blue-500 underline" to="/signup">
+              <Link className="text-blue-500 underline" to="/login">
                 Login
               </Link>
             </div>

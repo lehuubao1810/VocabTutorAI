@@ -26,7 +26,7 @@ export const RoomAI: React.FC<Props> = (props) => {
       <header className="h-0">
         <Nav />
       </header>
-      <div className="bg-slate-100 overflow-hidden pt-40">
+      <div className="bg-slate-100 overflow-hidden pt-36">
         {/* Chat ui */}
         {/* header chat */}
         <div className="flex justify-between items-center bg-slate-200 p-2 fixed z-30 w-screen top-[76px]">
@@ -45,7 +45,7 @@ export const RoomAI: React.FC<Props> = (props) => {
           </div> */}
         </div>
         {/* body chat */}
-        <div className="flex flex-col max-h-[35rem] overflow-auto px-2">
+        <div className="flex flex-col max-h-[36rem] overflow-auto px-2">
           {conversationAI?.history.map((message, index) => (
             <div
               className={`flex ${

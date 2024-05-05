@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { logOut } from "../../redux/authSlice";
+import { translateText } from "../../redux/dictionarySlice";
+import { debounce } from "lodash";
+import { CircularProgress } from "@mui/material";
 
 type Props = {
   // type of the props
@@ -24,6 +27,10 @@ export const Nav: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authReducer);
 
+  const dictionary = useAppSelector((state) => state.dictionaryReducer);
+
+  // const { translated } = useAppSelector((state) => state.dictionaryReducer);
+
   const handleLogout = () => {
     dispatch(logOut())
       .unwrap()
@@ -32,6 +39,36 @@ export const Nav: React.FC<Props> = () => {
       });
   };
 
+  // debounce translate
+  const [textTranslate, setTextTranslate] = useState("");
+  const [loadingTranslate, setLoadingTranslate] = useState(false);
+  // Sử dụng hàm debounce để tạo một phiên bản mới của hàm xử lý sự kiện với trễ 300ms
+  const debounceRef = useRef(
+    debounce((value) => {
+      console.log("Sending translation request for:", value);
+      // Gọi dispatch ở đây
+      dispatch(translateText(value))
+        .unwrap()
+        .then((res) => {
+          console.log("Translate success", res);
+          setLoadingTranslate(false);
+        });
+    }, 800)
+  );
+
+  useEffect(() => {
+    const debounceFn = debounceRef.current; // Copy debounceRef.current to a variable
+    return () => {
+      debounceFn.cancel(); // Use the variable in the cleanup function
+    };
+  }, []);
+
+  const handleTextTranslate = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setTextTranslate(value);
+    setLoadingTranslate(true);
+    debounceRef.current(value);
+  };
   return (
     <div>
       <nav className="p-4 flex items-center justify-between gap-4 fixed w-screen bg-white z-40">
@@ -57,12 +94,28 @@ export const Nav: React.FC<Props> = () => {
           })}
         </ul>
         {/* dictionary */}
-        <div className="w-2/3">
+        <div className="w-2/3 relative">
           <input
             type="text"
-            placeholder="Type the word you want to search"
+            placeholder="Type the word or sentence to translate ..."
             className="border-2 border-slate-300 rounded-3xl py-2 px-4 bg-slate-100 w-full"
+            value={textTranslate}
+            onChange={(e) => handleTextTranslate(e)}
           />
+          {textTranslate.trim() !== "" && (
+            <div className="absolute top-16 left-0 w-full bg-white shadow-lg rounded-lg p-4 pt-2">
+              <p className="font-semibold text-blue-500">Translated</p>
+              {loadingTranslate ? (
+                <div className="flex items-center justify-center pt-2">
+                  <CircularProgress />
+                </div>
+              ) : (
+                <p className="font-semibold text-slate-500 pt-2">
+                  {dictionary.translated}
+                </p>
+              )}
+            </div>
+          )}
         </div>
         {/* user */}
         <div
@@ -87,7 +140,9 @@ export const Nav: React.FC<Props> = () => {
                 <p className="font-semibold text-sm text-slate-500">
                   {user?.username}
                 </p>
-                <p className="font-semibold text-sm text-slate-500 text-ellipsis overflow-hidden">{user?.email}</p>
+                <p className="font-semibold text-sm text-slate-500 text-ellipsis overflow-hidden">
+                  {user?.email}
+                </p>
               </div>
             </div>
             <ul className="flex flex-col gap-2">

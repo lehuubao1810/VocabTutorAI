@@ -34,6 +34,8 @@ export const Login: React.FC<LoginProps> = () => {
 
   const { loading } = useAppSelector((state) => state.authReducer);
 
+  const [showPassword, setShowPassword] = React.useState("password");
+
   const handleLogin: SubmitHandler<FormState> = (data) => {
     console.log(data);
     dispatch(signInEmailPassword(data))
@@ -113,14 +115,33 @@ export const Login: React.FC<LoginProps> = () => {
                   <p className="mb-2 font-bold text-slate-500 text-sm">
                     Password
                   </p>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="border-2 border-gray-500 rounded-lg py-3 px-4 w-full"
-                    {...register("password", {
-                      required: "Password is required",
-                    })}
-                  />
+                  <div className="relative">
+                    <input
+                      type={showPassword}
+                      placeholder="Password"
+                      security="false"
+                      className="border-2 border-gray-500 rounded-lg py-3 px-4 w-full"
+                      {...register("password", {
+                        required: "Password is required",
+                      })}
+                    />
+                    <div
+                      className={`absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer  
+                                  p-2 px-[10px] rounded-full hover:bg-slate-200 ${
+                                    showPassword === "password"
+                                      ? "text-gray-500"
+                                      : "text-blue-500"
+                                  }`}
+                      onClick={() =>
+                        setShowPassword(
+                          showPassword === "password" ? "text" : "password"
+                        )
+                      }
+                    >
+                      <i className="far fa-eye-slash"></i>
+                    </div>
+                  </div>
+
                   <p className="text-red-500 text-sm font-semibold">
                     {errors.password?.message}
                   </p>
