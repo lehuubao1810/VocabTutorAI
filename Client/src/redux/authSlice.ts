@@ -4,13 +4,13 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 type User = {
   email: string;
   username: string;
   uid: string;
-  refreshToken: string;
 };
 
 type authState = {
@@ -29,18 +29,24 @@ const initialState: authState = {
 export const signUpEmailPassword = createAsyncThunk(
   "signUpEmailPassword/auth", // type of the action, must be unique.
   async (
-    data: { email: string; password: string }, // type of the payload
+    data: { email: string; password: string; username: string }, // type of the payload
     { rejectWithValue }
   ) => {
     return createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
+        return user;
+      })
+      .then((user) => {
+        setDoc(doc(db, "users", user.uid), {
+          username: data.username,
+          email: user.email,
+        });
         return {
           email: user.email,
-          username: user.displayName,
+          username: data.username,
           uid: user.uid,
-          refreshToken: user.refreshToken,
         } as User;
       })
       .catch((error) => {
@@ -61,15 +67,35 @@ export const signInEmailPassword = createAsyncThunk(
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        return user;
+      })
+      .then( async (user) => {
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        const userData = userDoc.data();
         return {
-          email: user.email,
-          username: user.displayName,
-          uid: user.uid,
-          refreshToken: user.refreshToken,
-        } as User;
+            email: user.email,
+            username: userData?.username,
+            uid: user.uid,
+          } as User;
       })
       .catch((error) => {
         // const errorCode = error.code;
+        const errorMessage = error.message;
+        return rejectWithValue(errorMessage);
+      });
+  }
+);
+
+export const logOut = createAsyncThunk(
+  "logOut/auth", // type of the action, must be unique.
+  async (_, { rejectWithValue }) => {
+    console.log(_);
+    return auth
+      .signOut()
+      .then(() => {
+        return {} as User;
+      })
+      .catch((error) => {
         const errorMessage = error.message;
         return rejectWithValue(errorMessage);
       });
@@ -92,12 +118,12 @@ const authSlice = createSlice({
       .addCase(signUpEmailPassword.fulfilled, (state, action) => {
         // add this when you have fulfilled action
         state.user = action.payload;
-        if (state.user) {
-            // save the refresh token to local storage
-            localStorage.setItem("refreshToken", state.user.refreshToken);
-        }
       })
       .addCase(signInEmailPassword.fulfilled, (state, action) => {
+        // add this when you have fulfilled action
+        state.user = action.payload;
+      })
+      .addCase(logOut.fulfilled, (state, action) => {
         // add this when you have fulfilled action
         state.user = action.payload;
       })

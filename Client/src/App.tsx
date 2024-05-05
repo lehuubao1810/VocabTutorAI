@@ -9,9 +9,24 @@ import { PageNotFound } from "./pages/PageNotFound";
 import { EditCollection } from "./pages/EditCollection";
 import { Learn } from "./pages/Learn";
 import { RoomAI } from "./pages/RoomAI";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+import { useEffect, useState } from "react";
 
 function App() {
-  const isAuth = false;
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <BrowserRouter>
@@ -25,7 +40,10 @@ function App() {
           element={isAuth ? <Navigate to="/" /> : <SignUp />}
         />
 
-        <Route path="/" element={!isAuth ? <Navigate to="/login" /> : <Home />} />
+        <Route
+          path="/"
+          element={!isAuth ? <Navigate to="/login" /> : <Home />}
+        />
         <Route
           path="/characters-ai"
           element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
