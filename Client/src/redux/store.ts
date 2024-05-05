@@ -1,9 +1,11 @@
 import { AsyncThunk, configureStore } from "@reduxjs/toolkit";
 import templateReducer from "./templateSlice";
+import authReducer from "./authSlice";
 
 export const store = configureStore({
   reducer: {
-    templateReducer
+    templateReducer,
+    authReducer
   },
 });
 

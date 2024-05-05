@@ -12,9 +12,12 @@ import { RoomAI } from "./pages/RoomAI";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
+import { LoadingScreen } from "./components/LoadingScreen";
+
+type isAuth = "checking" | boolean;
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState<isAuth>("checking");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -30,46 +33,50 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/login"
-          element={isAuth ? <Navigate to="/" /> : <Login />}
-        />
-        <Route
-          path="/signup"
-          element={isAuth ? <Navigate to="/" /> : <SignUp />}
-        />
+      {isAuth === "checking" ? (
+        <LoadingScreen />
+      ) : (
+        <Routes>
+          <Route
+            path="/login"
+            element={isAuth ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={isAuth ? <Navigate to="/" /> : <SignUp />}
+          />
 
-        <Route
-          path="/"
-          element={!isAuth ? <Navigate to="/login" /> : <Home />}
-        />
-        <Route
-          path="/characters-ai"
-          element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
-        />
-        <Route
-          path="/add-collection"
-          element={!isAuth ? <Navigate to="/login" /> : <AddCollection />}
-        />
-        <Route
-          path="/collection/:idCollection"
-          element={!isAuth ? <Navigate to="/login" /> : <Collection />}
-        />
-        <Route
-          path="/collection/:idCollection/edit"
-          element={!isAuth ? <Navigate to="/login" /> : <EditCollection />}
-        />
-        <Route
-          path="/collection/:idCollection/learn"
-          element={!isAuth ? <Navigate to="/login" /> : <Learn />}
-        />
-        <Route
-          path="/roomai/:idCharacterAI"
-          element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
-        />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
+          <Route
+            path="/"
+            element={!isAuth ? <Navigate to="/login" /> : <Home />}
+          />
+          <Route
+            path="/characters-ai"
+            element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
+          />
+          <Route
+            path="/add-collection"
+            element={!isAuth ? <Navigate to="/login" /> : <AddCollection />}
+          />
+          <Route
+            path="/collection/:idCollection"
+            element={!isAuth ? <Navigate to="/login" /> : <Collection />}
+          />
+          <Route
+            path="/collection/:idCollection/edit"
+            element={!isAuth ? <Navigate to="/login" /> : <EditCollection />}
+          />
+          <Route
+            path="/collection/:idCollection/learn"
+            element={!isAuth ? <Navigate to="/login" /> : <Learn />}
+          />
+          <Route
+            path="/roomai/:idCharacterAI"
+            element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
+          />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+      )}
     </BrowserRouter>
   );
 }
