@@ -81,7 +81,7 @@ export const SignUp: React.FC<LoginProps> = () => {
   return (
     <>
       {loading && <LoadingScreen />}
-      <main className="lg">
+      <main className="">
         <div className="flex h-screen ">
           {/* Left page */}
           <div className="w-1/2 h-screen relative bg-gradient-to-r from-cyan-300 to-blue-300 max-lg:hidden max-md:hidden">

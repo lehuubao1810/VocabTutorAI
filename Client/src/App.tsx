@@ -13,16 +13,21 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
 import { LoadingScreen } from "./components/LoadingScreen";
+import { useAppDispatch } from "./redux/hooks";
+import { setAuth } from "./redux/authSlice";
 
 type isAuth = "checking" | boolean;
 
 function App() {
   const [isAuth, setIsAuth] = useState<isAuth>("checking");
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsAuth(true);
+        console.log(user);
+        dispatch(setAuth({ username: user.displayName, email: user.email, uid: user.uid }));
       } else {
         setIsAuth(false);
       }
@@ -71,7 +76,7 @@ function App() {
             element={!isAuth ? <Navigate to="/login" /> : <Learn />}
           />
           <Route
-            path="/roomai/:idCharacterAI"
+            path="/characters-ai/:idCharacterAI"
             element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
           />
           <Route path="*" element={<PageNotFound />} />

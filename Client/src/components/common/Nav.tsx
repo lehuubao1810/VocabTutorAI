@@ -17,10 +17,6 @@ export const Nav: React.FC<Props> = () => {
       to: "/characters-ai",
       text: "Characters AI",
     },
-    {
-      to: "/collection/:idCollection",
-      text: "Collection",
-    },
   ];
 
   const [modalUser, setModalUser] = useState(false);
@@ -38,7 +34,7 @@ export const Nav: React.FC<Props> = () => {
 
   return (
     <div>
-      <nav className="p-4 flex items-center justify-between gap-4 fixed w-screen bg-white">
+      <nav className="p-4 flex items-center justify-between gap-4 fixed w-screen bg-white z-40">
         <h1 className="text-2xl font-bold text-cyan-500">TutorAI.</h1>
         <ul className="flex gap-4 items-center">
           {navLink.map((link, index) => {

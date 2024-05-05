@@ -5,6 +5,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  // updateProfile,
 } from "firebase/auth";
 import { auth, db, ggProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
@@ -79,6 +80,11 @@ export const signInEmailPassword = createAsyncThunk(
           uid: user.uid,
         } as User;
       })
+      // .then((user) => {
+      //   updateProfile(user, {
+      //     displayName: "Jane Q. User"
+      //   })
+      // })
       .catch((error) => {
         // const errorCode = error.code;
         const errorMessage = error.message;
