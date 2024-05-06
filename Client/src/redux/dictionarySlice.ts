@@ -22,21 +22,32 @@ const initialState: dictionaryState = {
 export const translateText = createAsyncThunk(
   "translateText/dictionary", // type of the action, must be unique.
   async (
-    text: string, // type of the payload
+    data: { text: string; language: string }, // type of the payload
     { rejectWithValue }
   ) => {
     try {
       // do something async
-      const response = await axiosTranslate.post("/", [
+      const response = await axiosTranslate.post(
+        "/",
+        [
+          {
+            Text: data.text,
+          },
+        ],
         {
-          Text: text,
-        },
-      ]);
+          params: {
+            "to[0]": data.language,
+            "api-version": "3.0",
+            profanityActprion: "NoAction",
+            textType: "plain",
+          },
+        }
+      );
       console.log("response", response);
       const translatedText = response.data[0].translations[0].text;
 
       return {
-        original: text,
+        original: data.text,
         translated: translatedText,
       };
     } catch (_err) {

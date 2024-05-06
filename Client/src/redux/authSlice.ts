@@ -9,12 +9,7 @@ import {
 } from "firebase/auth";
 import { auth, db, ggProvider } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
-
-type User = {
-  email: string;
-  username: string;
-  uid: string;
-};
+import { User } from "../type/User";
 
 type authState = {
   user: User; // type of the main data

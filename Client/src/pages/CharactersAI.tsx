@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "../components/common/Nav";
+import { Header } from "../components/header/Header";
 import { useNavigate } from "react-router-dom";
 import { charactersAI } from "../dataTest/characterAi";
 
@@ -18,7 +18,7 @@ export const CharactersAI: React.FC<Props> = () => {
   return (
     <div>
       <header>
-        <Nav />
+        <Header />
       </header>
       <main className="container bg-slate-100 min-h-screen pt-20 px-16">
         <div className="my-4">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "../components/common/Nav";
+import { Header } from "../components/header/Header";
 
 type Props = {
   // type of the props
@@ -11,7 +11,7 @@ export const Home: React.FC<Props> = (props) => {
   return (
     <div >
       <header>
-        <Nav />
+        <Header />
       </header>
       <main className="bg-slate-100 min-h-screen">
         

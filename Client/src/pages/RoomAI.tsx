@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "../components/common/Nav";
+import { Header } from "../components/header/Header";
 import { useParams } from "react-router-dom";
 import { charactersAI } from "../dataTest/characterAi";
 import { conversationsAI } from "../dataTest/conversationAI";
@@ -24,7 +24,7 @@ export const RoomAI: React.FC<Props> = (props) => {
   return (
     <>
       <header className="h-0">
-        <Nav />
+        <Header />
       </header>
       <div className="bg-slate-100 overflow-hidden pt-36">
         {/* Chat ui */}
@@ -75,7 +75,7 @@ export const RoomAI: React.FC<Props> = (props) => {
           <input
             type="text"
             placeholder="Type a message"
-            className="w-full border-none rounded-full py-2 px-4 bg-slate-100"
+            className="w-full border-none rounded-full py-2 px-4 bg-slate-100 outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
           />
           <div className="bg-slate-300 px-2 py-1 rounded-full cursor-pointer hover:bg-slate-400">
             <i className="fas fa-paper-plane text-blue-500"></i>

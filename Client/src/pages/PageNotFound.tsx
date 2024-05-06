@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Header } from "../components/header/Header";
 
 type Props = {
   // type of the props
@@ -12,7 +13,8 @@ export const PageNotFound: React.FC<Props> = (props) => {
 
   return (
     <>
-      <div className="w-full h-screen flex flex-col items-center justify-center">
+      <Header />
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-100">
         <svg
           className="w-1/2 md:1/3 lg:w-1/4 text-blue-600"
           xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +176,7 @@ export const PageNotFound: React.FC<Props> = (props) => {
           </p>
           <div
             onClick={() => {
-              navigate("/")
+              navigate("/");
             }}
             className="flex cursor-pointer items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 mt-12 rounded transition duration-150"
             title="Return Home"

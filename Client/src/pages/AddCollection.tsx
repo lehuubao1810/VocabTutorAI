@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav } from "../components/common/Nav";
+import { Header } from "../components/header/Header";
 
 type Props = {
   // type of the props
@@ -10,7 +10,7 @@ export const AddCollection: React.FC<Props> = (props) => {
   return (
     <div>
       <header>
-        <Nav />
+        <Header />
       </header>
     </div>
   );
