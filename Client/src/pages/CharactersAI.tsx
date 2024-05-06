@@ -1,10 +1,10 @@
 import React from "react";
 import { Header } from "../components/header/Header";
 import { useNavigate } from "react-router-dom";
-import { charactersAI } from "../dataTest/characterAi";
+import { charactersAI } from "../dataTest/characterAI";
 
 type Props = {
-  // type of the props
+  //
 };
 
 export const CharactersAI: React.FC<Props> = () => {
