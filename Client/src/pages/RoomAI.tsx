@@ -1,8 +1,9 @@
 import React from "react";
 import { Header } from "../components/header/Header";
 import { useParams } from "react-router-dom";
-import { charactersAI } from "../dataTest/characterAi";
+
 import { conversationsAI } from "../dataTest/conversationAI";
+import { charactersAI } from "../dataTest/characterAI";
 
 type Props = {
   // type of the props
