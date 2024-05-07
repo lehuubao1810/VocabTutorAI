@@ -34,6 +34,28 @@ export const axiosFunction = createAsyncThunk(
   }
 );
 
+const process = async (data: string) => {
+  // example of a firebase built-in function
+  return data;
+};
+
+// optional: firebase function
+export const firebaseFunction = createAsyncThunk(
+  "firebaseFunction/template", // type of the action, must be unique.
+  async (
+    payload: { data: string }, // type of the payload ( _ if not used)
+    { rejectWithValue }
+  ) => {
+    return process(payload.data) // firebase built-in function
+      .then((data) => {
+        return data;
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        return rejectWithValue(errorMessage);
+      });
+  }
+);
 
 const templateSlice = createSlice({
   name: "template",

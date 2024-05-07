@@ -12,7 +12,7 @@ import { RoomAI } from "./pages/RoomAI";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
-import { LoadingScreen } from "./components/LoadingScreen";
+import { LoadingScreen } from "./components/common/LoadingScreen";
 import { useAppDispatch } from "./redux/hooks";
 import { setAuth } from "./redux/authSlice";
 

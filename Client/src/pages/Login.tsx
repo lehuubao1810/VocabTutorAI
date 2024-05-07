@@ -6,7 +6,7 @@ import bgIcon from "../assets/icon/book_hardset.png";
 import { Link } from "react-router-dom";
 import { NavAuth } from "../components/auth/NavAuth";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { LoadingScreen } from "../components/LoadingScreen";
+import { LoadingScreen } from "../components/common/LoadingScreen";
 import { signInEmailPassword, SignInWithGoogle } from "../redux/authSlice";
 
 type LoginProps = {

@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { NavAuth } from "../components/auth/NavAuth";
 import { regPassword } from "../utils/validate";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { LoadingScreen } from "../components/LoadingScreen";
+import { LoadingScreen } from "../components/common/LoadingScreen";
 import { SignInWithGoogle, signUpEmailPassword } from "../redux/authSlice";
 
 type LoginProps = {

@@ -27,15 +27,16 @@ export const TranslateInput: React.FC<Props> = () => {
           console.log("Translate success", res);
           setLoadingTranslate(false);
         });
-    }, 800)
+    }, 800) // 800ms delay 
   );
-
+  
   useEffect(() => {
     const debounceFn = debounceRef.current; // Copy debounceRef.current to a variable
     return () => {
       debounceFn.cancel(); // Use the variable in the cleanup function
     };
   }, []);
+  
 
   const handleTextTranslate = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
