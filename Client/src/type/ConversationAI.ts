@@ -1,15 +1,16 @@
+import { CharacterAIType } from "./CharacterAI";
 
 export type MessageAIType = {
-    role: string;
+    role: "user" | "model";
     parts: string;
 }
 
 export type ConversationAIType = {
-    id: string;
+    _id: string;
     name: string;
     description: string;
     image: string;
     uid: string;
-    botId: string;
+    character: CharacterAIType;
     history: MessageAIType[];
 }

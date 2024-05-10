@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { LoadingScreen } from "./components/common/LoadingScreen";
 import { useAppDispatch } from "./redux/hooks";
 import { setAuth } from "./redux/authSlice";
+import { getListCharacterAI } from "./redux/characterSlice";
 
 type isAuth = "checking" | boolean;
 
@@ -28,6 +29,7 @@ function App() {
         setIsAuth(true);
         console.log(user);
         dispatch(setAuth({ username: user.displayName, email: user.email, uid: user.uid }));
+        dispatch(getListCharacterAI(user.uid));
       } else {
         setIsAuth(false);
       }
@@ -76,7 +78,7 @@ function App() {
             element={!isAuth ? <Navigate to="/login" /> : <Learn />}
           />
           <Route
-            path="/characters-ai/:idCharacterAI"
+            path="/characters-ai/:conversationID"
             element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
           />
           <Route path="*" element={<PageNotFound />} />
