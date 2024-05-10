@@ -25,7 +25,7 @@ const BACKEND_BASE_URL = {
 }
 
 export const axiosInstance = axios.create({
-  baseURL: BACKEND_BASE_URL.local,
+  baseURL: BACKEND_BASE_URL.production,
   timeout: 10000, // Thời gian chờ tối đa cho mỗi yêu cầu là 10 giây
   headers: {
     "Content-Type": "application/json",
