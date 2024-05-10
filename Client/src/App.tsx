@@ -19,71 +19,81 @@ import { setAuth } from "./redux/authSlice";
 type isAuth = "checking" | boolean;
 
 function App() {
-  const [isAuth, setIsAuth] = useState<isAuth>("checking");
-  const dispatch = useAppDispatch();
+	const [isAuth, setIsAuth] = useState<isAuth>("checking");
+	const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsAuth(true);
-        console.log(user);
-        dispatch(setAuth({ username: user.displayName, email: user.email, uid: user.uid }));
-      } else {
-        setIsAuth(false);
-      }
-    });
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setIsAuth(true);
+				console.log(user);
+				dispatch(
+					setAuth({
+						username: user.displayName,
+						email: user.email,
+						uid: user.uid,
+					})
+				);
+			} else {
+				setIsAuth(false);
+			}
+		});
 
-    return () => unsubscribe();
-  }, []);
+		return () => unsubscribe();
+	}, []);
 
-  return (
-    <BrowserRouter>
-      {isAuth === "checking" ? (
-        <LoadingScreen />
-      ) : (
-        <Routes>
-          <Route
-            path="/login"
-            element={isAuth ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={isAuth ? <Navigate to="/" /> : <SignUp />}
-          />
+	return (
+		<BrowserRouter>
+			{isAuth === "checking" ? (
+				<LoadingScreen />
+			) : (
+				<Routes>
+					<Route
+						path="/login"
+						element={isAuth ? <Navigate to="/" /> : <Login />}
+					/>
+					<Route
+						path="/signup"
+						element={isAuth ? <Navigate to="/" /> : <SignUp />}
+					/>
 
-          <Route
-            path="/"
-            element={!isAuth ? <Navigate to="/login" /> : <Home />}
-          />
-          <Route
-            path="/characters-ai"
-            element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
-          />
-          <Route
-            path="/add-collection"
-            element={!isAuth ? <Navigate to="/login" /> : <AddCollection />}
-          />
-          <Route
-            path="/collection/:idCollection"
-            element={!isAuth ? <Navigate to="/login" /> : <Collection />}
-          />
-          <Route
-            path="/collection/:idCollection/edit"
-            element={!isAuth ? <Navigate to="/login" /> : <EditCollection />}
-          />
-          <Route
-            path="/collection/:idCollection/learn"
-            element={!isAuth ? <Navigate to="/login" /> : <Learn />}
-          />
-          <Route
-            path="/characters-ai/:idCharacterAI"
-            element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
-          />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      )}
-    </BrowserRouter>
-  );
+					<Route
+						path="/"
+						element={!isAuth ? <Navigate to="/login" /> : <Home />}
+					/>
+					<Route
+						path="/characters-ai"
+						element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
+					/>
+					<Route
+						path="/add-collection"
+						element={!isAuth ? <Navigate to="/login" /> : <AddCollection />}
+					/>
+					<Route
+						path="/learn/:idCollection"
+						element={!isAuth ? <Navigate to="/login" /> : <Learn />}
+					/>
+					<Route
+						path="/collection/:idCollection"
+						element={!isAuth ? <Navigate to="/login" /> : <Collection />}
+					/>
+					<Route
+						path="/collection/:idCollection/edit"
+						element={!isAuth ? <Navigate to="/login" /> : <EditCollection />}
+					/>
+					<Route
+						path="/collection/:idCollection/learn"
+						element={!isAuth ? <Navigate to="/login" /> : <Learn />}
+					/>
+					<Route
+						path="/characters-ai/:idCharacterAI"
+						element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
+					/>
+					<Route path="*" element={<PageNotFound />} />
+				</Routes>
+			)}
+		</BrowserRouter>
+	);
 }
 
 export default App;
