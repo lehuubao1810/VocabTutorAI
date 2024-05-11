@@ -9,13 +9,14 @@ import {
 } from "../redux/conversationSlice";
 import { notify } from "../utils/notify";
 import { changeStatusCharacter } from "../redux/characterSlice";
+import Footer from "../components/footer/Footer";
 
 type Props = {
-  //
+	//
 };
 
 export const CharactersAI: React.FC<Props> = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const { charactersAI } = useAppSelector((state) => state.characterReducer);
