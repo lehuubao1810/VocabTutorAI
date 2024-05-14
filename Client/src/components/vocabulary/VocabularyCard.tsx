@@ -10,24 +10,22 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import "./VocabularyCard.css";
-interface VocabularyFlipCardProps {
-	vocabularyData: {
-		word: string;
-		translation: string;
-		mean: string;
-		pronunciation: string;
-		example: string;
-	}[];
-}
+import { useNavigate } from "react-router-dom";
 
-export const VocabularyFlipCard: React.FC<VocabularyFlipCardProps> = ({
-	vocabularyData,
-}) => {
+type props = {};
+
+export const VocabularyFlipCard: React.FC<{
+	Data: {
+		id: any;
+		vocabulary: any[];
+	};
+}> = ({ Data }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [isSetting, setSetting] = useState(false);
 	const [currentVocabularyIndex, setCurrentVocabularyIndex] = useState(0);
 	const [progress, setProgress] = useState(0);
-
+	const navigate = useNavigate();
+	const vocabularyData = Data.vocabulary;
 	const handleFlip = () => {
 		setIsFlipped(!isFlipped);
 	};
@@ -49,6 +47,14 @@ export const VocabularyFlipCard: React.FC<VocabularyFlipCardProps> = ({
 	const handleSetting = () => {
 		setSetting(!isSetting);
 	};
+
+	const handleEditCollection = (e: React.MouseEvent) => {
+		e.preventDefault();
+		navigate(`/collection/${Data.id}/edit`, {
+			state: Data,
+		});
+	};
+
 	useEffect(() => {
 		const newProgress =
 			((currentVocabularyIndex + 1) / vocabularyData.length) * 100;
@@ -62,7 +68,7 @@ export const VocabularyFlipCard: React.FC<VocabularyFlipCardProps> = ({
 			<div className="w-full h-full flex flex-col justify-center items-center ">
 				<div
 					onClick={handleFlip}
-					className={`w-full h-80 border-2 bg-white rounded-xl relative ${
+					className={`w-full h-80 border-2 bg-white rounded-xl ${
 						isFlipped ? "flipped" : ""
 					}`}
 				>
@@ -119,7 +125,10 @@ export const VocabularyFlipCard: React.FC<VocabularyFlipCardProps> = ({
 								isSetting ? "flex" : "hidden"
 							} flex-col gap-2 w-44 h-20 absolute -top-8 right-0 transition-all duration-300 ease-linear`}
 						>
-							<button className="ml-8 text-blue-600 hover:opacity-60">
+							<button
+								className="ml-8 text-blue-600 hover:opacity-60"
+								onClick={handleEditCollection}
+							>
 								Edit vocabulary <FontAwesomeIcon icon={faPenToSquare} />
 							</button>
 							<button className="mr-4 text-red-600 hover:opacity-60">

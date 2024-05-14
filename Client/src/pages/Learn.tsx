@@ -5,7 +5,8 @@ import essay from "../assets/icon/essay.png";
 import quizz from "../assets/icon/quizz.png";
 import { Quizz } from "../components/learn/Quizz";
 import { Essay } from "../components/learn/Essay";
-import { useLocation } from "react-router-dom";
+
+import { useLocation, useNavigate } from "react-router-dom";
 type Props = {
 	// type of the props
 };
@@ -37,11 +38,11 @@ export const Learn: React.FC<Props> = (props) => {
 	const [showWelcome, setShowWelcome] = useState(true);
 	const [isQuizz, setIsQuizz] = useState(false);
 	const [isEssay, setIsEssay] = useState(false);
+	const navigate = useNavigate();
 	return (
 		<>
-			<header>
-				<Header />
-			</header>
+			<Header />
+
 			<main className="bg-gray-100">
 				<div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
 					{showWelcome && (
@@ -81,8 +82,17 @@ export const Learn: React.FC<Props> = (props) => {
 									</button>
 								</div>
 							</div>
+							<div>
+								<button
+									className="w-64 h-14 border-2 rounded-xl bg-yellow-500 text-neutral-100 font-semibold hover:bg-yellow-600 "
+									onClick={() => navigate("/learnResult")}
+								>
+									Show result of learning
+								</button>
+							</div>
 						</div>
 					)}
+
 					{isQuizz && <Quizz LearningData={data} />}
 					{isEssay && <Essay LearningData={data} />}
 				</div>
