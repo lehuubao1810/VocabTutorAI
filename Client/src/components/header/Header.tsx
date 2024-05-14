@@ -5,58 +5,91 @@ import { TranslateInput } from "./TranslateInput";
 import { UserModal } from "./UserModal";
 import { Nav } from "./Nav";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faLanguage } from "@fortawesome/free-solid-svg-icons";
 
-type Props = {
-  // type of the props
-};
+type Props = {};
 
 export const Header: React.FC<Props> = () => {
-  const [modalUser, setModalUser] = useState(false);
+	const [modalUser, setModalUser] = useState(false);
+	const [isTranslateOpen, setIsTranslateOpen] = useState(false);
+	const [isNavOpen, setIsNavOpen] = useState(false);
+	const navigate = useNavigate();
 
-  const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const { user } = useAppSelector((state) => state.authReducer);
 
-  const dispatch = useAppDispatch();
-  const { user } = useAppSelector((state) => state.authReducer);
+	// const { translated } = useAppSelector((state) => state.dictionaryReducer);
 
-  // const { translated } = useAppSelector((state) => state.dictionaryReducer);
+	const handleLogout = () => {
+		dispatch(logOut())
+			.unwrap()
+			.then(() => {
+				console.log("Logout success");
+			});
+	};
 
-  const handleLogout = () => {
-    dispatch(logOut())
-      .unwrap()
-      .then(() => {
-        console.log("Logout success");
-      });
-  };
+	return (
+		<header className="fixed top-0 left-0 w-full z-[500]">
+			<div className="max-w-screen-xl mx-auto px-5 py-4 bg-white rounded-xl shadow-md z-10">
+				<div className="flex justify-between items-center gap-2">
+					{/* Logo */}
+					<div className="flex items-center gap-3">
+						<button
+							className="hidden max-sm:block"
+							onClick={() => setIsNavOpen((prevState) => !prevState)}
+						>
+							<FontAwesomeIcon icon={faBars} />
+						</button>
+						<h1
+							className="text-2xl font-bold text-cyan-500 cursor-pointer"
+							onClick={() => {
+								navigate("/");
+							}}
+						>
+							TutorAI.
+						</h1>
+					</div>
+					{/* Navbar */}
 
-  return (
-    <div>
-      <nav className="p-4 flex items-center justify-between gap-4 fixed w-screen bg-white z-40">
-        <h1
-          className="text-2xl font-bold text-cyan-500 cursor-pointer"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          TutorAI.
-        </h1>
-        <Nav />
-        {/* dictionary */}
-        <div className="w-2/3 relative">
-          <TranslateInput />
-        </div>
-        {/* user */}
-        <div
-          className="flex gap-2 items-center cursor-pointer"
-          onClick={() => setModalUser(!modalUser)}
-        >
-          <img
-            src="https://randomuser.me/api/portraits/men/73.jpg"
-            alt=""
-            className="w-10 h-10 rounded-full"
-          />
-        </div>
-        {modalUser && <UserModal user={user} handleLogout={handleLogout} />}
-      </nav>
-    </div>
-  );
+					<div className="max-sm:hidden">
+						<Nav />
+					</div>
+					{isNavOpen && (
+						<div className="absolute top-20 left-4 bg-white shadow-lg rounded-lg p-4 pt-2">
+							<Nav />
+						</div>
+					)}
+					{/* dictionary */}
+					<button
+						className="hidden text-gray-700 flex justify-center items-center gap-2 max-sm:block"
+						onClick={() => setIsTranslateOpen((prevState) => !prevState)}
+					>
+						<FontAwesomeIcon icon={faLanguage} />
+						Translate
+					</button>
+					<div className="w-8/12 max-md:w-6/12 max-sm:hidden">
+						<TranslateInput />
+					</div>
+					{/* user */}
+					<div
+						className="flex gap-2 items-center cursor-pointer"
+						onClick={() => setModalUser(!modalUser)}
+					>
+						<img
+							src="https://randomuser.me/api/portraits/men/73.jpg"
+							alt=""
+							className="w-10 h-10 rounded-full"
+						/>
+					</div>
+					{modalUser && <UserModal user={user} handleLogout={handleLogout} />}
+				</div>
+				{isTranslateOpen && (
+					<div className="mt-5">
+						<TranslateInput />
+					</div>
+				)}
+			</div>
+		</header>
+	);
 };
