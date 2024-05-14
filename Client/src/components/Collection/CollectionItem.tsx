@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	faEdit,
 	faEnvelopeOpenText,
@@ -33,6 +33,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 	vocabulary,
 }) => {
 	const [isHovered, setIsHovered] = useState(false);
+	const navigate = useNavigate();
 	const transferData = {
 		id: collectionID,
 		name: name,
@@ -40,6 +41,10 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 		value: value,
 		date: date,
 		vocabulary: vocabulary,
+	};
+	const handleEditCollection = (e: React.MouseEvent) => {
+		e.preventDefault();
+		navigate(`/collection/${transferData.id}/edit`, { state: transferData });
 	};
 	return (
 		<Link to={`/collection/${collectionID}`} state={transferData}>
@@ -50,7 +55,10 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 			>
 				{isHovered && (
 					<div className="absolute top-1 right-1 z-10 flex ">
-						<button className="text-gray-500 hover:text-gray-700 mr-2">
+						<button
+							className="text-gray-500 hover:text-gray-700 mr-2"
+							onClick={handleEditCollection}
+						>
 							<FontAwesomeIcon icon={faEdit} />
 						</button>
 						<button className="text-red-500 hover:text-red-700 mr-2">

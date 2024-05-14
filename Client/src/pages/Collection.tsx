@@ -8,9 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import { VocabularyFlipCard } from "../components/vocabulary/VocabularyCard";
-type Props = {
-	// type of the props
-};
+type Props = {};
 
 export const Collection: React.FC<Props> = (props) => {
 	const location = useLocation();
@@ -29,10 +27,8 @@ export const Collection: React.FC<Props> = (props) => {
 		}[];
 	};
 	return (
-		<div>
-			<header>
-				<Header />
-			</header>
+		<>
+			<Header />
 			<main className="bg-gray-100">
 				<div className="pt-20 ml-auto mr-auto max-w-screen-xl px-20 py-4">
 					<div className="px-4 py-6">
@@ -46,7 +42,7 @@ export const Collection: React.FC<Props> = (props) => {
 					</div>
 					<div className="flex justify-between items-center gap-8">
 						<Link
-							to={`/learn/${data.id}`}
+							to={`/collection/${data.id}/learn`}
 							state={data.vocabulary}
 							className="w-full h-12 rounded-md border-2 pt-2 text-lg text-center font-semibold bg-white hover:bg-gray-300"
 						>
@@ -59,11 +55,11 @@ export const Collection: React.FC<Props> = (props) => {
 					</div>
 					<div className="mt-5">
 						{/* Flip card */}
-						<VocabularyFlipCard vocabularyData={data.vocabulary} />{" "}
+						<VocabularyFlipCard Data={data} />{" "}
 					</div>
 				</div>
 			</main>
 			<Footer />
-		</div>
+		</>
 	);
 };

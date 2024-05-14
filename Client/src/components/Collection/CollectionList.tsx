@@ -9,7 +9,7 @@ export const CollectionList: React.FC<collectionProps> = () => {
 	const data = dummyData;
 	const Navigate = useNavigate();
 	const HandleAddCollection = () => {
-		Navigate("/add-collection");
+		Navigate(`/add-collection`);
 	};
 	return (
 		<>
