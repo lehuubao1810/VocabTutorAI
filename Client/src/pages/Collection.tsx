@@ -9,9 +9,11 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import { VocabularyFlipCard } from "../components/vocabulary/VocabularyCard";
 
-type Props = {};
+type Props = {
+	//
+};
 
-export const Collection: React.FC<Props> = (props) => {
+export const Collection: React.FC<Props> = () => {
 	const location = useLocation();
 	const data = location.state as {
 		id: string;
