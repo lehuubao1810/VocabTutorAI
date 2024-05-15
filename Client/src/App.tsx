@@ -16,6 +16,7 @@ import { LoadingScreen } from "./components/common/LoadingScreen";
 import { useAppDispatch } from "./redux/hooks";
 import { setAuth } from "./redux/authSlice";
 import { getListCharacterAI } from "./redux/characterSlice";
+import { LearnResult } from "./pages/LearnResult";
 
 type isAuth = "checking" | boolean;
 
@@ -23,23 +24,23 @@ function App() {
   const [isAuth, setIsAuth] = useState<isAuth>("checking");
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsAuth(true);
-        console.log(user);
-        dispatch(
-          setAuth({
-            username: user.displayName,
-            email: user.email,
-            uid: user.uid,
-          })
-        );
-        dispatch(getListCharacterAI(user.uid));
-      } else {
-        setIsAuth(false);
-      }
-    });
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			if (user) {
+				setIsAuth(true);
+				console.log(user);
+				dispatch(
+					setAuth({
+						username: user.displayName,
+						email: user.email,
+						uid: user.uid,
+					})
+				);
+				dispatch(getListCharacterAI(user.uid));
+			} else {
+				setIsAuth(false);
+			}
+		});
 
     return () => unsubscribe();
   }, []);
@@ -58,44 +59,43 @@ function App() {
             path="/signup"
             element={isAuth ? <Navigate to="/" /> : <SignUp />}
           />
-
-          <Route
-            path="/"
-            element={!isAuth ? <Navigate to="/login" /> : <Home />}
-          />
-          <Route
-            path="/characters-ai"
-            element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
-          />
-          <Route
-            path="/add-collection"
-            element={!isAuth ? <Navigate to="/login" /> : <AddCollection />}
-          />
-          <Route
-            path="/collection/:idCollection"
-            element={!isAuth ? <Navigate to="/login" /> : <Collection />}
-          />
-          <Route
-            path="/learn/:idCollection"
-            element={!isAuth ? <Navigate to="/login" /> : <Learn />}
-          />
-          <Route
-            path="/collection/:idCollection/edit"
-            element={!isAuth ? <Navigate to="/login" /> : <EditCollection />}
-          />
-          <Route
-            path="/collection/:idCollection/learn"
-            element={!isAuth ? <Navigate to="/login" /> : <Learn />}
-          />
-          <Route
-            path="/characters-ai/:conversationID"
-            element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
-          />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-      )}
-    </BrowserRouter>
-  );
+					<Route
+						path="/"
+						element={!isAuth ? <Navigate to="/login" /> : <Home />}
+					/>
+					<Route
+						path="/characters-ai"
+						element={!isAuth ? <Navigate to="/login" /> : <CharactersAI />}
+					/>
+					<Route
+						path="/add-collection"
+						element={!isAuth ? <Navigate to="/login" /> : <AddCollection />}
+					/>
+					<Route
+						path="/collection/:idCollection"
+						element={!isAuth ? <Navigate to="/login" /> : <Collection />}
+					/>
+					<Route
+						path="/collection/:idCollection/edit"
+						element={!isAuth ? <Navigate to="/login" /> : <EditCollection />}
+					/>
+					<Route
+						path="/collection/:idCollection/learn"
+						element={!isAuth ? <Navigate to="/login" /> : <Learn />}
+					/>
+					<Route
+						path="/learnResult"
+						element={!isAuth ? <Navigate to="/login" /> : <LearnResult />}
+					/>
+					<Route
+						path="/characters-ai/:conversationID"
+						element={!isAuth ? <Navigate to="/login" /> : <RoomAI />}
+					/>
+					<Route path="*" element={<PageNotFound />} />
+				</Routes>
+			)}
+		</BrowserRouter>
+	);
 }
 
 export default App;

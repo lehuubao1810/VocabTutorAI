@@ -11,7 +11,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
 	const data = dummyData;
 	const Navigate = useNavigate();
 	const HandleAddCollection = () => {
-		Navigate("/add-collection");
+		Navigate(`/add-collection`);
 	};
 	return (
 		<>
