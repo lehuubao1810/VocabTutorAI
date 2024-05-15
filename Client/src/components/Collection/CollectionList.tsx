@@ -3,9 +3,11 @@ import CollectionItem from "./CollectionItem";
 import { dummyData } from "../../dataTest/dataVocab";
 import { Link, useNavigate } from "react-router-dom";
 
-type collectionProps = {};
+type CollectionProps = {
+	//
+};
 
-export const CollectionList: React.FC<collectionProps> = () => {
+export const CollectionList: React.FC<CollectionProps> = () => {
 	const data = dummyData;
 	const Navigate = useNavigate();
 	const HandleAddCollection = () => {

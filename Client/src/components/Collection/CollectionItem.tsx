@@ -61,10 +61,10 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 						>
 							<FontAwesomeIcon icon={faEdit} />
 						</button>
-						<button className="text-red-500 hover:text-red-700 mr-2">
+						<button type="button" title="tool" className="text-red-500 hover:text-red-700 mr-2">
 							<FontAwesomeIcon icon={faTrash} />
 						</button>
-						<button className="text-blue-500 hover:text-red-700">
+						<button type="button" title="tool" className="text-blue-500 hover:text-red-700">
 							<FontAwesomeIcon icon={faShare} />
 						</button>
 					</div>

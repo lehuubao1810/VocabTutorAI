@@ -7,7 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-type FooterProps = {};
+type FooterProps = {
+	//
+};
 
 const FooterList: React.FC<{
 	title: string;

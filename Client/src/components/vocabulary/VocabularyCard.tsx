@@ -1,11 +1,11 @@
 import {
-	faArrowLeft,
-	faArrowRight,
-	faArrowRotateLeft,
-	faGear,
-	faPenToSquare,
-	faPlay,
-	faTrash,
+  faArrowLeft,
+  faArrowRight,
+  faArrowRotateLeft,
+  faGear,
+  faPenToSquare,
+  faPlay,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -30,19 +30,19 @@ export const VocabularyFlipCard: React.FC<{
 		setIsFlipped(!isFlipped);
 	};
 
-	const handleNextVocabulary = () => {
-		const newIndex = (currentVocabularyIndex + 1) % vocabularyData.length;
-		setCurrentVocabularyIndex(newIndex);
-		setIsFlipped(false);
-	};
+  const handleNextVocabulary = () => {
+    const newIndex = (currentVocabularyIndex + 1) % vocabularyData.length;
+    setCurrentVocabularyIndex(newIndex);
+    setIsFlipped(false);
+  };
 
-	const handlePrevVocabulary = () => {
-		const newIndex =
-			(currentVocabularyIndex - 1 + vocabularyData.length) %
-			vocabularyData.length;
-		setCurrentVocabularyIndex(newIndex);
-		setIsFlipped(false);
-	};
+  const handlePrevVocabulary = () => {
+    const newIndex =
+      (currentVocabularyIndex - 1 + vocabularyData.length) %
+      vocabularyData.length;
+    setCurrentVocabularyIndex(newIndex);
+    setIsFlipped(false);
+  };
 
 	const handleSetting = () => {
 		setSetting(!isSetting);
@@ -61,7 +61,7 @@ export const VocabularyFlipCard: React.FC<{
 		setProgress(newProgress);
 	}, [currentVocabularyIndex, vocabularyData]);
 
-	const currentVocabulary = vocabularyData[currentVocabularyIndex];
+  const currentVocabulary = vocabularyData[currentVocabularyIndex];
 
 	return (
 		<>
@@ -170,4 +170,5 @@ export const VocabularyFlipCard: React.FC<{
 			</div>
 		</>
 	);
+
 };

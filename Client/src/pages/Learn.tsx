@@ -7,8 +7,9 @@ import { Quizz } from "../components/learn/Quizz";
 import { Essay } from "../components/learn/Essay";
 
 import { useLocation, useNavigate } from "react-router-dom";
+
 type Props = {
-	// type of the props
+  // type of the props
 };
 
 export const Learn: React.FC<Props> = (props) => {

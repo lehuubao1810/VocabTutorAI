@@ -3,11 +3,12 @@ import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faCalendar,
-	faShareFromSquare,
+  faCalendar,
+  faShareFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import { VocabularyFlipCard } from "../components/vocabulary/VocabularyCard";
+
 type Props = {};
 
 export const Collection: React.FC<Props> = (props) => {

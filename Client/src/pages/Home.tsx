@@ -4,7 +4,9 @@ import Banner from "../components/main/Banner";
 import { CollectionList } from "../components/Collection/CollectionList";
 import Footer from "../components/footer/Footer";
 
-type Props = {};
+type Props = {
+	// type of the props
+};
 
 export const Home: React.FC<Props> = (props) => {
 	console.log(props);
