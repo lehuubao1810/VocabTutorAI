@@ -106,6 +106,9 @@ export const CharactersAI: React.FC<Props> = () => {
           ))}
         </div>
       </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 };

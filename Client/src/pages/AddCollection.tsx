@@ -27,19 +27,13 @@ export const AddCollection: React.FC<Props> = (props) => {
 								<h2 className="font-semibold text-lg">
 									Name collection you want to add :
 								</h2>
-								<input type="text" className="border-b-2 text-lg " />
+								<input placeholder="Name" type="text" className="border-b-2 text-lg " />
 							</div>
 							<div className="flex gap-4">
 								<h2 className="font-semibold text-lg">
 									Description of this collection :
 								</h2>
-								<input type="text" className="border-b-2 text-lg " />
-							</div>
-							<div className="flex gap-4">
-								<h2 className="font-semibold text-lg">
-									Description of this collection :
-								</h2>
-								<input type="text" className="border-b-2 text-lg " />
+								<input placeholder="Description" type="text" className="border-b-2 text-lg " />
 							</div>
 						</div>
 					</div>

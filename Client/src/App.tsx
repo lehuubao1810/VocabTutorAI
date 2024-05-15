@@ -20,38 +20,44 @@ import { getListCharacterAI } from "./redux/characterSlice";
 type isAuth = "checking" | boolean;
 
 function App() {
-	const [isAuth, setIsAuth] = useState<isAuth>("checking");
-	const dispatch = useAppDispatch();
+  const [isAuth, setIsAuth] = useState<isAuth>("checking");
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsAuth(true);
         console.log(user);
-        dispatch(setAuth({ username: user.displayName, email: user.email, uid: user.uid }));
+        dispatch(
+          setAuth({
+            username: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          })
+        );
         dispatch(getListCharacterAI(user.uid));
       } else {
         setIsAuth(false);
       }
     });
 
-		return () => unsubscribe();
-	}, []);
+    return () => unsubscribe();
+  }, []);
 
-	return (
-		<BrowserRouter>
-			{isAuth === "checking" ? (
-				<LoadingScreen />
-			) : (
-				<Routes>
-					<Route
-						path="/login"
-						element={isAuth ? <Navigate to="/" /> : <Login />}
-					/>
-					<Route
-						path="/signup"
-						element={isAuth ? <Navigate to="/" /> : <SignUp />}
-					/>
+  return (
+    <BrowserRouter>
+      {isAuth === "checking" ? (
+        <LoadingScreen />
+      ) : (
+        <Routes>
+          <Route
+            path="/login"
+            element={isAuth ? <Navigate to="/" /> : <Login />}
+          />
+          <Route
+            path="/signup"
+            element={isAuth ? <Navigate to="/" /> : <SignUp />}
+          />
 
           <Route
             path="/"
@@ -68,6 +74,10 @@ function App() {
           <Route
             path="/collection/:idCollection"
             element={!isAuth ? <Navigate to="/login" /> : <Collection />}
+          />
+          <Route
+            path="/learn/:idCollection"
+            element={!isAuth ? <Navigate to="/login" /> : <Learn />}
           />
           <Route
             path="/collection/:idCollection/edit"
