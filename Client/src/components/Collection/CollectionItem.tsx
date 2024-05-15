@@ -55,12 +55,12 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 			>
 				{isHovered && (
 					<div className="absolute top-1 right-1 z-10 flex ">
-						<button
+						<div
 							className="text-gray-500 hover:text-gray-700 mr-2"
 							onClick={handleEditCollection}
 						>
 							<FontAwesomeIcon icon={faEdit} />
-						</button>
+						</div>
 						<button type="button" title="tool" className="text-red-500 hover:text-red-700 mr-2">
 							<FontAwesomeIcon icon={faTrash} />
 						</button>

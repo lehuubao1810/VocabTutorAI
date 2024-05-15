@@ -10,7 +10,7 @@ type Props = {
 	// type of the props
 };
 
-export const AddCollection: React.FC<Props> = (props) => {
+export const AddCollection: React.FC<Props> = () => {
 	const [numWords, setNumWords] = useState<number>(0);
 	const [collectionData, setCollectionData] = useState<CollectionItemData>({
 		collectionID: "",
@@ -77,6 +77,7 @@ export const AddCollection: React.FC<Props> = (props) => {
 								<div className="flex gap-4">
 									<h2 className="font-semibold text-lg">Name collection :</h2>
 									<input
+										placeholder="..."
 										type="text"
 										className="border-b-2 text-lg focus:border-blue-500 outline-none"
 										value={collectionData.name}
@@ -93,6 +94,7 @@ export const AddCollection: React.FC<Props> = (props) => {
 										Description of this collection :
 									</h2>
 									<input
+										placeholder="..."
 										type="text"
 										className="border-b-2 text-lg focus:border-blue-500 outline-none"
 										value={collectionData.desc}
@@ -107,6 +109,7 @@ export const AddCollection: React.FC<Props> = (props) => {
 								<div className="flex gap-4">
 									<h2 className="font-semibold text-lg">Number of Words:</h2>
 									<input
+										placeholder="..."
 										type="number"
 										min="0"
 										className="border-b-2 text-lg focus:border-blue-500 outline-none"
@@ -130,6 +133,7 @@ export const AddCollection: React.FC<Props> = (props) => {
 											<div className="flex gap-4">
 												<h2 className="font-semibold text-base">Word:</h2>
 												<input
+													placeholder="..."
 													type="text"
 													className="border-b-2 text-base focus:border-blue-500 outline-none"
 													value={word.word}
@@ -147,6 +151,7 @@ export const AddCollection: React.FC<Props> = (props) => {
 													Translation:
 												</h2>
 												<input
+													placeholder="..."
 													type="text"
 													className="border-b-2 text-base focus:border-blue-500 outline-none"
 													value={word.translation}
@@ -162,6 +167,7 @@ export const AddCollection: React.FC<Props> = (props) => {
 											<div className="flex gap-4">
 												<h2 className="font-semibold text-base">Example:</h2>
 												<input
+													placeholder="..."
 													type="text"
 													className="border-b-2 text-base focus:border-blue-500 outline-none"
 													value={word.example}
