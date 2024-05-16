@@ -83,7 +83,7 @@ export const VocabularyFlipCard: React.FC<{
 							<p className="text-4xl font-sans">{currentVocabulary.word}</p>
 							<p>{currentVocabulary.pronunciation}</p>
 							<p>
-								<span className="font-semibold">Suggest:</span>{" "}
+								<span className="font-semibold">Suggest:</span>
 								{currentVocabulary.mean}
 							</p>
 						</div>
@@ -92,7 +92,7 @@ export const VocabularyFlipCard: React.FC<{
 								{currentVocabulary.translation}
 							</p>
 							<p>
-								<span className="font-semibold">Example:</span>{" "}
+								<span className="font-semibold">Example:</span>
 								{currentVocabulary.example}
 							</p>
 						</div>

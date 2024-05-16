@@ -18,7 +18,6 @@ export const LearnResult: React.FC<Props> = () => {
         <div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
           <div className="flex flex-col gap-3 px-5 py-6 ">
             <h1 className="text-3xl font-bold text-blue-500">
-              {" "}
               Learn Results <FontAwesomeIcon icon={faSquarePollVertical} />
             </h1>
             <p className="ml-4 text-xl text-gray-500">
