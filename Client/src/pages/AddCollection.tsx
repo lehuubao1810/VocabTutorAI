@@ -37,6 +37,7 @@ export const AddCollection: React.FC<Props> = () => {
     setCollectionData({
       ...collectionData,
       vocabulary: Array.from({ length: num }, () => ({
+        id: "",
         word: "",
         translation: "",
         mean: "",

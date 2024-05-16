@@ -10,7 +10,7 @@ type Props = {
 export const UserModal: React.FC<Props> = (props) => {
   console.log(props);
   return (
-    <div className="absolute top-20 right-4 bg-white shadow-lg rounded-lg p-4 pt-2">
+    <div className="absolute top-20 right-4 bg-white shadow-lg rounded-lg p-4 pt-2 z-50">
       <div className="flex gap-2 mb-4 p-2 border-b-slate-300 border-b-2">
         <img
           src="https://randomuser.me/api/portraits/men/73.jpg"
