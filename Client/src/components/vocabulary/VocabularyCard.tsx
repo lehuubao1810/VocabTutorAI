@@ -12,12 +12,18 @@ import React, { useState, useEffect } from "react";
 import "./VocabularyCard.css";
 import { useNavigate } from "react-router-dom";
 
-type props = {};
+interface VocabularyItem {
+	word: string;
+	translation: string;
+	mean: string;
+	pronunciation: string;
+	example: string;
+}
 
 export const VocabularyFlipCard: React.FC<{
 	Data: {
-		id: any;
-		vocabulary: any[];
+		id: string;
+		vocabulary: VocabularyItem[];
 	};
 }> = ({ Data }) => {
 	const [isFlipped, setIsFlipped] = useState(false);
@@ -77,7 +83,7 @@ export const VocabularyFlipCard: React.FC<{
 							<p className="text-4xl font-sans">{currentVocabulary.word}</p>
 							<p>{currentVocabulary.pronunciation}</p>
 							<p>
-								<span className="font-semibold">Suggest:</span>{" "}
+								<span className="font-semibold">Suggest:</span>
 								{currentVocabulary.mean}
 							</p>
 						</div>
@@ -86,18 +92,18 @@ export const VocabularyFlipCard: React.FC<{
 								{currentVocabulary.translation}
 							</p>
 							<p>
-								<span className="font-semibold">Example:</span>{" "}
+								<span className="font-semibold">Example:</span>
 								{currentVocabulary.example}
 							</p>
 						</div>
 					</div>
 				</div>
 				<div className="w-full flex justify-between items-center">
-					<button className="w-10 h-10 flex justify-center items-center rounded-full text-gray-500 hover:bg-gray-200">
+					<button type="button" title="tool" className="w-10 h-10 flex justify-center items-center rounded-full text-gray-500 hover:bg-gray-200">
 						<FontAwesomeIcon icon={faPlay} />
 					</button>
 					<div className="mt-5 mb-2 flex justify-between items-center gap-10">
-						<button
+						<button type="button" title="tool"
 							className="w-10 h-10 rounded-full bg-gray-500 text-gray-50 hover:bg-gray-400"
 							onClick={handlePrevVocabulary}
 						>
@@ -106,7 +112,7 @@ export const VocabularyFlipCard: React.FC<{
 						<p className="text-gray-500 font-semibold">
 							{currentVocabularyIndex + 1} / {vocabularyData.length}
 						</p>
-						<button
+						<button type="button" title="tool"
 							className="w-10 h-10 rounded-full bg-gray-500 text-gray-50 hover:bg-gray-400"
 							onClick={handleNextVocabulary}
 						>
@@ -114,7 +120,7 @@ export const VocabularyFlipCard: React.FC<{
 						</button>
 					</div>
 					<div className="relative">
-						<button
+						<button type="button" title="tool"
 							onClick={handleSetting}
 							className=" text-gray-600 hover:transform-gpus hover:scale-110"
 						>
@@ -125,16 +131,16 @@ export const VocabularyFlipCard: React.FC<{
 								isSetting ? "flex" : "hidden"
 							} flex-col gap-2 w-44 h-20 absolute -top-8 right-0 transition-all duration-300 ease-linear`}
 						>
-							<button
+							<button type="button" title="tool"
 								className="ml-8 text-blue-600 hover:opacity-60"
 								onClick={handleEditCollection}
 							>
 								Edit vocabulary <FontAwesomeIcon icon={faPenToSquare} />
 							</button>
-							<button className="mr-4 text-red-600 hover:opacity-60">
+							<button type="button" title="tool" className="mr-4 text-red-600 hover:opacity-60">
 								Delete vocabulary <FontAwesomeIcon icon={faTrash} />
 							</button>
-							<button
+							<button type="button" title="tool"
 								onClick={handleSetting}
 								className="ml-28 text-blue-600 hover:opacity-60"
 							>

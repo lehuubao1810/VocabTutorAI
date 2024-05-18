@@ -49,16 +49,16 @@ export const CharactersAI: React.FC<Props> = () => {
   };
 
   return (
-    <div>
+    <div className="bg-slate-100">
       <header>
         <Header />
       </header>
-      <main className="container bg-slate-100 min-h-screen pt-20 px-16">
+      <main className="container min-h-screen pt-20 px-5 mx-auto max-w-screen-xl">
         <div className="my-4">
           <h1 className="text-2xl font-bold text-slate-900">Characters AI</h1>
         </div>
         {/* list card AI to chat*/}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {charactersAI.map((character) => (
             <div
               key={character._id}

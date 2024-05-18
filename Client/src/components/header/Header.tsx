@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faLanguage } from "@fortawesome/free-solid-svg-icons";
 
-type Props = {};
+type Props = {
+	//
+};
 
 export const Header: React.FC<Props> = () => {
 	const [modalUser, setModalUser] = useState(false);
@@ -36,6 +38,8 @@ export const Header: React.FC<Props> = () => {
 					{/* Logo */}
 					<div className="flex items-center gap-3">
 						<button
+							type="button"	
+							title="Menu"
 							className="hidden max-sm:block"
 							onClick={() => setIsNavOpen((prevState) => !prevState)}
 						>

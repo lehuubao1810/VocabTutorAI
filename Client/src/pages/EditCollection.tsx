@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
@@ -77,6 +77,7 @@ export const EditCollection: React.FC = () => {
 								<div className="flex gap-4">
 									<h2 className="font-semibold text-lg">Name collection :</h2>
 									<input
+										placeholder="..."
 										type="text"
 										className="border-b-2 text-lg focus:border-blue-500 outline-none"
 										value={collectionData.name}
@@ -93,6 +94,7 @@ export const EditCollection: React.FC = () => {
 										Description of this collection :
 									</h2>
 									<input
+										placeholder="..."
 										type="text"
 										className="border-b-2 text-lg focus:border-blue-500 outline-none"
 										value={collectionData.desc}
@@ -107,6 +109,7 @@ export const EditCollection: React.FC = () => {
 								<div className="flex gap-4">
 									<h2 className="font-semibold text-lg">Number of Words:</h2>
 									<input
+										placeholder="..."
 										type="number"
 										min="0"
 										className="border-b-2 text-lg focus:border-blue-500 outline-none"
@@ -129,6 +132,7 @@ export const EditCollection: React.FC = () => {
 											<div className="flex gap-4">
 												<h2 className="font-semibold text-base">Word:</h2>
 												<input
+													placeholder="..."
 													type="text"
 													className="border-b-2 text-base focus:border-blue-500 outline-none"
 													value={word.word}
@@ -146,6 +150,7 @@ export const EditCollection: React.FC = () => {
 													Translation:
 												</h2>
 												<input
+													placeholder="..."
 													type="text"
 													className="border-b-2 text-base focus:border-blue-500 outline-none"
 													value={word.translation}
@@ -161,6 +166,7 @@ export const EditCollection: React.FC = () => {
 											<div className="flex gap-4">
 												<h2 className="font-semibold text-base">Example:</h2>
 												<input
+													placeholder="..."
 													type="text"
 													className="border-b-2 text-base focus:border-blue-500 outline-none"
 													value={word.example}

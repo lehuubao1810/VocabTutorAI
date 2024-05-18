@@ -1,0 +1,243 @@
+export const business = {
+  name: "Business",
+  desc: "This is a collection of vocabulary related to business and corporate activities",
+  value: 30,
+  vocabulary: [
+    {
+      word: "ENTREPRENEUR",
+      translation: "doanh nhân",
+      mean: "a person who sets up a business or businesses, taking on financial risks in the hope of profit",
+      pronunciation: "ˌɒntrəprəˈnɜːr",
+      example:
+        "He became a successful entrepreneur with his innovative tech startup.",
+    },
+    {
+      word: "STARTUP",
+      translation: "khởi nghiệp",
+      mean: "a newly established business",
+      pronunciation: "ˈstɑːrtˌʌp",
+      example:
+        "The startup culture in Silicon Valley is known for its dynamic approach to innovation.",
+    },
+    {
+      word: "INVESTMENT",
+      translation: "đầu tư",
+      mean: "the action or process of investing money for profit",
+      pronunciation: "ɪnˈvɛstmənt",
+      example:
+        "Smart investment choices can significantly impact the growth of your business.",
+    },
+    {
+      word: "MARKETING",
+      translation: "tiếp thị",
+      mean: "the action or business of promoting and selling products or services, including market research and advertising",
+      pronunciation: "ˈmɑːrkɪtɪŋ",
+      example:
+        "Effective marketing strategies are crucial for attracting and retaining customers.",
+    },
+    {
+      word: "BRAND",
+      translation: "thương hiệu",
+      mean: "a type of product manufactured by a particular company under a particular name",
+      pronunciation: "brænd",
+      example:
+        "Building a strong brand can differentiate your products in a competitive market.",
+    },
+    {
+      word: "NEGOTIATION",
+      translation: "đàm phán",
+      mean: "discussion aimed at reaching an agreement",
+      pronunciation: "nɪˌɡəʊʃɪˈeɪʃn",
+      example:
+        "Negotiation skills are essential for securing advantageous business deals.",
+    },
+    {
+      word: "STRATEGY",
+      translation: "chiến lược",
+      mean: "a plan of action designed to achieve a long-term or overall aim",
+      pronunciation: "ˈstrætɪdʒi",
+      example:
+        "The company's business strategy focuses on sustainability and innovation.",
+    },
+    {
+      word: "PROFIT",
+      translation: "lợi nhuận",
+      mean: "a financial gain, especially the difference between the amount earned and the amount spent in buying, operating, or producing something",
+      pronunciation: "ˈprɒfɪt",
+      example:
+        "The primary goal of the business is to increase profit margins.",
+    },
+    {
+      word: "MERGER",
+      translation: "sáp nhập",
+      mean: "a combination of two things, especially companies, into one",
+      pronunciation: "ˈmɜːrdʒər",
+      example:
+        "The merger of the two leading tech companies created a powerhouse in the industry.",
+    },
+    {
+      word: "ACQUISITION",
+      translation: "thu mua",
+      mean: "an asset or object bought or obtained, typically by a library or museum",
+      pronunciation: "ˌækwiˈzɪʃn",
+      example:
+        "The recent acquisition of a smaller company allowed them to expand their market reach.",
+    },
+    {
+      word: "CAPITAL",
+      translation: "vốn",
+      mean: "wealth in the form of money or other assets owned by a person or organization or available for a purpose such as starting a company or investing",
+      pronunciation: "ˈkæpɪtəl",
+      example: "Raising enough capital is a crucial step for any new business.",
+    },
+    {
+      word: "EQUITY",
+      translation: "cổ phần",
+      mean: "the value of the shares issued by a company",
+      pronunciation: "ˈekwɪti",
+      example: "She owns a significant amount of equity in the startup.",
+    },
+    {
+      word: "REVENUE",
+      translation: "doanh thu",
+      mean: "income, especially when of a company or organization and of a substantial nature",
+      pronunciation: "ˈrɛvənjuː",
+      example: "Revenue from the new product line exceeded expectations.",
+    },
+    {
+      word: "LIABILITY",
+      translation: "nghĩa vụ pháp lý",
+      mean: "the state of being responsible for something, especially by law",
+      pronunciation: "ˌlaɪəˈbɪlɪti",
+      example:
+        "Understanding your liabilities is essential in managing a business.",
+    },
+    {
+      word: "ASSET",
+      translation: "tài sản",
+      mean: "a useful or valuable thing, person, or quality",
+      pronunciation: "ˈæsɛt",
+      example:
+        "The company's main assets include its intellectual property and experienced workforce.",
+    },
+    {
+      word: "CONSUMER",
+      translation: "người tiêu dùng",
+      mean: "a person who purchases goods and services for personal use",
+      pronunciation: "kənˈsjuːmə",
+      example:
+        "Understanding consumer behavior is key to the success of any product.",
+    },
+    {
+      word: "SUPPLY CHAIN",
+      translation: "chuỗi cung ứng",
+      mean: "the sequence of processes involved in the production and distribution of a commodity",
+      pronunciation: "səˈplaɪ ʧeɪn",
+      example:
+        "The company is working to make its supply chain more efficient and sustainable.",
+    },
+    {
+      word: "MANUFACTURING",
+      translation: "sản xuất",
+      mean: "the making of articles on a large scale using machinery; industrial production",
+      pronunciation: "ˌmænjʊˈfækʧərɪŋ",
+      example:
+        "Manufacturing costs have been rising due to increases in raw material prices.",
+    },
+    {
+      word: "INNOVATION",
+      translation: "đổi mới",
+      mean: "the action or process of innovating; a new method, idea, product, etc.",
+      pronunciation: "ˌɪnəˈveɪʃn",
+      example:
+        "Innovation is at the heart of our company's approach to software development.",
+    },
+    {
+      word: "NETWORKING",
+      translation: "xây dựng mạng lưới",
+      mean: "interact with others to exchange information and develop professional or social contacts",
+      pronunciation: "ˈnɛtwɜːkɪŋ",
+      example:
+        "Networking is a vital part of growing a business and finding new opportunities.",
+    },
+    {
+      word: "DIVERSIFICATION",
+      translation: "đa dạng hóa",
+      mean: "the process of a business enlarging or varying its range of products or field of operation",
+      pronunciation: "daɪˌvɜːsɪfɪˈkeɪʃn",
+      example:
+        "Diversification has helped the company to stabilize its income during market fluctuations.",
+    },
+    {
+      word: "LEVERAGE",
+      translation: "đòn bẩy",
+      mean: "use borrowed capital for (an investment), expecting the profits made to be greater than the interest payable",
+      pronunciation: "ˈliːvərɪdʒ",
+      example: "The firm used leverage to finance the acquisition.",
+    },
+    {
+      word: "OUTSOURCING",
+      translation: "thuê ngoài",
+      mean: "obtain (goods or a service) from an outside supplier; to contract work out",
+      pronunciation: "ˈaʊtsɔːsɪŋ",
+      example:
+        "Outsourcing IT services has allowed the company to focus on core business activities.",
+    },
+    {
+      word: "VENTURE CAPITAL",
+      translation: "vốn đầu tư mạo hiểm",
+      mean: "funds that investors provide to startup companies and small businesses that are believed to have long-term growth potential",
+      pronunciation: "ˈvɛnʧə ˈkæpɪtəl",
+      example:
+        "They secured venture capital to fund the expansion of their business.",
+    },
+    {
+      word: "CASH FLOW",
+      translation: "dòng tiền",
+      mean: "the total amount of money being transferred into and out of a business, especially as affecting liquidity",
+      pronunciation: "kæʃ floʊ",
+      example:
+        "Managing cash flow effectively is critical for the survival of any small business.",
+    },
+    {
+      word: "BREAK-EVEN POINT",
+      translation: "điểm hòa vốn",
+      mean: "the production level at which total revenues equals total expenses",
+      pronunciation: "breɪk ˈiːvən pɔɪnt",
+      example:
+        "The company hopes to reach the break-even point within the first two years.",
+    },
+    {
+      word: "MARKET SHARE",
+      translation: "thị phần",
+      mean: "the portion of a market controlled by a particular company or product",
+      pronunciation: "ˈmɑːrkɪt ʃɛər",
+      example:
+        "Increasing our market share is a key objective for the next fiscal year.",
+    },
+    {
+      word: "DUE DILIGENCE",
+      translation: "thẩm định kỹ lưỡng",
+      mean: "an investigation or audit of a potential investment or product to confirm all facts, that might include the review of financial records",
+      pronunciation: "djuː ˈdɪlɪdʒəns",
+      example:
+        "Due diligence is required before finalizing any merger agreement.",
+    },
+    {
+      word: "STAKEHOLDER",
+      translation: "bên liên quan",
+      mean: "a person or group that has an investment, share, or interest in something, as a business or industry",
+      pronunciation: "ˈsteɪkˌhoʊldə",
+      example:
+        "We need to consider the opinions of all stakeholders before making a decision.",
+    },
+    {
+      word: "SCALE-UP",
+      translation: "mở rộng quy mô",
+      mean: "to increase something in size, amount, or production",
+      pronunciation: "skeɪl ʌp",
+      example:
+        "The company is planning to scale-up its operations to meet growing demand.",
+    },
+  ],
+};

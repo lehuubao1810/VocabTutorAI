@@ -4,6 +4,7 @@ import authReducer from "./authSlice";
 import dictionaryReducer from "./dictionarySlice";
 import characterReducer from "./characterSlice";
 import conversationReducer from "./conversationSlice";
+import collectionReducer from "./collectionSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     authReducer,
     dictionaryReducer,
     characterReducer,
-    conversationReducer
+    conversationReducer,
+    collectionReducer
   },
 });
 

@@ -81,7 +81,7 @@ export const TranslateInput: React.FC<Props> = () => {
 			</div>
 
 			{textTranslate.trim() !== "" && (
-				<div className="absolute top-auto left-auto w-2/3 bg-white shadow-lg rounded-lg p-4 pt-2">
+				<div className="absolute top-20 left-auto w-3/5 bg-white shadow-lg rounded-lg p-4 pt-2">
 					<p className="font-semibold text-blue-500">Translated</p>
 					{loadingTranslate ? (
 						<div className="flex items-center justify-center pt-2">

@@ -22,6 +22,7 @@ const Banner: React.FC = () => {
 				src={images[currentImageIndex]}
 				alt="Banner"
 				className="w-full h-auto cover"
+				loading="lazy"
 			/>
 		</div>
 	);
