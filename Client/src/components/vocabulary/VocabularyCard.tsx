@@ -1,11 +1,11 @@
 import {
-  faArrowLeft,
-  faArrowRight,
-  faArrowRotateLeft,
-  faGear,
-  faPenToSquare,
-  faPlay,
-  faTrash,
+	faArrowLeft,
+	faArrowRight,
+	faArrowRotateLeft,
+	faGear,
+	faPenToSquare,
+	faPlay,
+	faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -36,19 +36,19 @@ export const VocabularyFlipCard: React.FC<{
 		setIsFlipped(!isFlipped);
 	};
 
-  const handleNextVocabulary = () => {
-    const newIndex = (currentVocabularyIndex + 1) % vocabularyData.length;
-    setCurrentVocabularyIndex(newIndex);
-    setIsFlipped(false);
-  };
+	const handleNextVocabulary = () => {
+		const newIndex = (currentVocabularyIndex + 1) % vocabularyData.length;
+		setCurrentVocabularyIndex(newIndex);
+		setIsFlipped(false);
+	};
 
-  const handlePrevVocabulary = () => {
-    const newIndex =
-      (currentVocabularyIndex - 1 + vocabularyData.length) %
-      vocabularyData.length;
-    setCurrentVocabularyIndex(newIndex);
-    setIsFlipped(false);
-  };
+	const handlePrevVocabulary = () => {
+		const newIndex =
+			(currentVocabularyIndex - 1 + vocabularyData.length) %
+			vocabularyData.length;
+		setCurrentVocabularyIndex(newIndex);
+		setIsFlipped(false);
+	};
 
 	const handleSetting = () => {
 		setSetting(!isSetting);
@@ -67,7 +67,7 @@ export const VocabularyFlipCard: React.FC<{
 		setProgress(newProgress);
 	}, [currentVocabularyIndex, vocabularyData]);
 
-  const currentVocabulary = vocabularyData[currentVocabularyIndex];
+	const currentVocabulary = vocabularyData[currentVocabularyIndex];
 
 	return (
 		<>
@@ -79,19 +79,19 @@ export const VocabularyFlipCard: React.FC<{
 					}`}
 				>
 					<div className="flip-card-inner">
-						<div className="flip-card-front flex flex-col justify-center items-center gap-4">
+						<div className="flip-card-front flex flex-col justify-center items-center gap-4 p-5">
 							<p className="text-4xl font-sans">{currentVocabulary.word}</p>
 							<p>{currentVocabulary.pronunciation}</p>
-							<p>
+							<p className="text-center">
 								<span className="font-semibold">Suggest:</span>
 								{currentVocabulary.mean}
 							</p>
 						</div>
-						<div className="flip-card-back flex flex-col justify-center items-center gap-4">
+						<div className="flip-card-back flex flex-col justify-center items-center gap-4 p-5">
 							<p className="text-4xl font-sans">
 								{currentVocabulary.translation}
 							</p>
-							<p>
+							<p className="text-center">
 								<span className="font-semibold">Example:</span>
 								{currentVocabulary.example}
 							</p>
@@ -99,11 +99,17 @@ export const VocabularyFlipCard: React.FC<{
 					</div>
 				</div>
 				<div className="w-full flex justify-between items-center">
-					<button type="button" title="tool" className="w-10 h-10 flex justify-center items-center rounded-full text-gray-500 hover:bg-gray-200">
+					<button
+						type="button"
+						title="tool"
+						className="w-10 h-10 flex justify-center items-center rounded-full text-gray-500 hover:bg-gray-200"
+					>
 						<FontAwesomeIcon icon={faPlay} />
 					</button>
 					<div className="mt-5 mb-2 flex justify-between items-center gap-10">
-						<button type="button" title="tool"
+						<button
+							type="button"
+							title="tool"
 							className="w-10 h-10 rounded-full bg-gray-500 text-gray-50 hover:bg-gray-400"
 							onClick={handlePrevVocabulary}
 						>
@@ -112,7 +118,9 @@ export const VocabularyFlipCard: React.FC<{
 						<p className="text-gray-500 font-semibold">
 							{currentVocabularyIndex + 1} / {vocabularyData.length}
 						</p>
-						<button type="button" title="tool"
+						<button
+							type="button"
+							title="tool"
 							className="w-10 h-10 rounded-full bg-gray-500 text-gray-50 hover:bg-gray-400"
 							onClick={handleNextVocabulary}
 						>
@@ -120,7 +128,9 @@ export const VocabularyFlipCard: React.FC<{
 						</button>
 					</div>
 					<div className="relative">
-						<button type="button" title="tool"
+						<button
+							type="button"
+							title="tool"
 							onClick={handleSetting}
 							className=" text-gray-600 hover:transform-gpus hover:scale-110"
 						>
@@ -131,16 +141,24 @@ export const VocabularyFlipCard: React.FC<{
 								isSetting ? "flex" : "hidden"
 							} flex-col gap-2 w-44 h-20 absolute -top-8 right-0 transition-all duration-300 ease-linear`}
 						>
-							<button type="button" title="tool"
+							<button
+								type="button"
+								title="tool"
 								className="ml-8 text-blue-600 hover:opacity-60"
 								onClick={handleEditCollection}
 							>
 								Edit vocabulary <FontAwesomeIcon icon={faPenToSquare} />
 							</button>
-							<button type="button" title="tool" className="mr-4 text-red-600 hover:opacity-60">
+							<button
+								type="button"
+								title="tool"
+								className="mr-4 text-red-600 hover:opacity-60"
+							>
 								Delete vocabulary <FontAwesomeIcon icon={faTrash} />
 							</button>
-							<button type="button" title="tool"
+							<button
+								type="button"
+								title="tool"
 								onClick={handleSetting}
 								className="ml-28 text-blue-600 hover:opacity-60"
 							>
@@ -176,5 +194,4 @@ export const VocabularyFlipCard: React.FC<{
 			</div>
 		</>
 	);
-
 };

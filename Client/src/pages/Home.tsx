@@ -7,34 +7,31 @@ import { useAppDispatch } from "../redux/hooks";
 import { getListOfCollections } from "../redux/collectionSlice";
 
 type Props = {
-  // type of the props
+	// type of the props
 };
 
 export const Home: React.FC<Props> = (props) => {
-  console.log(props);
+	console.log(props);
 
-  const dispatch = useAppDispatch();
+	const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getListOfCollections());
-  }, []);
+	useEffect(() => {
+		dispatch(getListOfCollections());
+	}, []);
 
-  return (
-    <div>
-      <header>
-        <Header />
-      </header>
-      <main className="bg-slate-100 min-h-screen">
-        <div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
-          <Banner />
-          <div className="py-6">
-            {/* Top collection */}
-            <div className="flex justify-between items-center"></div>
-            <CollectionList />
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </div>
-  );
+	return (
+		<>
+			<Header />
+			<main className="bg-slate-100 min-h-screen">
+				<div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
+					<Banner />
+					<div className="py-6">
+						<div className="flex justify-between items-center"></div>
+						<CollectionList />
+					</div>
+				</div>
+			</main>
+			<Footer />
+		</>
+	);
 };

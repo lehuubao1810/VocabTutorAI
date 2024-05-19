@@ -116,7 +116,10 @@ export const Stats: React.FC = () => {
 	};
 
 	return (
-		<div className="flex justify-center w-full bg-gray-100 gap-5">
+		<div
+			className="flex justify-center w-full bg-gray-100 gap-5
+							max-sm:flex-col"
+		>
 			<div className="flex flex-col gap-5">
 				<div className="max-w-lg h-2/3 bg-white rounded-lg shadow-md p-4">
 					<Bar data={barData} options={options} />
