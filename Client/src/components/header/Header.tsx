@@ -17,7 +17,6 @@ export const Header: React.FC<Props> = () => {
 	const [isTranslateOpen, setIsTranslateOpen] = useState(false);
 	const [isNavOpen, setIsNavOpen] = useState(false);
 	const navigate = useNavigate();
-
 	const dispatch = useAppDispatch();
 	const { user } = useAppSelector((state) => state.authReducer);
 
@@ -31,6 +30,18 @@ export const Header: React.FC<Props> = () => {
 			});
 	};
 
+	const handleTranslateOpen = () => {
+		setIsTranslateOpen(true);
+		if (isNavOpen) {
+			setIsNavOpen(false);
+		}
+	};
+	const handleNavbarOpen = () => {
+		setIsNavOpen(true);
+		if (isTranslateOpen) {
+			setIsTranslateOpen(false);
+		}
+	};
 	return (
 		<header className="fixed top-0 left-0 w-full z-[500]">
 			<div className="max-w-screen-xl mx-auto px-5 py-4 bg-white rounded-xl shadow-md z-10">
@@ -38,10 +49,10 @@ export const Header: React.FC<Props> = () => {
 					{/* Logo */}
 					<div className="flex items-center gap-3">
 						<button
-							type="button"	
+							type="button"
 							title="Menu"
 							className="hidden max-sm:block"
-							onClick={() => setIsNavOpen((prevState) => !prevState)}
+							onClick={handleNavbarOpen}
 						>
 							<FontAwesomeIcon icon={faBars} />
 						</button>
@@ -67,12 +78,12 @@ export const Header: React.FC<Props> = () => {
 					{/* dictionary */}
 					<button
 						className="hidden text-gray-700 flex justify-center items-center gap-2 max-sm:block"
-						onClick={() => setIsTranslateOpen((prevState) => !prevState)}
+						onClick={handleTranslateOpen}
 					>
 						<FontAwesomeIcon icon={faLanguage} />
 						Translate
 					</button>
-					<div className="w-8/12 max-md:w-6/12 max-sm:hidden">
+					<div className="w-8/12 max-lg:w-6/12 max-md:w-6/12 max-sm:hidden">
 						<TranslateInput />
 					</div>
 					{/* user */}
@@ -89,7 +100,7 @@ export const Header: React.FC<Props> = () => {
 					{modalUser && <UserModal user={user} handleLogout={handleLogout} />}
 				</div>
 				{isTranslateOpen && (
-					<div className="mt-5">
+					<div className="hidden mt-5 max-sm:block">
 						<TranslateInput />
 					</div>
 				)}
