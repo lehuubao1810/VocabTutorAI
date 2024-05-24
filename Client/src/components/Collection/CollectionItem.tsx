@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   faEdit,
   faEnvelopeOpenText,
@@ -7,6 +7,8 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { setCollection } from "../../redux/collectionSlice";
+import { useAppDispatch } from "../../redux/hooks";
 // import { useAppDispatch } from "../../redux/hooks";
 // import { getCollectionById } from "../../redux/collectionSlice";
 
@@ -55,8 +57,17 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 
     navigate(`/collection/${transferData.id}/edit`);
   };
+
+  const dispatch = useAppDispatch();
+
+  const handleClickCollection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch(setCollection({}));
+    navigate(`/collection/${collectionID}`);
+  };
+
   return (
-    <Link to={`/collection/${collectionID}`}>
+    <div onClick={(e) => handleClickCollection(e)} className="cursor-pointer">
       <div
         className="relative w-70 min-h-[140px] bg-gray-100 rounded-lg shadow-lg ease-linear z-0"
         onMouseEnter={() => setIsHovered(true)}
@@ -105,7 +116,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
