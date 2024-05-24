@@ -61,7 +61,8 @@ export const getCollectionById = createAsyncThunk(
         collectionData.vocabulary
       );
 
-      const collectionD: CollectionItemData = collectionData as CollectionItemData;
+      const collectionD: CollectionItemData =
+        collectionData as CollectionItemData;
       return {
         ...collectionD,
         vocabulary: vocabularyDetails,
@@ -98,8 +99,12 @@ export const addCollection = createAsyncThunk(
   async (data: CollectionItemData, { rejectWithValue }) => {
     try {
       //
+      const newData = {
+        ...data,
+        isAdmin: false,
+      };
       const collectionRef = collection(db, "collections");
-      const docRef = await addDoc(collectionRef, data);
+      const docRef = await addDoc(collectionRef, newData);
       console.log("docRef", docRef);
 
       return docRef;
@@ -140,6 +145,27 @@ export const addVocabulariesToCollection = createAsyncThunk(
     }
   }
 );
+
+// export const updateVocabularyInCollection = createAsyncThunk(
+//   "updateVocabulary/collection",
+//   async (
+//     data: { vocabulary: VocabularyItem; collectionId: string },
+//     { rejectWithValue }
+//   ) => {
+//     try {
+//       const vocabulariesRef = doc(db, "vocabularies", data.vocabulary.id);
+//       await updateDoc(vocabulariesRef, data.vocabulary);
+
+//       const collectionRef = doc(db, "collections", data.collectionId);
+//       await updateDoc(collectionRef, {
+//         vocabulary: data.vocabulary.id,
+//       });
+//     } catch (error) {
+//       const errorMessage = error as ErrorResponse;
+//       return rejectWithValue(errorMessage.message);
+//     }
+//   }
+// );
 
 const collectionSlice = createSlice({
   name: "collection",

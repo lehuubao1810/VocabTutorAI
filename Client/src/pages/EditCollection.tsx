@@ -1,21 +1,33 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePen } from "@fortawesome/free-solid-svg-icons";
 import { CollectionItemData, VocabularyItem } from "../type/Collection";
 import { toast, ToastContainer } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { getCollectionById } from "../redux/collectionSlice";
+import { scrollTop } from "../utils/scrollTop";
 
 export const EditCollection: React.FC = () => {
-	const location = useLocation();
-	const initialData = location.state as CollectionItemData;
+
+	const dispatch = useAppDispatch();
+	const { collection } = useAppSelector((state) => state.collectionReducer);
+
+	const { idCollection } = useParams();
+	console.log('idCollection', idCollection);
+
+	useEffect(() => {
+		scrollTop();
+		dispatch(getCollectionById(idCollection ?? ""));
+	}, []);
 
 	const [numWords, setNumWords] = useState<number>(
-		initialData.vocabulary.length
+		collection.vocabulary.length
 	);
 	const [collectionData, setCollectionData] =
-		useState<CollectionItemData>(initialData);
+		useState<CollectionItemData>(collection);
 
 	const handleNumWordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const num = parseInt(e.target.value);

@@ -23,6 +23,7 @@ interface CollectionItemProps {
   desc: string;
   value: number;
   date: string;
+  isAdmin: boolean;
   vocabulary: VocabularyItem[];
 }
 
@@ -33,6 +34,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   value,
   date,
   vocabulary,
+  isAdmin,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -43,16 +45,15 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     value: value,
     date: date,
     vocabulary: vocabulary,
+    isAdmin: isAdmin,
   };
 
-//   const dispatch = useAppDispatch();
+  //   const dispatch = useAppDispatch();
 
   const handleEditCollection = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    navigate(`/collection/${transferData.id}/edit`, {
-      state: transferData,
-    });
+    navigate(`/collection/${transferData.id}/edit`);
   };
   return (
     <Link to={`/collection/${collectionID}`}>
@@ -61,30 +62,32 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {isHovered && (
-          <div className="absolute top-1 right-1 z-10 flex ">
-            <div
-              className="text-gray-500 hover:text-gray-700 mr-2"
-              onClick={handleEditCollection}
-            >
-              <FontAwesomeIcon icon={faEdit} />
-            </div>
-            <button
-              type="button"
-              title="tool"
-              className="text-red-500 hover:text-red-700 mr-2"
-            >
-              <FontAwesomeIcon icon={faTrash} />
-            </button>
-            <button
-              type="button"
-              title="tool"
-              className="text-blue-500 hover:text-red-700"
-            >
-              <FontAwesomeIcon icon={faShare} />
-            </button>
-          </div>
-        )}
+        {!transferData.isAdmin
+          ? isHovered && (
+              <div className="absolute top-1 right-1 z-10 flex ">
+                <div
+                  className="text-gray-500 hover:text-gray-700 mr-2"
+                  onClick={handleEditCollection}
+                >
+                  <FontAwesomeIcon icon={faEdit} />
+                </div>
+                <button
+                  type="button"
+                  title="tool"
+                  className="text-red-500 hover:text-red-700 mr-2"
+                >
+                  <FontAwesomeIcon icon={faTrash} />
+                </button>
+                <button
+                  type="button"
+                  title="tool"
+                  className="text-blue-500 hover:text-red-700"
+                >
+                  <FontAwesomeIcon icon={faShare} />
+                </button>
+              </div>
+            )
+          : null}
         <div className="flex flex-col mt-1 p-4 gap-2 min-h-[140px] justify-between">
           <h2 className="text-lg font-semibold">{name}</h2>
           <p className="text-sm text-gray-500">{desc}</p>
@@ -94,11 +97,11 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
               <span className="">{value}</span>
               <span className="text-gray-500">word</span>
             </div>
-            <span className="max-lg:hidden">|</span>
-            <div className="flex items-center gap-2">
+            {/* <span className="max-lg:hidden">|</span> */}
+            {/* <div className="flex items-center gap-2">
               <span className="text-gray-500">Last access:</span>
               <span className="">{date}</span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

@@ -52,17 +52,21 @@ export const CollectionList: React.FC<CollectionProps> = () => {
         </div>
       ) : (
         <div className="relative z-0 grid grid-cols-4 gap-4 my-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
-          {collections.map((item) => (
-            <CollectionItem
-              key={item.name}
-              name={item.name}
-              desc={item.desc}
-              value={item.value}
-              date={item.date}
-              collectionID={item.id}
-              vocabulary={item.vocabulary}
-            />
-          ))}
+          {collections.map(
+            (item) =>
+              item.isPublish && (
+                <CollectionItem
+                  key={item.name}
+                  name={item.name}
+                  desc={item.desc}
+                  value={item.value}
+                  date={item.date}
+                  collectionID={item.id}
+                  vocabulary={item.vocabulary}
+                  isAdmin={item.isAdmin}
+                />
+              )
+          )}
         </div>
       )}
     </>

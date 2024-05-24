@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +8,7 @@ import {
   // toast,
   ToastContainer,
 } from "react-toastify";
+import { scrollTop } from "../utils/scrollTop";
 // import { useAppDispatch } from "../redux/hooks";
 // import {
 //   addCollection,
@@ -19,7 +20,7 @@ type Props = {
 };
 
 export const AddCollection: React.FC<Props> = () => {
-//   const dispatch = useAppDispatch();
+  //   const dispatch = useAppDispatch();
 
   const [numWords, setNumWords] = useState<number>(0);
   const [collectionData, setCollectionData] = useState<CollectionItemData>({
@@ -29,6 +30,9 @@ export const AddCollection: React.FC<Props> = () => {
     value: 0,
     date: "",
     vocabulary: [],
+    isAdmin: false,
+    isPublish: false,
+    uid: "",
   });
 
   const handleNumWordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,6 +81,10 @@ export const AddCollection: React.FC<Props> = () => {
     //     toast.success("Vocab created successfully!");
     //   });
   };
+
+  useEffect(() => {
+    scrollTop();
+  }, []);
 
   return (
     <>

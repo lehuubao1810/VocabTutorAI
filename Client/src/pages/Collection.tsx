@@ -11,6 +11,7 @@ import { VocabularyFlipCard } from "../components/vocabulary/VocabularyCard";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getCollectionById } from "../redux/collectionSlice";
 import { Skeleton } from "@mui/material";
+import { scrollTop } from "../utils/scrollTop";
 
 type Props = {
 	//
@@ -24,6 +25,7 @@ export const Collection: React.FC<Props> = () => {
 	const { idCollection } = useParams();
 
 	useEffect(() => {
+		scrollTop();
 		dispatch(getCollectionById(idCollection ?? ""));
 	}, []);
 

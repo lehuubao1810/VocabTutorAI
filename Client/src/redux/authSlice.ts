@@ -42,7 +42,7 @@ export const signUpEmailPassword = createAsyncThunk(
         return user;
       })
       .then((user) => {
-        setDoc(doc(db, "users", user.uid), {
+        setDoc(doc(db, "admin", user.uid), {
           username: data.username,
           email: user.email,
         });
@@ -74,6 +74,11 @@ export const signInEmailPassword = createAsyncThunk(
       })
       .then(async (user) => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (!userDoc.exists()) {
+          auth.signOut().then(() => {
+            throw new Error("User does not exist");
+          });
+        }
         const userData = userDoc.data();
         return {
           email: user.email,

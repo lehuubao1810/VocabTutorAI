@@ -13,5 +13,8 @@ export interface CollectionItemData {
 	desc: string;
 	value: number;
 	date: string;
+	isAdmin: boolean;
+	isPublish: boolean;
+	uid: string | "";
 	vocabulary: VocabularyItem[];
 }
