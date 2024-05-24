@@ -5,22 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { CollectionItemData, VocabularyItem } from "../type/Collection";
 import {
-  // toast,
+  toast,
   ToastContainer,
 } from "react-toastify";
 import { scrollTop } from "../utils/scrollTop";
-// import { useAppDispatch } from "../redux/hooks";
-// import {
-//   addCollection,
-//   addVocabulariesToCollection,
-// } from "../redux/collectionSlice";
+import { useAppDispatch } from "../redux/hooks";
+import {
+  addCollection,
+  // addVocabulariesToCollection,
+} from "../redux/collectionSlice";
 
 type Props = {
   // type of the props
 };
 
 export const AddCollection: React.FC<Props> = () => {
-  //   const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
   const [numWords, setNumWords] = useState<number>(0);
   const [collectionData, setCollectionData] = useState<CollectionItemData>({
@@ -66,20 +66,11 @@ export const AddCollection: React.FC<Props> = () => {
 
   const handleSubmit = () => {
     console.log(collectionData);
-    // dispatch(addCollection())
-    //   .unwrap()
-    //   .then(() => {
-    //     toast.success("Collection created successfully!");
-    //   });
-  };
-
-  const handleSubmitVocab = () => {
-    console.log(collectionData);
-    // dispatch(addVocabulariesToCollection())
-    //   .unwrap()
-    //   .then(() => {
-    //     toast.success("Vocab created successfully!");
-    //   });
+    dispatch(addCollection())
+      .unwrap()
+      .then(() => {
+        toast.success("Collection created successfully!");
+      });
   };
 
   useEffect(() => {
@@ -91,16 +82,16 @@ export const AddCollection: React.FC<Props> = () => {
       <ToastContainer />
       <Header />
       <main className="bg-gray-100">
-        <div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
-          <div className="flex flex-col gap-3 px-5 py-6 ">
+        <div className="pt-24 ml-auto mr-auto max-w-screen-xl py-4">
+          <div className="flex flex-col gap-3 py-6 ">
             <h1 className="text-3xl font-bold text-blue-500">
               <FontAwesomeIcon icon={faFolder} /> Add Collection
             </h1>
-            <p className="ml-4 text-xl text-gray-500">
+            <p className=" text-xl text-gray-500">
               This result will show by chart
             </p>
           </div>
-          <div className=" ml-auto mr-auto w-5/6 h-98 rounded-xl border-1 bg-white">
+          <div className=" ml-auto mr-auto h-98 rounded-xl border-1 bg-white">
             <div className="px-5 py-5">
               <h2 className="mb-5 text-3xl font-bold text-center">
                 Collection Information
@@ -222,12 +213,6 @@ export const AddCollection: React.FC<Props> = () => {
                     className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
                   >
                     Submit
-                  </button>
-                  <button
-                    onClick={handleSubmitVocab}
-                    className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
-                  >
-                    Submit Vocab
                   </button>
                 </div>
               </div>
