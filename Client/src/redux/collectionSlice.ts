@@ -68,6 +68,11 @@ export const getCollectionById = createAsyncThunk(
 
       const collectionD: CollectionItemData =
         collectionData as CollectionItemData;
+
+      console.log("data return", {
+        ...collectionD,
+        vocabulary: vocabularyDetails,
+      });
       return {
         ...collectionD,
         vocabulary: vocabularyDetails,
@@ -110,9 +115,16 @@ export const addCollection = createAsyncThunk(
   ) => {
     try {
       const collectionRef = collection(db, "collections");
-      const docRef = await addDoc(collectionRef, data.collection).then((doc) => {
-        dispatch(addVocabulariesToCollection({ vocabularies: data.vocabularies, collectionId: doc.id }));
-      })
+      const docRef = await addDoc(collectionRef, data.collection).then(
+        (doc) => {
+          dispatch(
+            addVocabulariesToCollection({
+              vocabularies: data.vocabularies,
+              collectionId: doc.id,
+            })
+          );
+        }
+      );
       console.log("docRef", docRef);
 
       return docRef;
