@@ -3,70 +3,68 @@ import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import { CollectionItemData, VocabularyItem } from "../type/Collection";
-import {
-  toast,
-  ToastContainer,
-} from "react-toastify";
+import { CollectionItemUpload, VocabularyItemUpload } from "../type/Collection";
+import { toast, ToastContainer } from "react-toastify";
 import { scrollTop } from "../utils/scrollTop";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import {
   addCollection,
   // addVocabulariesToCollection,
 } from "../redux/collectionSlice";
+import { Switch } from "@mui/material";
 
 type Props = {
   // type of the props
 };
 
 export const AddCollection: React.FC<Props> = () => {
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
+
+  const { user } = useAppSelector((state) => state.authReducer);
 
   const [numWords, setNumWords] = useState<number>(0);
-  const [collectionData, setCollectionData] = useState<CollectionItemData>({
-    id: "",
+  const [collectionData, setCollectionData] = useState<CollectionItemUpload>({
     name: "",
     desc: "",
     value: 0,
-    date: "",
     vocabulary: [],
     isAdmin: false,
     isPublish: false,
-    uid: "",
+    uid: user.uid,
   });
+
+  const [vocabularies, setVocabularies] = useState<VocabularyItemUpload[]>([]);
 
   const handleNumWordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = parseInt(e.target.value);
     setNumWords(num);
-    setCollectionData({
-      ...collectionData,
-      vocabulary: Array.from({ length: num }, () => ({
-        id: "",
-        word: "",
-        translation: "",
-        mean: "",
-        pronunciation: "",
-        example: "",
-      })),
-    });
+    const newVocabularies = Array.from({ length: num }, () => ({
+      word: "",
+      translation: "",
+      mean: "",
+      pronunciation: "",
+      example: "",
+    }));
+    // change value of collectionData
+    setCollectionData({ ...collectionData, value: newVocabularies.length });
+    setVocabularies(newVocabularies);
   };
 
   const handleVocabularyChange = (
     index: number,
-    field: keyof VocabularyItem,
+    field: keyof VocabularyItemUpload,
     value: string
   ) => {
-    setCollectionData({
-      ...collectionData,
-      vocabulary: collectionData.vocabulary.map((item, i) =>
-        i === index ? { ...item, [field]: value } : item
-      ),
-    });
+    const newVocabularies = vocabularies.map((word, i) =>
+      i === index ? { ...word, [field]: value } : word
+    );
+    setVocabularies(newVocabularies);
   };
 
   const handleSubmit = () => {
     console.log(collectionData);
-    dispatch(addCollection())
+    console.log(vocabularies);
+    dispatch(addCollection({ collection: collectionData, vocabularies }))
       .unwrap()
       .then(() => {
         toast.success("Collection created successfully!");
@@ -129,6 +127,20 @@ export const AddCollection: React.FC<Props> = () => {
                     }
                   />
                 </div>
+                <div className="flex gap-4 items-center">
+                  <h2 className="font-semibold text-lg">Publish :</h2>
+                  <div>
+                    <Switch
+                      checked={collectionData.isPublish}
+                      onChange={(e) =>
+                        setCollectionData({
+                          ...collectionData,
+                          isPublish: e.target.checked,
+                        })
+                      }
+                    />
+                  </div>
+                </div>
                 <div className="flex gap-4">
                   <h2 className="font-semibold text-lg">Number of Words:</h2>
                   <input
@@ -145,7 +157,7 @@ export const AddCollection: React.FC<Props> = () => {
                   Input Vocabulary part
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                  {collectionData.vocabulary.map((word, index) => (
+                  {vocabularies.map((word, index) => (
                     <div
                       key={index}
                       className="relative flex flex-col gap-4 border-2 p-4 rounded-lg"
