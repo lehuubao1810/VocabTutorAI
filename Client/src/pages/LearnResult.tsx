@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 
 import { Stats } from "../components/learn/Stats";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquarePollVertical } from "@fortawesome/free-solid-svg-icons";
+import { scrollTop } from "../utils/scrollTop";
 
 type Props = {
   //
 };
 
 export const LearnResult: React.FC<Props> = () => {
+  useEffect(() => {
+    scrollTop();
+  }, []);
+
   return (
     <>
       <Header />

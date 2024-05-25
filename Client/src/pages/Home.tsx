@@ -5,6 +5,7 @@ import { CollectionList } from "../components/Collection/CollectionList";
 import Footer from "../components/footer/Footer";
 import { useAppDispatch } from "../redux/hooks";
 import { getListOfCollections } from "../redux/collectionSlice";
+import { scrollTop } from "../utils/scrollTop";
 
 type Props = {
 	// type of the props
@@ -16,6 +17,7 @@ export const Home: React.FC<Props> = (props) => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
+		scrollTop();
 		dispatch(getListOfCollections());
 	}, []);
 

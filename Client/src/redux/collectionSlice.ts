@@ -2,7 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FulfilledAction, PendingAction, RejectedAction } from "./store";
 // import { AxiosError } from "axios";
 import { ErrorResponse } from "../type/ErrorResponse";
-import { CollectionItemData, VocabularyItem } from "../type/Collection";
+import {
+  CollectionItemData,
+  CollectionItemUpload,
+  VocabularyItem,
+  VocabularyItemUpload,
+} from "../type/Collection";
 import {
   addDoc,
   collection,
@@ -61,7 +66,13 @@ export const getCollectionById = createAsyncThunk(
         collectionData.vocabulary
       );
 
-      const collectionD: CollectionItemData = collectionData as CollectionItemData;
+      const collectionD: CollectionItemData =
+        collectionData as CollectionItemData;
+
+      console.log("data return", {
+        ...collectionD,
+        vocabulary: vocabularyDetails,
+      });
       return {
         ...collectionD,
         vocabulary: vocabularyDetails,
@@ -95,11 +106,25 @@ export const getListOfCollections = createAsyncThunk(
 
 export const addCollection = createAsyncThunk(
   "addCollection/collection",
-  async (data: CollectionItemData, { rejectWithValue }) => {
+  async (
+    data: {
+      collection: CollectionItemUpload;
+      vocabularies: VocabularyItemUpload[];
+    },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
-      //
       const collectionRef = collection(db, "collections");
-      const docRef = await addDoc(collectionRef, data);
+      const docRef = await addDoc(collectionRef, data.collection).then(
+        (doc) => {
+          dispatch(
+            addVocabulariesToCollection({
+              vocabularies: data.vocabularies,
+              collectionId: doc.id,
+            })
+          );
+        }
+      );
       console.log("docRef", docRef);
 
       return docRef;
@@ -113,7 +138,7 @@ export const addCollection = createAsyncThunk(
 export const addVocabulariesToCollection = createAsyncThunk(
   "addToCollection/collection",
   async (
-    data: { vocabularies: VocabularyItem[]; collectionId: string },
+    data: { vocabularies: VocabularyItemUpload[]; collectionId: string },
     { rejectWithValue }
   ) => {
     try {
