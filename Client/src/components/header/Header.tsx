@@ -44,7 +44,7 @@ export const Header: React.FC<Props> = () => {
 	};
 	return (
 		<header className="fixed top-0 left-0 w-full z-[500]">
-			<div className="max-w-screen-xl mx-auto px-5 py-4 bg-white rounded-xl shadow-md z-10">
+			<div className="relative max-w-screen-xl mx-auto px-5 py-4 bg-white rounded-xl shadow-md z-10">
 				<div className="flex justify-between items-center gap-2">
 					{/* Logo */}
 					<div className="flex items-center gap-3">
@@ -77,7 +77,7 @@ export const Header: React.FC<Props> = () => {
 					)}
 					{/* dictionary */}
 					<button
-						className="hidden text-gray-700 flex justify-center items-center gap-2 max-sm:block"
+						className="hidden text-gray-700 justify-center items-center gap-2 max-sm:flex"
 						onClick={handleTranslateOpen}
 					>
 						<FontAwesomeIcon icon={faLanguage} />
