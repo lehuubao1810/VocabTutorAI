@@ -6,7 +6,7 @@ import quizz from "../assets/icon/quizz.png";
 import { Quizz } from "../components/learn/Quizz";
 import { Essay } from "../components/learn/Essay";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Vocabulary } from "../type/Vocabulary";
 import { scrollTop } from "../utils/scrollTop";
 
@@ -22,7 +22,6 @@ export const Learn: React.FC<Props> = (props) => {
 	const [showWelcome, setShowWelcome] = useState(true);
 	const [isQuizz, setIsQuizz] = useState(false);
 	const [isEssay, setIsEssay] = useState(false);
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		scrollTop();

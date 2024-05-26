@@ -69,7 +69,7 @@ export const Collection: React.FC<Props> = () => {
           ) : (
             <>
               <div className="py-6">
-                <h1 className="text-3xl font-bold">{collection.name}</h1>
+                <h1 className="text-4xl font-bold text-blue-500">{collection.name}</h1>
                 <p className="text-xl font-semibold text-gray-600 pt-4 pb-2">
                   {collection.desc}
                 </p>

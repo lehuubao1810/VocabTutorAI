@@ -30,10 +30,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
     <>
       <div className="flex justify-between items-center">
         <h1>
-          <Link
-            to="#!"
-            className="text-3xl font-semibold"
-          >
+          <Link to="#!" className="text-3xl font-bold text-blue-500">
             Your Collection
           </Link>
         </h1>
@@ -60,8 +57,10 @@ export const CollectionList: React.FC<CollectionProps> = () => {
           <Skeleton variant="rounded" width={"100%"} height={140} />
         </div>
       ) : collectionUser.length === 0 ? (
-        <div className="flex justify-center items-center h-80">
-          <h1 className="text-2xl font-semibold">No collection found</h1>
+        <div className="flex justify-center items-center h-40">
+          <h1 className="text-2xl font-semibold">
+            You don't have any collection yet
+          </h1>
         </div>
       ) : (
         <div className="relative z-0 grid grid-cols-4 gap-4 my-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
@@ -75,16 +74,14 @@ export const CollectionList: React.FC<CollectionProps> = () => {
               collectionID={item.id}
               vocabulary={item.vocabulary}
               isAdmin={item.isAdmin}
+              uid={item.uid}
             />
           ))}
         </div>
       )}
       <div className="flex justify-between items-center">
         <h1>
-          <Link
-            to="#!"
-            className="text-3xl font-semibold"
-          >
+          <Link to="#!" className="text-3xl font-bold text-blue-500">
             Collection
           </Link>
         </h1>
@@ -119,6 +116,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
                   collectionID={item.id}
                   vocabulary={item.vocabulary}
                   isAdmin={item.isAdmin}
+                  uid={item.uid}
                 />
               )
           )}
