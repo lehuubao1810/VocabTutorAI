@@ -34,6 +34,7 @@ function App() {
 						username: user.displayName,
 						email: user.email,
 						uid: user.uid,
+						photoURL: user.photoURL,
 					})
 				);
 				dispatch(getListCharacterAI(user.uid));

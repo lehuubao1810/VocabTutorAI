@@ -2,7 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FulfilledAction, PendingAction, RejectedAction } from "./store";
 // import { AxiosError } from "axios";
 import { ErrorResponse } from "../type/ErrorResponse";
-import { CollectionItemData, VocabularyItem } from "../type/Collection";
+import {
+  CollectionItemData,
+  CollectionItemUpload,
+  VocabularyItem,
+  VocabularyItemUpload,
+} from "../type/Collection";
 import {
   addDoc,
   collection,
@@ -63,6 +68,11 @@ export const getCollectionById = createAsyncThunk(
 
       const collectionD: CollectionItemData =
         collectionData as CollectionItemData;
+
+      console.log("data return", {
+        ...collectionD,
+        vocabulary: vocabularyDetails,
+      });
       return {
         ...collectionD,
         vocabulary: vocabularyDetails,
@@ -96,15 +106,25 @@ export const getListOfCollections = createAsyncThunk(
 
 export const addCollection = createAsyncThunk(
   "addCollection/collection",
-  async (data: CollectionItemData, { rejectWithValue }) => {
+  async (
+    data: {
+      collection: CollectionItemUpload;
+      vocabularies: VocabularyItemUpload[];
+    },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
-      //
-      const newData = {
-        ...data,
-        isAdmin: false,
-      };
       const collectionRef = collection(db, "collections");
-      const docRef = await addDoc(collectionRef, newData);
+      const docRef = await addDoc(collectionRef, data.collection).then(
+        (doc) => {
+          dispatch(
+            addVocabulariesToCollection({
+              vocabularies: data.vocabularies,
+              collectionId: doc.id,
+            })
+          );
+        }
+      );
       console.log("docRef", docRef);
 
       return docRef;
@@ -118,7 +138,7 @@ export const addCollection = createAsyncThunk(
 export const addVocabulariesToCollection = createAsyncThunk(
   "addToCollection/collection",
   async (
-    data: { vocabularies: VocabularyItem[]; collectionId: string },
+    data: { vocabularies: VocabularyItemUpload[]; collectionId: string },
     { rejectWithValue }
   ) => {
     try {
@@ -145,27 +165,6 @@ export const addVocabulariesToCollection = createAsyncThunk(
     }
   }
 );
-
-// export const updateVocabularyInCollection = createAsyncThunk(
-//   "updateVocabulary/collection",
-//   async (
-//     data: { vocabulary: VocabularyItem; collectionId: string },
-//     { rejectWithValue }
-//   ) => {
-//     try {
-//       const vocabulariesRef = doc(db, "vocabularies", data.vocabulary.id);
-//       await updateDoc(vocabulariesRef, data.vocabulary);
-
-//       const collectionRef = doc(db, "collections", data.collectionId);
-//       await updateDoc(collectionRef, {
-//         vocabulary: data.vocabulary.id,
-//       });
-//     } catch (error) {
-//       const errorMessage = error as ErrorResponse;
-//       return rejectWithValue(errorMessage.message);
-//     }
-//   }
-// );
 
 const collectionSlice = createSlice({
   name: "collection",
