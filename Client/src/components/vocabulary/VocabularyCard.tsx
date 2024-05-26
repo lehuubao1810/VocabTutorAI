@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
 import "./VocabularyCard.css";
 import { useNavigate } from "react-router-dom";
-
+import TextToSpeech from "./TextToSpeech";
 interface VocabularyItem {
   word: string;
   translation: string;
@@ -81,6 +81,9 @@ export const VocabularyFlipCard: React.FC<{
           <div className="flip-card-inner">
             <div className="flip-card-front flex flex-col justify-center items-center gap-4 p-5">
               <p className="text-4xl font-sans">{currentVocabulary.word}</p>
+
+              <TextToSpeech text={currentVocabulary.word} />
+
               <p>{currentVocabulary.pronunciation}</p>
               <p className="text-center">
                 <span className="font-semibold">Suggest:</span>
@@ -181,13 +184,17 @@ export const VocabularyFlipCard: React.FC<{
         {vocabularyData.map((item, index) => (
           <div className="mt-5 w-full h-30 bg-white rounded-xl">
             <div key={index} className="px-10 py-5">
-              {item.pronunciation ? (
-                <p className="text-lg font-semibold text-left">
-                  {item.word} / {item.pronunciation} /
-                </p>
-              ) : (
-                <p className="text-lg font-semibold text-left">{item.word}</p>
-              )}
+              <div className="flex gap-4 items-center">
+                {item.pronunciation ? (
+                  <p className="text-lg font-semibold text-left">
+                    {item.word} / {item.pronunciation} /
+                  </p>
+                ) : (
+                  <p className="text-lg font-semibold text-left">{item.word}</p>
+                )}
+                <TextToSpeech text={item.word} />
+              </div>
+
               <p className="pt-2 text-base font-semibold text-left ">
                 Translation:
               </p>
