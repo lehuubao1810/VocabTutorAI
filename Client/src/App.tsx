@@ -16,13 +16,13 @@ import { LoadingScreen } from "./components/common/LoadingScreen";
 import { useAppDispatch } from "./redux/hooks";
 import { setAuth } from "./redux/authSlice";
 import { getListCharacterAI } from "./redux/characterSlice";
-import { LearnResult } from "./pages/LearnResult";
+import { Explore } from "./pages/Explore";
 
 type isAuth = "checking" | boolean;
 
 function App() {
-  const [isAuth, setIsAuth] = useState<isAuth>("checking");
-  const dispatch = useAppDispatch();
+	const [isAuth, setIsAuth] = useState<isAuth>("checking");
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -43,26 +43,30 @@ function App() {
 			}
 		});
 
-    return () => unsubscribe();
-  }, []);
+		return () => unsubscribe();
+	}, []);
 
-  return (
-    <BrowserRouter>
-      {isAuth === "checking" ? (
-        <LoadingScreen />
-      ) : (
-        <Routes>
-          <Route
-            path="/login"
-            element={isAuth ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={isAuth ? <Navigate to="/" /> : <SignUp />}
-          />
+	return (
+		<BrowserRouter>
+			{isAuth === "checking" ? (
+				<LoadingScreen />
+			) : (
+				<Routes>
+					<Route
+						path="/login"
+						element={isAuth ? <Navigate to="/" /> : <Login />}
+					/>
+					<Route
+						path="/signup"
+						element={isAuth ? <Navigate to="/" /> : <SignUp />}
+					/>
 					<Route
 						path="/"
 						element={!isAuth ? <Navigate to="/login" /> : <Home />}
+					/>
+					<Route
+						path="/explore"
+						element={!isAuth ? <Navigate to="/login" /> : <Explore />}
 					/>
 					<Route
 						path="/characters-ai"
@@ -83,10 +87,6 @@ function App() {
 					<Route
 						path="/collection/:idCollection/learn"
 						element={!isAuth ? <Navigate to="/login" /> : <Learn />}
-					/>
-					<Route
-						path="/learnResult"
-						element={!isAuth ? <Navigate to="/login" /> : <LearnResult />}
 					/>
 					<Route
 						path="/characters-ai/:conversationID"
