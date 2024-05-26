@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import { User } from "../../type/User";
 
 type Props = {
