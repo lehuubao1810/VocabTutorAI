@@ -35,7 +35,7 @@ export const Explore: React.FC<Props> = () => {
     <>
       <Header />
       <main className="bg-slate-100 min-h-screen">
-        <div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
+        <div className="pt-20 ml-auto mr-auto max-w-screen-xl px-5 py-4">
           <div className="py-6">
             <h1 className="text-4xl font-bold text-blue-500 mb-6">
               <FontAwesomeIcon icon={faBookOpenReader} /> Quote
