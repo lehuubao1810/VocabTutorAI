@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import { CharacterAIType, Essay } from 'src/context/types';
-import { FormControl, IconButton, Menu, MenuItem, ToggleButton, Box } from '@mui/material';
+import { CharacterAIType } from 'src/context/types';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useTranslation } from 'react-i18next'
 import AxiosInstance from 'src/configs/axios';
 import adminPathName from 'src/configs/endpoints/admin';
@@ -15,10 +13,6 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, T
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import toast from 'react-hot-toast';
-import { DatePicker } from '@mui/x-date-pickers';
-import dayjs from 'dayjs';
-import Link from 'next/link';
-import { pl } from 'date-fns/locale';
 import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import ButtonsFab from 'src/views/components/buttons/ButtonsFab';
@@ -38,8 +32,6 @@ const CharacterCard = (props: CardInfluencerProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(menuAnchorEl);
-
-  const dispatch = useDispatch()
 
   const handleDeleteCharacterAI = async () => {
     try {
@@ -67,7 +59,6 @@ const CharacterCard = (props: CardInfluencerProps) => {
           'Content-Type': 'multipart/form-data',
         }
       });
-      console.log('first', response)
       toast.success('Update Successfully')
     } catch (error) {
       console.error('Error updating document: ', error);

@@ -4,7 +4,7 @@ import { VerticalNavItemsType } from 'src/@core/layouts/types'
 const navigation = (): VerticalNavItemsType => {
   return [
     {
-      sectionTitle: 'Admin Manage'
+      sectionTitle: 'Admin'
     },
     {
       title: 'Manage User',

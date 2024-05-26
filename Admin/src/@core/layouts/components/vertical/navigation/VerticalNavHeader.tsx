@@ -13,9 +13,6 @@ import { LayoutProps } from 'src/@core/layouts/types'
 // ** Custom Icon Import
 import Icon from 'src/@core/components/icon'
 
-// ** Configs
-import themeConfig from 'src/configs/themeConfig'
-
 interface Props {
   navHover: boolean
   collapsedNavWidth: number
@@ -130,7 +127,7 @@ const VerticalNavHeader = (props: Props) => {
             }
           }}
         >
-          {navCollapsed ? MenuUnlockedIcon() : MenuLockedIcon()}
+          {/* {navCollapsed ? MenuUnlockedIcon() : MenuLockedIcon()} */}
         </IconButton>
       )}
     </MenuHeaderWrapper>

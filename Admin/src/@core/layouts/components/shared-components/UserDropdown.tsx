@@ -141,7 +141,7 @@ const UserDropdown = (props: Props) => {
                 {'Admin TutorAI'}
               </Typography>
               <Typography variant='body2' sx={{ fontWeight: 400, color: 'text.secondary' }}>
-                {'Admin'}
+                {t('Admin')}
               </Typography>
             </Box>
           </Box>

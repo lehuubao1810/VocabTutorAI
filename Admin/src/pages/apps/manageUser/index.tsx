@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Checkbox, IconButton, Tooltip, Box, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, Grid, TextField, DialogContentText } from '@mui/material';
 import { Icon } from '@iconify/react'
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { collection, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from 'src/firebase';
@@ -11,6 +10,9 @@ import AddDrawer from 'src/views/apps/manageUser/AddUserDrawer';
 import AxiosInstance from 'src/configs/axios';
 import adminPathName from 'src/configs/endpoints/admin';
 import toast from 'react-hot-toast';
+
+// ** Custom Components Imports
+import CustomAvatar from 'src/@core/components/mui/avatar'
 
 export default function UsersPage() {
   const [value, setValue] = useState<string>('');
@@ -61,6 +63,14 @@ export default function UsersPage() {
     setDataList(data);
   };
 
+  const renderAvatar = (row: Users) => {
+    if (row.avatar && row.avatar.length) {
+      return <CustomAvatar src={row.avatar} sx={{ mr: 2.5, width: 38, height: 38 }} />
+    } else {
+      return <CustomAvatar src='/' sx={{ mr: 2.5, width: 38, height: 38 }} />;
+    }
+  }
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -89,7 +99,6 @@ export default function UsersPage() {
           uids: selectedItems
         }
       )
-      console.log('response', response)
       await Promise.all(selectedItems.map(id => deleteDoc(doc(db, 'users', id))));
       setDataList(dataList.filter(item => !selectedItems.includes(item.uid)));
       setDeleteOpen(false);
@@ -134,7 +143,21 @@ export default function UsersPage() {
                 dataList.slice(paginationModel.page * paginationModel.pageSize, (paginationModel.page + 1) * paginationModel.pageSize).map((user) => (
                   <TableRow key={user.uid}>
                     <TableCell sx={{ fontSize: 15, width: '30%' }}>
-                      {user.username}
+                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                        {renderAvatar(user)}
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
+                          <Typography
+                            noWrap
+                            sx={{
+                              fontWeight: 500,
+                              textDecoration: 'none',
+                              color: 'text.secondary',
+                            }}
+                          >
+                            {user.username}
+                          </Typography>
+                        </Box>
+                      </Box>
                     </TableCell>
                     <TableCell
                       sx={{

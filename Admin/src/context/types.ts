@@ -155,6 +155,7 @@ export type Users = {
   email: string;
   username: string;
   uid: string;
+  avatar?: string | null
 };
 
 export type VocabularyItem = {

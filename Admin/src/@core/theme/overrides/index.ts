@@ -44,7 +44,6 @@ import MuiTimeline from './timeline'
 import MuiAccordion from './accordion'
 import MuiPagination from './pagination'
 import MuiTypography from './typography'
-import MuiBreadcrumb from './breadcrumbs'
 import MuiIconButton from './icon-button'
 import MuiButtonGroup from './button-group'
 import MuiAutocomplete from './autocomplete'
@@ -81,7 +80,6 @@ const Overrides = (settings: Settings) => {
   const accordion = MuiAccordion()
   const pagination = MuiPagination()
   const snackbar = MuiSnackbar(skin)
-  const breadcrumb = MuiBreadcrumb()
   const buttonGroup = MuiButtonGroup()
   const autocomplete = MuiAutocomplete(skin)
 
@@ -117,7 +115,6 @@ const Overrides = (settings: Settings) => {
     accordion,
     MuiSelect,
     fabButton,
-    breadcrumb,
     pagination,
     buttonGroup,
     autocomplete,

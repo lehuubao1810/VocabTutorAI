@@ -104,7 +104,7 @@ export default function Collection() {
           }} aria-label="custom pagination table">
             <TableHead sx={{ backgroundColor: theme => `${theme.palette.customColors.tableHeaderBg}` }}>
               <TableRow>
-                <TableCell style={{ fontSize: 15, width: '30%' }}>
+                <TableCell style={{ fontSize: 15, width: '20%' }}>
                   {t('Name')}
                 </TableCell>
                 <TableCell style={{ fontSize: 15, width: '30%' }}>
@@ -113,7 +113,7 @@ export default function Collection() {
                 <TableCell style={{ fontSize: 15, width: '20%', textAlign: 'center' }}>
                   {t('Status')}
                 </TableCell>
-                <TableCell style={{ width: '20%', textAlign: 'center' }}>
+                <TableCell style={{ fontSize: 15, width: '30%', textAlign: 'center' }}>
                   {t('Actions')}
                 </TableCell>
               </TableRow>
@@ -122,7 +122,7 @@ export default function Collection() {
               {dataList && dataList.length > 0 ? (
                 dataList.slice(paginationModel.page * paginationModel.pageSize, (paginationModel.page + 1) * paginationModel.pageSize).map((collection) => (
                   <TableRow key={collection.collectionID}>
-                    <TableCell sx={{ fontSize: 15, width: '30%' }}>
+                    <TableCell sx={{ fontSize: 15, width: '20%' }}>
                       {collection.name}
                     </TableCell>
                     <TableCell
@@ -133,24 +133,21 @@ export default function Collection() {
                     >
                       {collection && (
                         <Box sx={{ display: 'flex', alignItems: 'flex-start', flexDirection: 'column' }}>
-                          <Typography
-                            noWrap
+                          <Typography noWrap
                             sx={{
                               fontSize: 15,
                               fontWeight: 500,
                               textDecoration: 'none',
                               color: 'text.secondary',
                             }}
-                          >
-                            <div dangerouslySetInnerHTML={{ __html: collection.desc }}></div>
-                          </Typography>
+                            dangerouslySetInnerHTML={{ __html: collection.desc }}></Typography>
                         </Box>
                       )}
                     </TableCell>
                     <TableCell sx={{ fontSize: 15, width: '20%', textAlign: 'center' }}>
                       {collection.isPublish ? 'Public' : 'Private'}
                     </TableCell>
-                    <TableCell sx={{ width: '20%', textAlign: 'center' }}>
+                    <TableCell sx={{ width: '30%', textAlign: 'center' }}>
                       <>
                         <Tooltip title={t("View")}>
                           <IconButton
@@ -184,7 +181,7 @@ export default function Collection() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={4} style={{ textAlign: 'center' }}>
+                  <TableCell colSpan={4} style={{ fontSize: 15, textAlign: 'center' }}>
                     {t('No rows')}
                   </TableCell>
                 </TableRow>

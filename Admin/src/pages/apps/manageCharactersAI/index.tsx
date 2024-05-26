@@ -8,15 +8,13 @@ import Typography from '@mui/material/Typography';
 import AxiosInstance from 'src/configs/axios';
 
 // ** Custom Table Components Imports
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, IconButton, Paper, TextField } from '@mui/material';
+import { Grid, Paper } from '@mui/material';
 import toast from 'react-hot-toast';
 import adminPathName from 'src/configs/endpoints/admin';
 import { CharacterAIType } from 'src/context/types';
 import CardInfluencerEssay from './characterCard';
 import TableHeader from 'src/views/apps/manageCharactersAI/TableHeader';
 import AddDrawer from 'src/views/apps/manageCharactersAI/AddUserDrawer';
-import { Icon } from '@iconify/react';
-
 
 export default function ManageCharactersAI() {
   const { t } = useTranslation();
@@ -82,7 +80,7 @@ export default function ManageCharactersAI() {
           ))}
         </Grid>
       ) : (
-        <Typography variant="body1" sx={{ textAlign: 'center', mt: 3 }}>
+        <Typography variant="body1" sx={{ fontSize: 15, textAlign: 'center', mt: 3 }}>
           {t('No characterAI available')}
         </Typography>
       )}

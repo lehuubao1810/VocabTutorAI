@@ -1,18 +1,12 @@
 // ** React Imports
-import { createContext, ReactNode, useEffect, useState } from 'react'
+import { createContext, ReactNode, useState } from 'react'
 
 // ** Next Import
 import { useRouter } from 'next/router'
 
-// ** Axios Instance
-import AxiosInstance from 'src/configs/axios'
-
-// ** Config
-// import authConfig from 'src/configs/auth'
-
 // ** Types
-import { AuthValuesType, ErrCallbackType, LoginParams, UserDataType } from './types'
-import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
+import { AuthValuesType, LoginParams, UserDataType } from './types'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from 'src/firebase'
 import { doc, getDoc } from 'firebase/firestore'
 import toast from 'react-hot-toast'
@@ -22,16 +16,12 @@ const defaultProvider: AuthValuesType = {
   user: null,
   loading: true,
   setUser: (value: UserDataType | null) => {
-    // Implement the logic to set the user
   },
   setLoading: (value: boolean) => {
-    // Implement the logic to set the loading state
   },
   login: async (params: LoginParams) => {
-    // Implement the logic to handle user login
   },
   logout: async () => {
-    // Implement the logic to handle user logout
   }
 }
 
@@ -49,17 +39,10 @@ const AuthProvider = ({ children }: Props) => {
   // ** Hooks
   const router = useRouter()
 
-
-
-  useEffect(() => {
-    console.log('user', user)
-  }, [user])
-
   const handleLogin = async (params: LoginParams) => {
     setLoading(true)
     await signInWithEmailAndPassword(auth, params.email, params.password)
       .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
         return user;
       })
@@ -81,7 +64,6 @@ const AuthProvider = ({ children }: Props) => {
         setLoading(false)
       })
       .catch((error) => {
-        // const errorCode = error.code;
         const errorMessage = error.message;
         toast.error(errorMessage)
       });

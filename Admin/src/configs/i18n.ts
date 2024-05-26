@@ -5,21 +5,17 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 
 i18n
 
-  // Enables the i18next backend
   .use(Backend)
 
-  // Enable automatic language detection
   .use(LanguageDetector)
 
-  // Enables the hook initialization module
   .use(initReactI18next)
   .init({
-    lng: 'en',
+    lng: 'vi',
     backend: {
-      /* translation file path */
       loadPath: '/locales/{{lng}}.json'
     },
-    fallbackLng: 'en',
+    fallbackLng: 'vi',
     debug: false,
     keySeparator: false,
     react: {

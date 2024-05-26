@@ -53,7 +53,6 @@ const Error404 = () => {
         </BoxWrapper>
         <Img height='500' alt='error-illustration' src='/images/pages/404.png' />
       </Box>
-      <FooterIllustrations />
     </Box>
   )
 }

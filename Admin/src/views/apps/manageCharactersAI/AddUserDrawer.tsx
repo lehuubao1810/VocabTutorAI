@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
@@ -10,11 +9,6 @@ import { useForm, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
 import Icon from 'src/@core/components/icon'
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
-import { auth, db } from 'src/firebase'
-import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { Users } from 'src/context/types'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import AxiosInstance from 'src/configs/axios'
 
 import adminPathName from 'src/configs/endpoints/admin';
@@ -28,15 +22,8 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 }))
 
 const SidebarCharacterAI = (props: any) => {
-  const { open, toggleAdd, fetchData, data } = props;
+  const { open, toggleAdd, fetchData } = props;
   const { control, handleSubmit } = useForm()
-
-  //   {
-  //     "name": "Bao",
-  //     "personality": "kind, friendly",
-  //     "firstGreet": "Hello, I'm Bao. Nice to meet you",
-  //     "information": "Job: Student, Adress: Ho Chi Minh City"
-  // }
 
   const createCharacterAI = async (newData: Omit<{
     name: string,
@@ -45,8 +32,7 @@ const SidebarCharacterAI = (props: any) => {
     information: string
   }, 'id'>) => {
     try {
-      const response = await AxiosInstance.post(`${adminPathName.createCharacterAI}`, newData);
-      console.log('response', response.data)
+      await AxiosInstance.post(`${adminPathName.createCharacterAI}`, newData);
       fetchData()
       handleClose()
     } catch (error: any) {

@@ -27,7 +27,6 @@ const AuthGuard = (props: AuthGuardProps) => {
       }
       const unsubscribe = onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log(user);
           Auth.setUser({
             username: user.displayName,
             email: user.email,

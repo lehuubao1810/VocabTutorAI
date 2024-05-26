@@ -330,36 +330,6 @@ const Customizer = () => {
               </RadioGroup>
             </Box>
 
-            {/* Menu Toggle */}
-            {navHidden || layout === 'horizontal' ? null : (
-              <Box sx={{ mb: 5 }}>
-                <Typography>{t('Menu Toggle')}</Typography>
-                <RadioGroup
-                  row
-                  value={verticalNavToggleType}
-                  sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
-                  onChange={e =>
-                    handleChange('verticalNavToggleType', e.target.value as Settings['verticalNavToggleType'])
-                  }
-                >
-                  <FormControlLabel value='accordion' label={t('Accordion')} control={<Radio />} />
-                  <FormControlLabel value='collapse' label={t('Collapse')} control={<Radio />} />
-                </RadioGroup>
-              </Box>
-            )}
-
-            {/* Menu Collapsed */}
-            {navHidden || layout === 'horizontal' ? null : (
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 5 }}>
-                <Typography>{t('Menu Collapsed')}</Typography>
-                <Switch
-                  name='navCollapsed'
-                  checked={navCollapsed}
-                  onChange={e => handleChange('navCollapsed', e.target.checked)}
-                />
-              </Box>
-            )}
-
             {/* Menu Hidden */}
             {layout === 'horizontal' && appBar === 'hidden' ? null : (
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

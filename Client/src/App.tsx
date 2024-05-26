@@ -21,8 +21,8 @@ import { LearnResult } from "./pages/LearnResult";
 type isAuth = "checking" | boolean;
 
 function App() {
-  const [isAuth, setIsAuth] = useState<isAuth>("checking");
-  const dispatch = useAppDispatch();
+	const [isAuth, setIsAuth] = useState<isAuth>("checking");
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -42,23 +42,23 @@ function App() {
 			}
 		});
 
-    return () => unsubscribe();
-  }, []);
+		return () => unsubscribe();
+	}, []);
 
-  return (
-    <BrowserRouter>
-      {isAuth === "checking" ? (
-        <LoadingScreen />
-      ) : (
-        <Routes>
-          <Route
-            path="/login"
-            element={isAuth ? <Navigate to="/" /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={isAuth ? <Navigate to="/" /> : <SignUp />}
-          />
+	return (
+		<BrowserRouter>
+			{isAuth === "checking" ? (
+				<LoadingScreen />
+			) : (
+				<Routes>
+					<Route
+						path="/login"
+						element={isAuth ? <Navigate to="/" /> : <Login />}
+					/>
+					<Route
+						path="/signup"
+						element={isAuth ? <Navigate to="/" /> : <SignUp />}
+					/>
 					<Route
 						path="/"
 						element={!isAuth ? <Navigate to="/login" /> : <Home />}

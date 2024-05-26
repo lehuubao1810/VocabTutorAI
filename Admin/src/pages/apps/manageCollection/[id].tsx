@@ -165,7 +165,7 @@ export default function CollectionDetail() {
                                 <TableCell style={{ fontSize: 15, width: '20%' }}>{t('Mean')}</TableCell>
                                 <TableCell style={{ fontSize: 15, width: '20%' }}>{t('Translation')}</TableCell>
                                 <TableCell style={{ fontSize: 15, width: '20%' }}>{t('Example')}</TableCell>
-                                <TableCell style={{ width: '20%', textAlign: 'center' }}>{t('Actions')}</TableCell>
+                                <TableCell style={{ fontSize: 15, width: '20%', textAlign: 'center' }}>{t('Actions')}</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
