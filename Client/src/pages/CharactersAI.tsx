@@ -8,7 +8,7 @@ import {
   getConversation,
 } from "../redux/conversationSlice";
 import { notify } from "../utils/notify";
-import { changeStatusCharacter } from "../redux/characterSlice";
+import { changeStatusCharacter, getListCharacterAI } from "../redux/characterSlice";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRocketchat } from "@fortawesome/free-brands-svg-icons";
@@ -60,6 +60,7 @@ export const CharactersAI: React.FC<Props> = () => {
 
   useEffect(() => {
     scrollTop();
+    dispatch(getListCharacterAI(user.uid));
   }, []);
 
   return (

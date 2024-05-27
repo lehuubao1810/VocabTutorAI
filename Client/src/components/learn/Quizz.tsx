@@ -57,7 +57,8 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 				const synth = window.speechSynthesis;
 				const utterance = new SpeechSynthesisUtterance(correctAnswer.word);
 				const voices = synth.getVoices();
-				const voice = voices.find((v) => v.lang === "en-US") || voices[0];
+				// const voice = voices.find((v) => v.lang === "en-UK") || voices[0];
+				const voice = voices[7]; // UK voice
 				utterance.voice = voice;
 				synth.speak(utterance);
 			}
@@ -110,12 +111,12 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 							</div>
 						)}
 						<div className="absolute top-5 right-5">
-							<button
+							<div
 								onClick={toggleMute}
-								className="text-gray-500 w-10 h-10 bg-slate-200 rounded-full p-2 hover:bg-slate-300"
+								className="text-gray-500 w-10 h-10 bg-slate-200 rounded-full p-2 hover:bg-slate-300 cursor-pointer"
 							>
 								<FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
-							</button>
+							</div>
 						</div>
 					</div>
 					<div className="my-10 grid grid-cols-2 gap-4 w-2/3 max-sm:grid-cols-1 max-sm:w-full max-sm:gap-1 max-sm:my-5">

@@ -65,12 +65,6 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authReducer);
 
-  const handleEditCollection = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(`/collection/${transferData.id}/edit`);
-  };
-
   const handleDeleteCollection = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -108,6 +102,13 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     e.preventDefault();
     dispatch(setCollection({}));
     navigate(`/collection/${collectionID}`);
+  };
+
+  const handleEditCollection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(setCollection({}));
+    navigate(`/collection/${transferData.id}/edit`);
   };
 
   return (

@@ -18,7 +18,7 @@ export const UserModal: React.FC<Props> = (props) => {
 				</div>
 				<img
 					// src="https://randomuser.me/api/portraits/men/73.jpg"
-					src={props.user?.photoURL}
+					src={props.user?.photoURL ?? "https://randomuser.me/api/portraits/men/73.jpg"}
 					alt=""
 					className="w-22 h-22 rounded-full mb-2 mt-1"
 				/>

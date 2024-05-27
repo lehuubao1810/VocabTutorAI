@@ -93,7 +93,7 @@ export const Header: React.FC<Props> = () => {
 					>
 						<img
 							// src="https://randomuser.me/api/portraits/men/73.jpg"
-							src={user?.photoURL}
+							src={user?.photoURL ?? "https://randomuser.me/api/portraits/men/73.jpg"}
 							alt=""
 							className="w-10 h-10 rounded-full"
 						/>
