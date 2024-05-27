@@ -1,0 +1,218 @@
+{
+  "collectionID": "04",
+  "name": "Food",
+  "desc": "This is a collection of vocabulary related to food and culinary experiences",
+  "value": 30,
+  "vocabulary": [
+    {
+      "word": "APPETIZER",
+      "translation": "món khai vị",
+      "mean": "a small dish of food or a drink taken before a meal to stimulate one's appetite",
+      "pronunciation": "ˈæpɪtaɪzə",
+      "example": "We started the meal with a shrimp cocktail as an appetizer."
+    },
+    {
+      "word": "BEVERAGE",
+      "translation": "đồ uống",
+      "mean": "a drink other than water",
+      "pronunciation": "ˈbɛvərɪdʒ",
+      "example": "Popular beverages at the cafe include coffee, tea, and smoothies."
+    },
+    {
+      "word": "COURSE",
+      "translation": "món ăn trong một bữa",
+      "mean": "a part of a meal served at one time",
+      "pronunciation": "kɔːrs",
+      "example": "The dinner was served in three courses."
+    },
+    {
+      "word": "DESSERT",
+      "translation": "món tráng miệng",
+      "mean": "a sweet course eaten at the end of a meal",
+      "pronunciation": "dɪˈzɜːrt",
+      "example": "For dessert, we had a delicious chocolate cake."
+    },
+    {
+      "word": "ENTREE",
+      "translation": "món chính",
+      "mean": "the main course of a meal",
+      "pronunciation": "ˈɒntreɪ",
+      "example": "The entree tonight is grilled salmon with a side of vegetables."
+    },
+    {
+      "word": "FLAVOR",
+      "translation": "hương vị",
+      "mean": "the distinctive taste of a food or drink",
+      "pronunciation": "ˈfleɪvə",
+      "example": "The soup has a rich flavor from the herbs and spices used."
+    },
+    {
+      "word": "GOURMET",
+      "translation": "người sành ăn",
+      "mean": "a connoisseur of fine food and drink; often used to describe high-quality or exotic ingredients and meals",
+      "pronunciation": "ˈɡʊərmeɪ",
+      "example": "The restaurant is known for its gourmet cuisine."
+    },
+    {
+      "word": "INGREDIENT",
+      "translation": "nguyên liệu",
+      "mean": "any of the foods or substances that are combined to make a particular dish",
+      "pronunciation": "ɪnˈɡriːdiənt",
+      "example": "Fresh ingredients are essential for a good salad."
+    },
+    {
+      "word": "NUTRITION",
+      "translation": "dinh dưỡng",
+      "mean": "the process of providing or obtaining the food necessary for health and growth",
+      "pronunciation": "njuːˈtrɪʃn",
+      "example": "Proper nutrition is vital for maintaining good health."
+    },
+    {
+      "word": "ORGANIC",
+      "translation": "hữu cơ",
+      "mean": "produced or involving production without the use of chemical fertilizers, pesticides, or other artificial chemicals",
+      "pronunciation": "ɔːˈɡænɪk",
+      "example": "Organic fruits and vegetables are free from harmful pesticides."
+    },
+    {
+      "word": "PORTION",
+      "translation": "phần ăn",
+      "mean": "a part of a whole; an amount of food served for one person",
+      "pronunciation": "ˈpɔːʃn",
+      "example": "The portions at this restaurant are quite generous."
+    },
+    {
+      "word": "RECIPE",
+      "translation": "công thức nấu ăn",
+      "mean": "a set of instructions for preparing a particular dish, including a list of the ingredients required",
+      "pronunciation": "ˈrɛsɪpi",
+      "example": "I followed the recipe exactly to make the chocolate cake."
+    },
+    {
+      "word": "SPICY",
+      "translation": "cay",
+      "mean": "having a strong, hot flavor",
+      "pronunciation": "ˈspaɪsi",
+      "example": "The curry is quite spicy, so it might not be suitable for everyone."
+    },
+    {
+      "word": "VEGAN",
+      "translation": "chay trường",
+      "mean": "a person who does not eat or use animal products",
+      "pronunciation": "ˈviːɡən",
+      "example": "She follows a vegan diet for both health and ethical reasons."
+    },
+    {
+      "word": "VEGETARIAN",
+      "translation": "người ăn chay",
+      "mean": "a person who does not eat meat, and sometimes other animal products, especially for moral, religious, or health reasons",
+      "pronunciation": "ˌvɛdʒɪˈtɛəriən",
+      "example": "The restaurant offers a variety of vegetarian options."
+    },
+    {
+      "word": "WHOLE GRAIN",
+      "translation": "ngũ cốc nguyên cám",
+      "mean": "a type of grain that contains all parts of the grain kernel, including the outer layer (bran), the germ, and the endosperm",
+      "pronunciation": "hoʊl ɡreɪn",
+      "example": "Eating whole grain foods can lower the risk of heart disease."
+    },
+    {
+      "word": "YEAST",
+      "translation": "men",
+      "mean": "a microscopic fungus used in baking and brewing to ferment sugar",
+      "pronunciation": "jiːst",
+      "example": "Yeast is essential for making bread rise."
+    },
+    {
+      "word": "ZEST",
+      "translation": "vỏ bào mỏng của trái cây",
+      "mean": "a piece of the peel of a citrus fruit (such as lemon or orange) used as flavoring",
+      "pronunciation": "zɛst",
+      "example": "Add some lemon zest to the cake batter for extra flavor."
+    },
+    {
+  "word": "SWEETENER",
+  "translation": "chất làm ngọt",
+  "mean": "a substance used to sweeten food or drink",
+  "pronunciation": "ˈswiːtənər",
+  "example": "Honey and stevia are popular natural sweeteners."
+},
+{
+  "word": "FERMENTATION",
+  "translation": "lên men",
+  "mean": "the chemical breakdown of a substance by bacteria, yeasts, or other microorganisms, typically involving effervescence and the giving off of heat",
+  "pronunciation": "ˌfɜːrmɛnˈteɪʃən",
+  "example": "Fermentation is a crucial process in the making of wine and beer."
+},
+{
+  "word": "UMAMI",
+  "translation": "vị umami, vị ngọt đậm của protein",
+  "mean": "a category of taste in food (besides sweet, sour, salt, and bitter), corresponding to the flavor of glutamates",
+  "pronunciation": "uːˈmɑːmi",
+  "example": "Umami is often described as the savory taste of meat or broth."
+},
+{
+  "word": "MARINATE",
+  "translation": "ướp",
+  "mean": "soak (meat, fish, or other food) in a marinade",
+  "pronunciation": "ˈmærɪneɪt",
+  "example": "Marinate the chicken overnight to enhance its flavor."
+},
+{
+  "word": "GLUTEN",
+  "translation": "gluten, chất keo trong bột",
+  "mean": "a mixture of proteins found in wheat and related grains, giving dough its elasticity",
+  "pronunciation": "ˈɡluːtən",
+  "example": "Many people are allergic or sensitive to gluten."
+},
+{
+  "word": "SEASONING",
+  "translation": "gia vị",
+  "mean": "a substance, such as salt or herbs, used to add flavor to food",
+  "pronunciation": "ˈsiːzənɪŋ",
+  "example": "Proper seasoning can transform a dish from bland to flavorful."
+},
+{
+  "word": "CULINARY",
+  "translation": "thuộc về bếp núc",
+  "mean": "of or for cooking",
+  "pronunciation": "ˈkʌlɪnəri",
+  "example": "She has a deep passion for culinary arts."
+},
+{
+  "word": "DAIRY",
+  "translation": "sản phẩm từ sữa",
+  "mean": "food made from or containing milk",
+  "pronunciation": "ˈdeəri",
+  "example": "Dairy products include milk, cheese, and butter."
+},
+{
+  "word": "CARBOHYDRATE",
+  "translation": "carbohydrate, tinh bột",
+  "mean": "a compound found in food and living tissues and consisting of carbon, hydrogen, and oxygen, such as sugars, starch, and cellulose",
+  "pronunciation": "kɑːbəʊˈhaɪdreɪt",
+  "example": "Carbohydrate intake is crucial for energy during intense workouts."
+},
+{
+  "word": "PROTEIN",
+  "translation": "protein, chất đạm",
+  "mean": "a molecule composed of amino acids that is essential for the structure, function, and regulation of the body's cells, tissues, and organs",
+  "pronunciation": "ˈprəʊtiːn",
+  "example": "Lean meats and legumes are excellent sources of protein."
+},
+{
+  "word": "VITAMIN",
+  "translation": "vitamin",
+  "mean": "any of a group of organic compounds which are essential for normal growth and nutrition and are required in small quantities in the diet because they cannot be synthesized by the body",
+  "pronunciation": "ˈvɪtəmɪn",
+  "example": "Vitamin C is important for maintaining healthy skin and immune function."
+},
+{
+  "word": "FIBER",
+  "translation": "chất xơ",
+  "mean": "a substance in plant foods that helps to keep the digestive system healthy",
+  "pronunciation": "ˈfaɪbə",
+  "example": "Eating a diet high in fiber can help prevent heart disease."
+},
+  ]
+}

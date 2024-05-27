@@ -1,0 +1,219 @@
+{
+  "collectionID": "19",
+  "name": "Weather",
+  "desc": "This is a collection of vocabulary related to weather conditions and phenomena",
+  "value": 30,
+  "date": "05/2024",
+  "vocabulary": [
+    {
+      "word": "TEMPERATURE",
+      "translation": "nhiệt độ",
+      "mean": "a measure of the warmth or coldness of an object or substance with reference to some standard value",
+      "pronunciation": "ˈtɛmpərəʧər",
+      "example": "The temperature today is expected to reach 30 degrees Celsius."
+    },
+    {
+      "word": "HUMIDITY",
+      "translation": "độ ẩm",
+      "mean": "a measure of the amount of water vapor in the air",
+      "pronunciation": "hjuːˈmɪdɪti",
+      "example": "High humidity can make the weather feel even hotter."
+    },
+    {
+      "word": "PRECIPITATION",
+      "translation": "lượng mưa",
+      "mean": "water released from clouds in the form of rain, freezing rain, sleet, snow, or hail",
+      "pronunciation": "prɪˌsɪpɪˈteɪʃn",
+      "example": "The forecast calls for heavy precipitation tomorrow."
+    },
+    {
+      "word": "WIND",
+      "translation": "gió",
+      "mean": "the natural movement of the air, especially in the form of a current of air blowing from a particular direction",
+      "pronunciation": "wɪnd",
+      "example": "The wind was strong enough to sway the trees."
+    },
+    {
+      "word": "FORECAST",
+      "translation": "dự báo thời tiết",
+      "mean": "a prediction or estimate of future events, especially coming weather",
+      "pronunciation": "ˈfɔːrkɑːst",
+      "example": "According to the weather forecast, it will be sunny this weekend."
+    },
+    {
+      "word": "SUNSHINE",
+      "translation": "ánh nắng",
+      "mean": "direct sunlight unbroken by cloud, especially over a comparatively large area",
+      "pronunciation": "ˈsʌnʃaɪn",
+      "example": "Everyone enjoys the warm sunshine on a beautiful spring day."
+    },
+    {
+      "word": "CLOUD",
+      "translation": "mây",
+      "mean": "a visible mass of condensed water vapor floating in the atmosphere, typically high above the ground",
+      "pronunciation": "klaʊd",
+      "example": "The sky was filled with fluffy white clouds."
+    },
+    {
+      "word": "RAIN",
+      "translation": "mưa",
+      "mean": "moisture condensed from the atmosphere that falls visibly in separate drops",
+      "pronunciation": "reɪn",
+      "example": "We need rain to help the crops grow."
+    },
+    {
+      "word": "SNOW",
+      "translation": "tuyết",
+      "mean": "atmospheric water vapor frozen into ice crystals and falling in light white flakes or lying on the ground as a white layer",
+      "pronunciation": "snoʊ",
+      "example": "The children were excited to see the snow and play in it."
+    },
+    {
+      "word": "STORM",
+      "translation": "bão",
+      "mean": "a violent disturbance of the atmosphere with strong winds and usually rain, thunder, lightning, or snow",
+      "pronunciation": "stɔːrm",
+      "example": "The storm caused a lot of damage to the coastal areas."
+    },
+    {
+      "word": "THUNDER",
+      "translation": "sấm",
+      "mean": "the loud noise that comes from the sky during a storm",
+      "pronunciation": "ˈθʌndər",
+      "example": "The sound of thunder can be quite frightening during a storm."
+    },
+    {
+      "word": "LIGHTNING",
+      "translation": "chớp, tia chớp",
+      "mean": "a sudden electrostatic discharge that occurs during a thunderstorm",
+      "pronunciation": "ˈlaɪtnɪŋ",
+      "example": "Lightning struck the tree just outside of town."
+    },
+    {
+      "word": "FOG",
+      "translation": "sương mù",
+      "mean": "a thick cloud of tiny water droplets suspended in the atmosphere at or near the earth's surface that obscures or restricts visibility",
+      "pronunciation": "fɒɡ",
+      "example": "The fog was so thick this morning that it was hard to see the road."
+    },
+    {
+      "word": "MIST",
+      "translation": "sương",
+      "mean": "a cloud of tiny water droplets suspended in the atmosphere at or near the earth's surface limiting visibility, but to a lesser extent than fog",
+      "pronunciation": "mɪst",
+      "example": "The mist over the lake gave the morning a mystical appearance."
+    },
+    {
+      "word": "HAIL",
+      "translation": "mưa đá",
+      "mean": "pellets of frozen rain which fall in showers from cumulonimbus clouds",
+      "pronunciation": "heɪl",
+      "example": "The sudden hailstorm damaged crops and vehicles."
+    },
+    {
+      "word": "HEATWAVE",
+      "translation": "đợt nắng nóng",
+      "mean": "a prolonged period of abnormally hot weather",
+      "pronunciation": "ˈhiːtweɪv",
+      "example": "Last summer's heatwave broke several temperature records."
+    },
+    {
+      "word": "COLD SNAP",
+      "translation": "đợt lạnh giá",
+      "mean": "a sudden brief period of cold weather",
+      "pronunciation": "koʊld snæp",
+      "example": "The unexpected cold snap caught many people off guard."
+    },
+    {
+      "word": "DEW",
+      "translation": "sương mai",
+      "mean": "tiny drops of water that form on cool surfaces at night, when atmospheric vapor condenses",
+      "pronunciation": "duː",
+      "example": "Early morning dew covered the grass with tiny, sparkling droplets."
+    },
+    {
+      "word": "DRIZZLE",
+      "translation": "mưa phùn",
+      "mean": "light rain falling in very fine drops",
+      "pronunciation": "ˈdrɪzəl",
+      "example": "The drizzle was enough to make the streets wet, but not to use an umbrella."
+    },
+    {
+      "word": "OVERCAST",
+      "translation": "u ám, nhiều mây",
+      "mean": "covered with clouds; not bright or sunny",
+      "pronunciation": "ˈoʊvərkæst",
+      "example": "The sky is overcast, and it looks like it might rain soon."
+    },
+    {
+      "word": "BREEZE",
+      "translation": "gió nhẹ",
+      "mean": "a gentle wind",
+      "pronunciation": "briːz",
+      "example": "A pleasant breeze was blowing from the sea."
+    },
+    {
+      "word": "GALE",
+      "translation": "gió mạnh",
+      "mean": "a very strong wind",
+      "pronunciation": "geɪl",
+      "example": "The gale caused significant damage to the boats in the harbor."
+    },
+    {
+      "word": "WIND CHILL",
+      "translation": "cảm giác lạnh do gió",
+      "mean": "the lowering of body temperature due to the passing-flow of lower-temperature air",
+      "pronunciation": "wɪnd tʃɪl",
+      "example": "Wind chill can make the air feel colder than it actually is."
+    },
+    {
+      "word": "BAROMETER",
+      "translation": "thiết bị đo áp suất khí quyển",
+      "mean": "an instrument measuring atmospheric pressure, used especially in forecasting the weather",
+      "pronunciation": "bəˈrɒmɪtər",
+      "example": "The barometer is falling, which means a storm could be coming."
+    },
+    {
+      "word": "ANEMOMETER",
+      "translation": "thiết bị đo tốc độ gió",
+      "mean": "an instrument for measuring the speed of the wind, or of any current of gas",
+      "pronunciation": "ˌænɪˈmɒmɪtər",
+      "example": "The anemometer on top of the hill recorded very high wind speeds during the storm."
+    },
+    {
+      "word": "CLIMATE",
+      "translation": "khí hậu",
+      "mean": "the weather conditions prevailing in an area in general or over a long period",
+      "pronunciation": "ˈklaɪmɪt",
+      "example": "The climate in this region is perfect for growing grapes."
+    },
+    {
+      "word": "MONSOON",
+      "translation": "mùa mưa",
+      "mean": "a seasonal prevailing wind in the region of South and Southeast Asia, blowing from the southwest between May and September and bringing rain (the wet monsoon)",
+      "pronunciation": "mɒnˈsuːn",
+      "example": "The monsoon season is crucial for farming in India."
+    },
+    {
+      "word": "TORNADO",
+      "translation": "lốc xoáy",
+      "mean": "a mobile, destructive vortex of violently rotating winds having the appearance of a funnel-shaped cloud and advancing beneath a large storm system",
+      "pronunciation": "tɔːˈneɪdoʊ",
+      "example": "The tornado destroyed several homes in its path."
+    },
+    {
+      "word": "HURRICANE",
+      "translation": "bão",
+      "mean": "a storm with a violent wind, in particular a tropical cyclone in the Caribbean",
+      "pronunciation": "ˈhʌrɪkən",
+      "example": "The hurricane caused extensive flooding along the coast."
+    },
+    {
+      "word": "BLIZZARD",
+      "translation": "bão tuyết",
+      "mean": "a severe snowstorm with high winds and low visibility",
+      "pronunciation": "ˈblɪzərd",
+      "example": "Schools were closed due to the blizzard."
+    }
+  ]
+}

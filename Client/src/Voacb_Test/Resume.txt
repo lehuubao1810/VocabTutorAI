@@ -1,0 +1,218 @@
+{
+  "collectionID": "13",
+  "name": "Resume",
+  "desc": "This is a collection of vocabulary related to professional resumes and job applications",
+  "value": 30,
+  "vocabulary": [
+    {
+      "word": "RESUME",
+      "translation": "sơ yếu lý lịch",
+      "mean": "a brief account of a person's education, qualifications, and previous experience, typically sent with a job application",
+      "pronunciation": "ˈrɛzjʊmeɪ",
+      "example": "Make sure your resume is up-to-date before applying for the job."
+    },
+    {
+      "word": "CURRICULUM VITAE",
+      "translation": "lý lịch trích ngang",
+      "mean": "a detailed written account of one's education, qualifications, and previous occupations, typically longer than a resume",
+      "pronunciation": "kəˈrɪkjʊləm ˈviːtaɪ",
+      "example": "In many countries outside the U.S., a curriculum vitae is used instead of a resume."
+    },  
+    {
+      "word": "COVER LETTER",
+      "translation": "thư xin việc",
+      "mean": "a letter sent with, and explaining the contents of, another document or a parcel of goods",
+      "pronunciation": "ˈkʌvər ˈlɛtər",
+      "example": "A well-crafted cover letter can help you stand out in the job application process."
+    },
+    {
+      "word": "QUALIFICATIONS",
+      "translation": "bằng cấp",
+      "mean": "the abilities, qualities, or achievements that make someone suitable for a particular job or activity",
+      "pronunciation": "ˌkwɒlɪfɪˈkeɪʃənz",
+      "example": "List all relevant qualifications in your resume to attract the employer's attention."
+    },
+    {
+      "word": "EXPERIENCE",
+      "translation": "kinh nghiệm",
+      "mean": "the knowledge or skill acquired by a period of practical experience of something, especially that gained in a particular profession",
+      "pronunciation": "ɪkˈspɪəriəns",
+      "example": "She has extensive experience in customer service."
+    },
+    {
+      "word": "SKILLS",
+      "translation": "kỹ năng",
+      "mean": "the ability to do something well, usually gained through training or experience",
+      "pronunciation": "skɪlz",
+      "example": "Highlight your skills that are relevant to the job you are applying for."
+    },
+    {
+      "word": "EMPLOYMENT HISTORY",
+      "translation": "lịch sử làm việc",
+      "mean": "a list of positions held by someone during their working life",
+      "pronunciation": "ɪmˈplɔɪmənt ˈhɪstəri",
+      "example": "Your employment history shows potential employers what roles you have held previously."
+    },
+    {
+      "word": "REFERENCES",
+      "translation": "người tham khảo",
+      "mean": "a recommendation from a person who knows the applicant's abilities and character, typically a previous employer",
+      "pronunciation": "ˈrɛfərənsɪz",
+      "example": "It's important to include a list of references who can vouch for your work ethic and skills."
+    },
+    {
+      "word": "NETWORKING",
+      "translation": "xây dựng mối quan hệ",
+      "mean": "interact with other people to exchange information and develop contacts, especially to further one's career",
+      "pronunciation": "ˈnɛtwɜːkɪŋ",
+      "example": "Networking can often lead to job opportunities that are not advertised."
+    },
+    {
+      "word": "ACHIEVEMENT",
+      "translation": "thành tựu",
+      "mean": "a thing done successfully, typically by effort, courage, or skill",
+      "pronunciation": "əˈtʃiːvmənt",
+      "example": "List your major achievements in previous roles to demonstrate your capability."
+    },
+    {
+      "word": "CERTIFICATION",
+      "translation": "chứng chỉ",
+      "mean": "the action or process of providing someone or something with an official document attesting to a status or level of achievement",
+      "pronunciation": "ˌsɜːtɪfɪˈkeɪʃən",
+      "example": "Obtaining a professional certification can enhance your resume."
+    },
+    {
+      "word": "INTERNSHIP",
+      "translation": "thực tập",
+      "mean": "a period of work experience offered by an organization for a limited period of time",
+      "pronunciation": "ˈɪntɜːnʃɪp",
+      "example": "She completed a six-month internship at a marketing firm."
+    },
+    {
+      "word": "PORTFOLIO",
+      "translation": "hồ sơ năng lực",
+      "mean": "a range of investments held by a person or organization",
+      "pronunciation": "pɔːrtˈfəʊliəʊ",
+      "example": "A portfolio of your work can be useful for job applications in creative fields."
+    },
+    {
+      "word": "PROFESSIONALISM",
+      "translation": "tính chuyên nghiệp",
+      "mean": "the competence or skill expected of a professional",
+      "pronunciation": "prəˈfɛʃənəlɪzəm",
+      "example": "Professionalism is key to making a good impression in any job."
+    },
+    {
+      "word": "RECRUITER",
+      "translation": "nhà tuyển dụng",
+      "mean": "a person whose job is to enlist or enroll people as employees, in the armed forces, or as members of an organization",
+      "pronunciation": "rɪˈkruːtər",
+      "example": "The recruiter will review resumes before selecting candidates for interviews."
+    },
+    {
+      "word": "CANDIDATE",
+      "translation": "ứng viên",
+      "mean": "a person who applies for a job or is nominated for election",
+      "pronunciation": "ˈkændɪdeɪt",
+      "example": "We have several strong candidates for the position."
+    },
+    {
+      "word": "OUTSOURCING",
+      "translation": "thuê ngoài",
+      "mean": "obtain (goods or a service) from an outside or foreign supplier, especially in place of an internal source",
+      "pronunciation": "ˈaʊtsɔːsɪŋ",
+      "example": "Outsourcing IT services can be cost-effective for businesses."
+    },
+    {
+      "word": "PROFICIENCY",
+      "translation": "trình độ thành thạo",
+      "mean": "a high degree of competence or skill; expertise",
+      "pronunciation": "prəˈfɪʃənsi",
+      "example": "Proficiency in multiple languages is a valuable skill."
+    },
+    {
+      "word": "WORKFORCE",
+      "translation": "lực lượng lao động",
+      "mean": "the people engaged in or available for work, either in a country or area or in a particular company or industry",
+      "pronunciation": "ˈwɜːkfɔːs",
+      "example": "The company plans to expand its workforce by 20% next year."
+    },
+    {
+      "word": "APPRAISAL",
+      "translation": "đánh giá",
+      "mean": "the act of assessing someone or something",
+      "pronunciation": "əˈpreɪzəl",
+      "example": "Annual appraisals help employees understand their performance and areas for improvement."
+    },
+    {
+    "word": "BACKGROUND",
+    "translation": "lý lịch",
+    "mean": "a person’s past, especially as it relates to their qualifications and experience",
+    "pronunciation": "ˈbækˌɡraʊnd",
+    "example": "The job requires a background in electrical engineering."
+  },
+  {
+    "word": "CREDENTIALS",
+    "translation": "bằng cấp",
+    "mean": "qualifications, achievements, personal qualities, or aspects of a person's background, typically when used to indicate that they are suitable for something",
+    "pronunciation": "krɪˈdenʃəlz",
+    "example": "Applicants must present their credentials during the interview process."
+  },
+  {
+    "word": "DIVERSIFY",
+    "translation": "đa dạng hóa",
+    "mean": "to develop a wider range of skills or business operations",
+    "pronunciation": "ˈdaɪvərsɪfaɪ",
+    "example": "Candidates who diversify their skills are more appealing to prospective employers."
+  },
+  {
+    "word": "ELIGIBILITY",
+    "translation": "đủ điều kiện",
+    "mean": "the state of having the right to do or obtain something through the appropriate qualifications",
+    "pronunciation": "ˌɛlɪˈdʒɪbɪlɪti",
+    "example": "Eligibility for this job position requires at least five years of experience."
+  },
+  {
+    "word": "FLUENCY",
+    "translation": "trôi chảy",
+    "mean": "the ability to express oneself easily and articulately",
+    "pronunciation": "ˈfluːənsi",
+    "example": "Fluency in multiple languages is a key asset in international business roles."
+  },
+  {
+    "word": "HEADHUNTER",
+    "translation": "nhà tuyển dụng",
+    "mean": "a recruiter of personnel, especially for senior or skilled positions",
+    "pronunciation": "ˈhɛdˌhʌntə",
+    "example": "A headhunter contacted her about a potential job opportunity."
+  },
+  {
+    "word": "JOB DESCRIPTION",
+    "translation": "mô tả công việc",
+    "mean": "a formal account of an employee's responsibilities",
+    "pronunciation": "dʒɒb dɪˈskrɪpʃən",
+    "example": "Make sure you meet all the requirements listed in the job description before applying."
+  },
+  {
+    "word": "LEADERSHIP",
+    "translation": "lãnh đạo",
+    "mean": "the action of leading a group of people or an organization",
+    "pronunciation": "ˈliːdərʃɪp",
+    "example": "Leadership experience is often a requirement for managerial positions."
+  },
+  {
+    "word": "NEGOTIATE",
+    "translation": "đàm phán",
+    "mean": "try to reach an agreement or compromise by discussion with others",
+    "pronunciation": "nɪˈɡəʊʃieɪt",
+    "example": "It's important to know how to negotiate your salary and benefits when offered a job."
+  },
+  {
+    "word": "OBJECTIVE",
+    "translation": "mục tiêu nghề nghiệp",
+    "mean": "a thing aimed at or sought; a goal",
+    "pronunciation": "əbˈdʒɛktɪv",
+    "example": "Your resume should begin with a clear objective that aligns with the job to which you are applying."
+  }
+]
+}

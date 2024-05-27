@@ -1,0 +1,219 @@
+{
+  "collectionID": 18",
+  "name": "Volunteer",
+  "desc": "This is a collection of vocabulary related to volunteering activities",
+  "value": 30,
+  "date": "05/2024",
+  "vocabulary": [
+    {
+      "word": "VOLUNTEER",
+      "translation": "tình nguyện viên",
+      "mean": "a person who freely offers to take part in an enterprise or undertake a task",
+      "pronunciation": "ˌvɒlənˈtɪər",
+      "example": "She works as a volunteer at the local hospital."
+    },
+    {
+      "word": "NONPROFIT",
+      "translation": "phi lợi nhuận",
+      "mean": "not making or conducted primarily to make a profit",
+      "pronunciation": "ˌnɒnˈprɒfɪt",
+      "example": "He has been working with various nonprofit organizations to help underprivileged communities."
+    },
+    {
+      "word": "CHARITY",
+      "translation": "từ thiện",
+      "mean": "an organization set up to provide help and raise money for those in need",
+      "pronunciation": "ˈʧærɪti",
+      "example": "The charity event raised a significant amount of money for children's hospitals."
+    },
+    {
+      "word": "ADVOCACY",
+      "translation": "ủng hộ",
+      "mean": "public support for or recommendation of a particular cause or policy",
+      "pronunciation": "ˈædvəkəsi",
+      "example": "Her advocacy for environmental issues has brought about significant changes."
+    },
+    {
+      "word": "FUNDRAISING",
+      "translation": "gây quỹ",
+      "mean": "the organized activity of raising funds, especially for a nonprofit organization or a political cause",
+      "pronunciation": "ˈfʌndˌreɪzɪŋ",
+      "example": "The fundraising campaign was successful in achieving its financial goals."
+    },
+    {
+      "word": "DONATION",
+      "translation": "quyên góp",
+      "mean": "something that is given to a charity, especially a sum of money",
+      "pronunciation": "dəʊˈneɪʃn",
+      "example": "They made a generous donation to the disaster relief fund."
+    },
+    {
+      "word": "COMMUNITY SERVICE",
+      "translation": "dịch vụ cộng đồng",
+      "mean": "voluntary work intended to help people in a particular area",
+      "pronunciation": "kəˈmjuːnɪti ˈsɜːvɪs",
+      "example": "The students are required to complete 30 hours of community service each year."
+    },
+    {
+      "word": "PHILANTHROPY",
+      "translation": "hảo tâm",
+      "mean": "the desire to promote the welfare of others, expressed especially by the generous donation of money to good causes",
+      "pronunciation": "fɪˈlænθrəpi",
+      "example": "His philanthropy has helped fund new research facilities at the university."
+    },
+    {
+      "word": "ACTIVISM",
+      "translation": "hoạt động xã hội",
+      "mean": "the policy or action of using vigorous campaigning to bring about political or social change",
+      "pronunciation": "ˈæktɪˌvɪzəm",
+      "example": "She is well-known for her activism in fighting for gender equality."
+    },
+    {
+      "word": "CAMPAIGN",
+      "translation": "chiến dịch",
+      "mean": "an organized course of action to achieve a particular goal",
+      "pronunciation": "kæmˈpeɪn",
+      "example": "The awareness campaign reached thousands of people across the country."
+    },
+    {
+      "word": "AWARENESS",
+      "translation": "nhận thức",
+      "mean": "knowledge or perception of a situation or fact",
+      "pronunciation": "əˈweənɪs",
+      "example": "The event was held to raise awareness about mental health issues."
+    },
+    {
+      "word": "SUSTAINABILITY",
+      "translation": "bền vững",
+      "mean": "avoidance of the depletion of natural resources in order to maintain an ecological balance",
+      "pronunciation": "səˌsteɪnəˈbɪlɪti",
+      "example": "Sustainability is a key focus in all our projects."
+    },
+    {
+      "word": "GRANT",
+      "translation": "trợ cấp",
+      "mean": "a sum of money given by an organization, especially a government, for a particular purpose",
+      "pronunciation": "grɑːnt",
+      "example": "The agency provides grants to support local charities."
+    },
+    {
+      "word": "BENEFACTOR",
+      "translation": "nhà hảo tâm",
+      "mean": "a person who gives money or other help to a person or cause",
+      "pronunciation": "ˈbenɪˌfæktə",
+      "example": "The library was built with funds donated by a local benefactor."
+    },
+    {
+      "word": "ALTRUISM",
+      "translation": "lòng vị tha",
+      "mean": "the belief in or practice of disinterested and selfless concern for the well-being of others",
+      "pronunciation": "ˈæltruːˌɪzəm",
+      "example": "His work is driven by pure altruism."
+    },
+    {
+      "word": "VOLUNTEERISM",
+      "translation": "tình nguyện",
+      "mean": "the use or involvement of volunteer labor, especially in community services",
+      "pronunciation": "ˌvɒlənˈtɪərɪzəm",
+      "example": "Volunteerism is an important part of our community outreach."
+    },
+    {
+      "word": "SERVICE",
+      "translation": "dịch vụ",
+      "mean": "the action of helping or doing work for someone",
+      "pronunciation": "ˈsɜːrvɪs",
+      "example": "They were honored for their service to the community."
+    },
+    {
+      "word": "CONTRIBUTION",
+      "translation": "đóng góp",
+      "mean": "a gift or payment to a common fund or collection",
+      "pronunciation": "ˌkɒntrɪˈbjuːʃn",
+      "example": "Every small contribution helps us achieve our goal."
+    },
+    {
+      "word": "EMPATHY",
+      "translation": "cảm thông",
+      "mean": "the ability to understand and share the feelings of another",
+      "pronunciation": "ˈɛmpəθi",
+      "example": "Empathy is essential when working with vulnerable groups."
+    },
+    {
+      "word": "HUMANITARIAN",
+      "translation": "nhân đạo",
+      "mean": "concerned with or seeking to promote human welfare",
+      "pronunciation": "hjuːˌmænɪˈtɛəriən",
+      "example": "The humanitarian aid was dispatched immediately after the disaster."
+    },
+    {
+      "word": "OUTREACH",
+      "translation": "vươn tới",
+      "mean": "an effort to bring services or information to people where they live or spend time",
+      "pronunciation": "ˈaʊtˌriːtʃ",
+      "example": "The outreach program aims to engage with the local community."
+    },
+    {
+      "word": "RELIEF",
+      "translation": "cứu trợ",
+      "mean": "assistance, especially in the form of food, clothing, or money, given to those in special need or difficulty",
+      "pronunciation": "rɪˈliːf",
+      "example": "Disaster relief efforts are underway to help the affected population."
+    },
+    {
+      "word": "SHELTER",
+      "translation": "nơi trú ẩn",
+      "mean": "a place giving temporary protection from bad weather or danger",
+      "pronunciation": "ˈʃɛltə",
+      "example": "They built shelters to help the homeless during the winter."
+    },
+    {
+      "word": "SPONSOR",
+      "translation": "nhà tài trợ",
+      "mean": "a person or organization that provides funds for a project or activity carried out by another, in particular",
+      "pronunciation": "ˈspɒnsə",
+      "example": "The event was possible thanks to our sponsor."
+    },
+    {
+      "word": "MOBILIZE",
+      "translation": "huy động",
+      "mean": "prepare and organize (troops) for active service",
+      "pronunciation": "ˈməʊbɪlaɪz",
+      "example": "The community was mobilized to clean up the city park."
+    },
+    {
+      "word": "DEVELOPMENT",
+      "translation": "phát triển",
+      "mean": "the process of developing or being developed",
+      "pronunciation": "dɪˈvɛləpmənt",
+      "example": "The new development program focuses on skills training for the unemployed."
+    },
+    {
+      "word": "LEADERSHIP",
+      "translation": "lãnh đạo",
+      "mean": "the action of leading a group of people or an organization",
+      "pronunciation": "ˈliːdəʃɪp",
+      "example": "Strong leadership is crucial in volunteer organizations."
+    },
+    {
+      "word": "EMPOWERMENT",
+      "translation": "trao quyền",
+      "mean": "the process of becoming stronger and more confident, especially in controlling one's life and claiming one's rights",
+      "pronunciation": "ɪmˈpaʊəmənt",
+      "example": "The program aims at the empowerment of young women."
+    },
+    {
+      "word": "INTEGRITY",
+      "translation": "chính trực",
+      "mean": "the quality of being honest and having strong moral principles",
+      "pronunciation": "ɪnˈtɛgrɪti",
+      "example": "Integrity is a vital trait for anyone involved in charity work."
+    },
+    {
+      "word": "COMPASSION",
+      "translation": "lòng thương xót",
+      "mean": "sympathetic pity and concern for the sufferings or misfortunes of others",
+      "pronunciation": "kəmˈpæʃən",
+      "example": "Her compassion for others led her to start a nonprofit that helps the homeless."
+    }
+  ]
+}
