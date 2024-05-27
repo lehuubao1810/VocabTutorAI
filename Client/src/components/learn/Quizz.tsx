@@ -4,20 +4,22 @@ import "react-toastify/dist/ReactToastify.css";
 import { Vocabulary } from "../../type/Vocabulary";
 import { useNavigate } from "react-router-dom";
 
+import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 interface Props {
 	LearningData: Vocabulary[];
 }
 
 export const Quizz: React.FC<Props> = ({ LearningData }) => {
-	const [currentVocabulary, setCurrentVocabulary] = useState<Vocabulary>(
-		LearningData[0]
-	);
 	const [randomVocabularies, setRandomVocabularies] = useState<Vocabulary[]>(
 		[]
 	);
 	const [correctAnswer, setCorrectAnswer] = useState<Vocabulary | null>(null);
 	const [isAnswered, setIsAnswered] = useState(false);
+	const [isMuted, setIsMuted] = useState(false);
 	const navigate = useNavigate();
+
 	useEffect(() => {
 		generateNewQuestion();
 	}, []);
@@ -41,39 +43,57 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 
 		setRandomVocabularies(randomVocabularies);
 		setCorrectAnswer(correctAnswer);
-		setCurrentVocabulary(correctAnswer);
+
 		setIsAnswered(false);
 	};
 
 	const handleAnswerClick = (selectedVocabulary: Vocabulary) => {
 		if (selectedVocabulary === correctAnswer) {
 			setIsAnswered(true);
+			toast.success("Correct!");
+
+			// Phát âm ngay lập tức khi chọn đúng
+			if (!isMuted && correctAnswer) {
+				const synth = window.speechSynthesis;
+				const utterance = new SpeechSynthesisUtterance(correctAnswer.word);
+				const voices = synth.getVoices();
+				const voice = voices.find((v) => v.lang === "en-US") || voices[0];
+				utterance.voice = voice;
+				synth.speak(utterance);
+			}
+
+			// Chờ vài giây trước khi chuyển sang từ mới
 			setTimeout(() => {
 				generateNewQuestion();
 			}, 2000);
-			toast.success("Correct!");
 		} else {
 			setIsAnswered(false);
 			toast.error("Incorrect!");
 		}
 	};
+
 	const handleStop = () => {
 		toast.info("Quiz stopped");
 		navigate("/");
 	};
+
+	const toggleMute = () => {
+		setIsMuted((prev) => !prev);
+	};
+
 	if (!Array.isArray(LearningData) || LearningData.length === 0) {
 		return <div>No vocabulary data available</div>;
 	}
 
 	return (
 		<>
+			<ToastContainer />
 			{LearningData.length === 0 ? (
 				<div>
 					<h1>NO DATA TO LEARN</h1>
 				</div>
 			) : (
 				<div className="mt-5 mb-10 h-full flex flex-col items-center">
-					<ToastContainer />
 					<div className="text-center mb-10">
 						<h1 className="text-3xl font-bold text-gray-600">
 							Study with Quizzes
@@ -89,6 +109,14 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 								<p>{correctAnswer.pronunciation}</p>
 							</div>
 						)}
+						<div className="absolute top-5 right-5">
+							<button
+								onClick={toggleMute}
+								className="text-gray-500 w-10 h-10 bg-slate-200 rounded-full p-2 hover:bg-slate-300"
+							>
+								<FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
+							</button>
+						</div>
 					</div>
 					<div className="my-10 grid grid-cols-2 gap-4 w-2/3 max-sm:grid-cols-1 max-sm:w-full max-sm:gap-1 max-sm:my-5">
 						{randomVocabularies.map((vocabulary, index) => (
