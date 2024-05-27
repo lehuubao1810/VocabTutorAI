@@ -17,7 +17,7 @@
 <h3 align="center">VocabTutor</h3>
 
   <p align="center">
-    A web to learn vocab English
+    A web to learn vocab English 
     <br />
     <br />
     <a href="https://urfeeds.vercel.app/">View Demo</a>
@@ -129,8 +129,6 @@ You need to get firebaseConfig on Firebase first
 <!-- CONTACT -->
 
 ## Contact
-
-Email: lehuubao2909@gmail.com
 
 Project Link: https://github.com/lehuubao1810/VocabTutorAI
 
