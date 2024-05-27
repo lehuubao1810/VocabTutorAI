@@ -1,6 +1,6 @@
 <a name="readme-top"></a>
 
-[![Contributors][contributors-shield]][contributors-url]
+[![Contributor][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
@@ -50,9 +50,10 @@
 
 ## About The Project
 
-<img src="https://raw.githubusercontent.com/lehuubao1810/portfolio/main/images/client.png" alt="VocabTutorAI">
+<img src="https://raw.githubusercontent.com/lehuubao1810/VocabTutorAI/main/images/client.png" alt="VocabTutorAI">
 <br />
-<img src="https://raw.githubusercontent.com/lehuubao1810/portfolio/main/images/admin.png" alt="VocabTutorAI">
+<br />
+<img src="https://raw.githubusercontent.com/lehuubao1810/VocabTutorAI/main/images/admin.png" alt="VocabTutorAI">
 
 ### Built With
 
@@ -135,15 +136,15 @@ Project Link: https://github.com/lehuubao1810/VocabTutorAI
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/lehuubao1810/portfolio.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/lehuubao1810/VocabTutorAI.svg?style=for-the-badge
 [contributors-url]: https://github.com/lehuubao1810/VocabTutorAI/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/lehuubao1810/portfolio.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/lehuubao1810/VocabTutorAI.svg?style=for-the-badge
 [forks-url]: https://github.com/lehuubao1810/VocabTutorAI/network/members
-[stars-shield]: https://img.shields.io/github/stars/lehuubao1810/portfolio.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/lehuubao1810/VocabTutorAI.svg?style=for-the-badge
 [stars-url]: https://github.com/lehuubao1810/VocabTutorAI/stargazers
-[issues-shield]: https://img.shields.io/github/issues/lehuubao1810/portfolio.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/lehuubao1810/VocabTutorAI.svg?style=for-the-badge
 [issues-url]: https://github.com/lehuubao1810/VocabTutorAI/issues
-[license-shield]: https://img.shields.io/github/license/lehuubao1810/portfolio.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/lehuubao1810/VocabTutorAI.svg?style=for-the-badge
 [license-url]: https://github.com/lehuubao1810/VocabTutorAI/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/le-huu-bao-885735215/
