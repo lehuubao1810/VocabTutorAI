@@ -7,12 +7,10 @@ import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import Tooltip from '@mui/material/Tooltip'
 import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import CardContent from '@mui/material/CardContent'
 
 // ** Custom Components Imports
 import Icon from 'src/@core/components/icon'
-import PageHeader from 'src/@core/components/page-header'
 
 const icons = [
   'tabler:123',
@@ -89,16 +87,6 @@ const Icons = () => {
 
   return (
     <Grid container spacing={6}>
-      <PageHeader
-        title={
-          <Typography variant='h4'>
-            <LinkStyled href='https://iconify.design/' target='_blank'>
-              Iconify Design
-            </LinkStyled>
-          </Typography>
-        }
-        subtitle={<Typography sx={{ color: 'text.secondary' }}>Modern unified SVG framework</Typography>}
-      />
       <Grid item xs={12}>
         <Grid container spacing={6}>
           {renderIconGrids()}

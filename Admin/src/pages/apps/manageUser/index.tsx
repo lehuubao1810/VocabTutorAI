@@ -94,7 +94,7 @@ export default function UsersPage() {
   const handleDeleteSelectedItems = async () => {
     try {
 
-      const response = await AxiosInstance.post(`${adminPathName.deleteUsers}`,
+      await AxiosInstance.post(`${adminPathName.deleteUsers}`,
         {
           uids: selectedItems
         }

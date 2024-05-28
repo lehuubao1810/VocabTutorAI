@@ -1,6 +1,3 @@
-// ** React Imports
-import { useEffect, useState } from 'react'
-
 // ** MUI Imports
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
@@ -13,20 +10,15 @@ import TextField from '@mui/material/TextField'
 // ** Third Party Imports
 import { useForm, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import toast from 'react-hot-toast'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 
 // ** Types Imports
-import AxiosInstance from 'src/configs/axios'
-import adminPathName from 'src/configs/endpoints/admin';
-import { CollectionItemData, QuizQuestionStore } from 'src/context/types'
+import { CollectionItemData } from 'src/context/types'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from 'src/firebase'
-import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { boolean } from 'yup'
-
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
 
 // ** Define Header component using styled function
 const Header = styled(Box)<BoxProps>(({ theme }) => ({

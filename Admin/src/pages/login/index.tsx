@@ -24,7 +24,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 
 // ** Hooks
 import { useAuth } from 'src/hooks/useAuth'
-import { useSettings } from 'src/@core/hooks/useSettings'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'

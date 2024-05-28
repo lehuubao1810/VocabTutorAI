@@ -44,6 +44,7 @@ const AuthProvider = ({ children }: Props) => {
     await signInWithEmailAndPassword(auth, params.email, params.password)
       .then((userCredential) => {
         const user = userCredential.user;
+
         return user;
       })
       .then(async (user) => {
@@ -52,6 +53,7 @@ const AuthProvider = ({ children }: Props) => {
         if (!userDoc.exists) {
           setLoading(false)
           setUser(null)
+
           return;
         }
         setUser(

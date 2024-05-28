@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next'
 
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
-import Link from 'next/link'
 
 interface TableHeaderDetailProps {
   value: string;

@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Checkbox, IconButton, Tooltip, Box, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText, Grid, TextField, FormControlLabel, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Checkbox, IconButton, Tooltip, Box, Typography, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText, Grid, TextField, FormControl, Select, MenuItem } from '@mui/material';
 import { Icon } from '@iconify/react'
 import Link from 'next/link';
 import { CollectionItemData } from 'src/context/types'
 import TableHeader from 'src/views/apps/manageCollection/TableHeader';
 import AddDrawer from 'src/views/apps/manageCollection/AddCollectionDrawer';
 import { useTranslation } from 'react-i18next';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 import { db } from 'src/firebase';
 
 // Định nghĩa hàm Component

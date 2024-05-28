@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
@@ -8,7 +7,6 @@ import Box, { BoxProps } from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import { useForm, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import toast from 'react-hot-toast'
 import Icon from 'src/@core/components/icon'
 import { VocabularyItem } from 'src/context/types'
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore'
@@ -23,7 +21,7 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 }))
 
 const SidebarAddVocab = (props: any) => {
-  const { open, toggleAdd, fetchDataList, dataList } = props;
+  const { open, toggleAdd, fetchDataList } = props;
   const { control, handleSubmit } = useForm()
   const router = useRouter();
 

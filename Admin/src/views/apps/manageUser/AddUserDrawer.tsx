@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
@@ -10,10 +9,8 @@ import { useForm, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import toast from 'react-hot-toast'
 import Icon from 'src/@core/components/icon'
-import { addDoc, collection, doc, setDoc } from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 import { auth, db } from 'src/firebase'
-import { FormControl, MenuItem, Select, SelectChangeEvent } from '@mui/material'
-import { Users } from 'src/context/types'
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
@@ -36,12 +33,14 @@ const SidebarAddUser = (props: any) => {
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
+
         return user;
       })
       .then((user) => {
         updateProfile(user, {
           displayName: newData.username,
         });
+
         return user;
       })
       .then((user) => {

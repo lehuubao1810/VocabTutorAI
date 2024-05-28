@@ -1,6 +1,6 @@
 // ** React Imports
 import { useTranslation } from 'react-i18next'
-import { useState, useEffect, SyntheticEvent, Fragment, useContext } from 'react'
+import { useState, SyntheticEvent, Fragment, useContext } from 'react'
 import { AuthContext } from 'src/context/AuthContext'
 
 // ** Next Import
@@ -24,7 +24,6 @@ import { useAuth } from 'src/hooks/useAuth'
 
 // ** Type Imports
 import { Settings } from 'src/@core/context/settingsContext'
-import { UserDataType } from 'src/context/types'
 
 interface Props {
   settings: Settings
@@ -57,7 +56,7 @@ const UserDropdown = (props: Props) => {
   const { t } = useTranslation()
   const { logout } = useAuth()
 
-  const { user, setUser } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
 
   // ** Vars
   const { direction } = settings

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Checkbox, IconButton, Tooltip, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText, Grid, TextField } from '@mui/material';
 import { Icon } from '@iconify/react';
 import { useRouter } from 'next/router';
-import { collection, getDocs, addDoc, updateDoc, deleteDoc, getDoc, doc } from 'firebase/firestore';
+import { updateDoc, deleteDoc, getDoc, doc } from 'firebase/firestore';
 import { db } from 'src/firebase';
 import { VocabularyItem } from 'src/context/types';
 import TableHeader from 'src/views/apps/manageCollection/TableHeaderDetail';
@@ -68,12 +68,12 @@ export default function CollectionDetail() {
                 }
             } catch (error) {
                 console.error('Error retrieving vocabulary:', error);
-                // Trả về null nếu không thể truy xuất được từ vựng
+
                 return null;
             }
         });
         const vocabDetails = await Promise.all(vocabPromises);
-        // Lọc bỏ các giá trị null
+
         return vocabDetails.filter(item => item !== null) as VocabularyItem[];
     };
 
@@ -83,6 +83,7 @@ export default function CollectionDetail() {
 
         if (!collectionSnapshot.exists()) {
             console.error("Collection does not exist");
+
             return;
         }
 
@@ -123,6 +124,7 @@ export default function CollectionDetail() {
 
             if (!collectionSnapshot.exists()) {
                 console.error("Collection does not exist");
+
                 return;
             }
 

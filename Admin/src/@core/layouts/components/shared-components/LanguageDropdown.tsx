@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next'
 import OptionsMenu from 'src/@core/components/option-menu'
 
 // ** Type Import
-import DatePickerWrapper from 'src/@core/styles/libs/react-datepicker'
 import { Settings } from 'src/@core/context/settingsContext'
 
 interface Props {

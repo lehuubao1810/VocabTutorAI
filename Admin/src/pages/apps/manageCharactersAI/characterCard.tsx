@@ -13,7 +13,6 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, T
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import ButtonsFab from 'src/views/components/buttons/ButtonsFab';
 
@@ -54,7 +53,7 @@ const CharacterCard = (props: CardInfluencerProps) => {
       if (selectedFile) {
         formData.append('image', selectedFile);
       }
-      const response = await AxiosInstance.put(`${adminPathName.editCharacterAI}/${editedData._id}`, formData, {
+      await AxiosInstance.put(`${adminPathName.editCharacterAI}/${editedData._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         }
