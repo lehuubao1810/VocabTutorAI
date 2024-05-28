@@ -60,7 +60,7 @@ const SidebarCharacterAI = (props: any) => {
       sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 700 } } }}
     >
       <Header sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px' }}>
-        <Typography variant='h5'>{t('Add New CharacterAI')}</Typography>
+        <Typography variant='h5'>{t('Add New')} {t('CharacterAI')}</Typography>
         <IconButton size='small' onClick={handleClose}>
           <Icon icon='tabler:x' fontSize='1.125rem' />
         </IconButton>
@@ -78,7 +78,7 @@ const SidebarCharacterAI = (props: any) => {
                   fullWidth
                   value={value}
                   sx={{ marginBottom: '16px' }}
-                  label={t('name')}
+                  label={t('Name')}
                   onChange={onChange}
                   placeholder='John'
                 />
@@ -94,7 +94,7 @@ const SidebarCharacterAI = (props: any) => {
                   fullWidth
                   value={value}
                   sx={{ marginBottom: '16px' }}
-                  label={t('personality')}
+                  label={t('Personality')}
                   onChange={onChange}
                   placeholder='kind, friendly'
                 />
@@ -110,7 +110,7 @@ const SidebarCharacterAI = (props: any) => {
                   fullWidth
                   value={value}
                   sx={{ marginBottom: '16px' }}
-                  label={t('firstGreet')}
+                  label={t('FirstGreet')}
                   onChange={onChange}
                   placeholder="Hello, I'm John. Nice to meet you"
                 />
@@ -126,7 +126,7 @@ const SidebarCharacterAI = (props: any) => {
                   fullWidth
                   value={value}
                   sx={{ marginBottom: '16px' }}
-                  label={t('information')}
+                  label={t('Information')}
                   onChange={onChange}
                   placeholder="Job: Student, Adress: Ho Chi Minh City"
                 />

@@ -15,7 +15,7 @@ i18n
     backend: {
       loadPath: '/locales/{{lng}}.json'
     },
-    fallbackLng: 'vi',
+    fallbackLng: 'en',
     debug: false,
     keySeparator: false,
     react: {

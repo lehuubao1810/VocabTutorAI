@@ -78,7 +78,7 @@ const SidebarAddCollection = (props: any) => {
       sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 700 } } }}
     >
       <Header sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px' }}>
-        <Typography variant='h5'>{t('Add New Collection')}</Typography>
+        <Typography variant='h5'>{t('Add New')} {t('Collection')}</Typography>
         <IconButton size='small' onClick={handleClose}>
           <Icon icon='tabler:x' fontSize='1.125rem' />
         </IconButton>

@@ -25,6 +25,7 @@ const LanguageDropdown = ({ settings, saveSettings }: Props) => {
 
   const handleLangItemClick = (lang: 'en' | 'vi') => {
     i18n.changeLanguage(lang)
+    console.log(lang)
   }
 
   // ** Change html `lang` attribute when changing locale

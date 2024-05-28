@@ -24,5 +24,13 @@
     "Password": "Mật Khẩu",
     "Delete": "Xóa",
     "View": "Xem",
-    "Edit": "Chỉnh Sửa"
+    "Edit": "Chỉnh Sửa",
+    "Personality": "Tính Cách",
+    "FirstGreet": "Chào Hỏi Đầu Tiên",
+    "Information": "Thông Tin",
+    "Submit": "Gửi",
+    "Cancel": "Hủy",
+    "Select Status": "Chọn Trạng Thái",
+    "Public": "Công Khai",
+    "Private": "Riêng Tư"
 }
