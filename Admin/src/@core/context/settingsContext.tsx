@@ -8,13 +8,12 @@ import { Direction } from '@mui/material'
 import themeConfig from 'src/configs/themeConfig'
 
 // ** Types Import
-import { Skin, Mode, AppBar, Footer, ThemeColor, ContentWidth, VerticalNavToggle } from 'src/@core/layouts/types'
+import { Skin, Mode, AppBar, ThemeColor, ContentWidth, VerticalNavToggle } from 'src/@core/layouts/types'
 
 export type Settings = {
   skin: Skin
   mode: Mode
   appBar?: AppBar
-  footer?: Footer
   navHidden?: boolean // navigation menu
   appBarBlur: boolean
   direction: Direction
@@ -31,7 +30,6 @@ export type PageSpecificSettings = {
   skin?: Skin
   mode?: Mode
   appBar?: AppBar
-  footer?: Footer
   navHidden?: boolean // navigation menu
   appBarBlur?: boolean
   direction?: Direction
@@ -57,7 +55,6 @@ const initialSettings: Settings = {
   themeColor: 'primary',
   mode: themeConfig.mode,
   skin: themeConfig.skin,
-  footer: themeConfig.footer,
   layout: themeConfig.layout,
   lastLayout: themeConfig.layout,
   direction: themeConfig.direction,
@@ -72,7 +69,6 @@ const initialSettings: Settings = {
 
 const staticSettings = {
   appBar: initialSettings.appBar,
-  footer: initialSettings.footer,
   layout: initialSettings.layout,
   navHidden: initialSettings.navHidden,
   lastLayout: initialSettings.lastLayout,
@@ -102,7 +98,6 @@ const storeSettings = (settings: Settings) => {
   const initSettings = Object.assign({}, settings)
 
   delete initSettings.appBar
-  delete initSettings.footer
   delete initSettings.layout
   delete initSettings.navHidden
   delete initSettings.lastLayout

@@ -4,13 +4,10 @@ import Link from 'next/link'
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { styled, useTheme } from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
 
 // ** Type Import
 import { LayoutProps } from 'src/@core/layouts/types'
-
-// ** Theme Config Import
-import themeConfig from 'src/configs/themeConfig'
 
 interface Props {
   hidden: LayoutProps['hidden']
@@ -32,7 +29,6 @@ const AppBarContent = (props: Props) => {
   const { appBarContent: userAppBarContent, appBarBranding: userAppBarBranding } = props
 
   // ** Hooks
-  const theme = useTheme()
 
   return (
     <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>

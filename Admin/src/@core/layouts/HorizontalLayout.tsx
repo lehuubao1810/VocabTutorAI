@@ -16,7 +16,6 @@ import { LayoutProps } from 'src/@core/layouts/types'
 
 // ** Components
 import Customizer from 'src/@core/components/customizer'
-import Footer from './components/shared-components/footer'
 import Navigation from './components/horizontal/navigation'
 import ScrollToTop from 'src/@core/components/scroll-to-top'
 import AppBarContent from './components/horizontal/app-bar-content'
@@ -69,7 +68,6 @@ const HorizontalLayout = (props: LayoutProps) => {
     children,
     settings,
     scrollToTop,
-    footerProps,
     saveSettings,
     contentHeightFixed,
     horizontalLayoutProps
@@ -173,8 +171,6 @@ const HorizontalLayout = (props: LayoutProps) => {
         >
           {children}
         </ContentWrapper>
-        {/* Footer */}
-        <Footer {...props} footerStyles={footerProps?.sx} footerContent={footerProps?.content} />
         {/* Customizer */}
         {themeConfig.disableCustomizer || hidden ? null : <Customizer />}
         {/* Scroll to top button */}

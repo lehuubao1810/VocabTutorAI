@@ -1,5 +1,5 @@
 // ** React Imports
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 
 // ** Next Imports
 import Head from 'next/head'
@@ -31,7 +31,6 @@ import UserLayout from 'src/layouts/UserLayout'
 import AclGuard from 'src/@core/components/auth/AclGuard'
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
 import AuthGuard from 'src/@core/components/auth/AuthGuard'
-import GuestGuard from 'src/@core/components/auth/GuestGuard'
 
 // ** Spinner Import
 import Spinner from 'src/@core/components/spinner'
@@ -48,6 +47,7 @@ import ReactHotToast from 'src/@core/styles/libs/react-hot-toast'
 // ** Utils Imports
 import { createEmotionCache } from 'src/@core/utils/create-emotion-cache'
 import { styled } from '@mui/material/styles'
+
 // ** Prismjs Styles
 import 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
@@ -62,12 +62,6 @@ import 'src/iconify-bundle/icons-bundle-react'
 // ** Global css styles
 import '../../styles/globals.css'
 import { Box, BoxProps } from '@mui/system'
-
-// ** Socket
-import { useEffect } from 'react';
-import { io } from 'socket.io-client';
-import { socket } from 'src/socket'
-
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -96,25 +90,17 @@ if (themeConfig.routingLoader) {
   })
 }
 
-const Guard = ({ children, authGuard, guestGuard }: GuardProps) => {
-  // if (guestGuard) {
-  //   return <GuestGuard fallback={<Spinner />}>{children}</GuestGuard>
-  // } else if (!guestGuard && !authGuard) {
-  //   return <>{children}</>
-  // } else {
+const Guard = ({ children }: GuardProps) => {
   return <AuthGuard fallback={<Spinner />}>{children}</AuthGuard>
-  // }
 }
 
 
-const StyledGlobal = styled(Box)<BoxProps>(({ theme }) => ({
+const StyledGlobal = styled(Box)<BoxProps>(({ }) => ({
   '& > *::-webkit-scrollbar': {
-    // background: `${theme.palette.text.primary} !important`
     width: `30px`
   },
   '& > *::-webkit-scrollbar-thumb': {
-    // background: `${theme.palette.text.primary} !important`
-    background: `#ccc`
+    background: `red`
   },
 }))
 
@@ -123,7 +109,6 @@ const StyledGlobal = styled(Box)<BoxProps>(({ theme }) => ({
 // ** Configure JSS & ClassName
 const App = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
-  const [userName, setUserName] = useState<string>()
 
   // Variables
   const contentHeightFixed = Component.contentHeightFixed ?? false

@@ -84,15 +84,12 @@ const Customizer = () => {
     mode,
     skin,
     appBar,
-    footer,
     layout,
     navHidden,
     direction,
     appBarBlur,
     themeColor,
-    navCollapsed,
     contentWidth,
-    verticalNavToggleType
   } = settings
 
   const handleChange = (field: keyof Settings, value: Settings[keyof Settings]): void => {
@@ -270,21 +267,6 @@ const Customizer = () => {
                 {layout === 'horizontal' ? null : (
                   <FormControlLabel value='hidden' label={t('Hidden')} control={<Radio />} />
                 )}
-              </RadioGroup>
-            </Box>
-
-            {/* Footer */}
-            <Box sx={{ mb: 5 }}>
-              <Typography>{t('Footer Type')}</Typography>
-              <RadioGroup
-                row
-                value={footer}
-                sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
-                onChange={e => handleChange('footer', e.target.value as Settings['footer'])}
-              >
-                <FormControlLabel value='fixed' label={t('Fixed')} control={<Radio />} />
-                <FormControlLabel value='static' label={t('Static')} control={<Radio />} />
-                <FormControlLabel value='hidden' label={t('Hidden')} control={<Radio />} />
               </RadioGroup>
             </Box>
 

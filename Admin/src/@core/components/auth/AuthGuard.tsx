@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 // ** Hooks Import
 import { useAuth } from 'src/hooks/useAuth'
 import { onAuthStateChanged } from 'firebase/auth'
-import { auth, db } from 'src/firebase'
+import { auth } from 'src/firebase'
 import { UserDataType } from 'src/context/types'
 
 interface AuthGuardProps {
@@ -44,9 +44,11 @@ const AuthGuard = (props: AuthGuardProps) => {
           } else {
             router.replace('/login')
           }
+
           return fallback
         }
       })
+
       return () => unsubscribe();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
