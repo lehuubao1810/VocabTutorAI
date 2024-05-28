@@ -1,0 +1,225 @@
+{
+  "collectionID": "05",
+  "name": "Hobbies",
+  "desc": "This is a collection of vocabulary related to various hobbies",
+  "value": 30,
+  "vocabulary": [
+    {
+      "word": "PHOTOGRAPHY",
+      "translation": "nhiếp ảnh",
+      "mean": "the art or practice of taking and processing photographs",
+      "pronunciation": "fəˈtɒɡrəfi",
+      "example": "She took up photography because she loves capturing beautiful moments."
+    },
+    {
+      "word": "KNITTING",
+      "translation": "đan lát",
+      "mean": "the activity of knitting wool or thread to make clothes",
+      "pronunciation": "ˈnɪtɪŋ",
+      "example": "Knitting can be a relaxing hobby during the winter months."
+    },
+    {
+      "word": "GARDENING",
+      "translation": "làm vườn",
+      "mean": "the activity of tending and cultivating a garden, especially as a pastime",
+      "pronunciation": "ˈɡɑːdənɪŋ",
+      "example": "Gardening is a great way to enjoy the outdoors and grow your own vegetables."
+    },
+    {
+      "word": "CYCLING",
+      "translation": "đạp xe",
+      "mean": "the activity or sport of riding a bicycle",
+      "pronunciation": "ˈsaɪklɪŋ",
+      "example": "Cycling on weekends is a fun way to get exercise."
+    },
+    {
+      "word": "PAINTING",
+      "translation": "hội họa",
+      "mean": "the process or art of using paint, in a picture, as a protective coating, or as decoration",
+      "pronunciation": "ˈpeɪntɪŋ",
+      "example": "She enjoys painting landscapes in her spare time."
+    },
+    {
+      "word": "READING",
+      "translation": "đọc sách",
+      "mean": "the action or skill of reading written or printed matter silently or aloud",
+      "pronunciation": "ˈriːdɪŋ",
+      "example": "Reading is a hobby that can transport you to different worlds."
+    },
+    {
+      "word": "FISHING",
+      "translation": "câu cá",
+      "mean": "the activity of catching fish, either for food or as a sport",
+      "pronunciation": "ˈfɪʃɪŋ",
+      "example": "He finds fishing to be a peaceful and rewarding hobby."
+    },
+    {
+      "word": "COOKING",
+      "translation": "nấu ăn",
+      "mean": "the practice or skill of preparing food by combining, mixing, and heating ingredients",
+      "pronunciation": "ˈkʊkɪŋ",
+      "example": "Cooking at home is both fun and healthier than eating out."
+    },
+    {
+      "word": "HIKING",
+      "translation": "đi bộ đường dài",
+      "mean": "the activity of going for long walks, especially across country",
+      "pronunciation": "ˈhaɪkɪŋ",
+      "example": "Hiking through the mountains is her favorite weekend activity."
+    },
+    {
+      "word": "DANCING",
+      "translation": "khiêu vũ",
+      "mean": "move rhythmically to music, typically following a set sequence of steps",
+      "pronunciation": "ˈdænsɪŋ",
+      "example": "Dancing is not only fun but also a great form of exercise."
+    },
+    {
+      "word": "COLLECTING",
+      "translation": "sưu tầm",
+      "mean": "the activity of collecting items of a particular type as a hobby",
+      "pronunciation": "kəˈlɛktɪŋ",
+      "example": "He has been collecting stamps from different countries for over a decade."
+    },
+    {
+      "word": "SCULPTING",
+      "translation": "điêu khắc",
+      "mean": "the art of forming figures or objects in three dimensions from stone, metal, or other materials",
+      "pronunciation": "ˈskʌlptɪŋ",
+      "example": "Sculpting requires both creativity and precision."
+    },
+    {
+      "word": "ASTRONOMY",
+      "translation": "thiên văn học",
+      "mean": "the branch of science that deals with celestial objects, space, and the physical universe as a whole",
+      "pronunciation": "əˈstrɒnəmi",
+      "example": "Astronomy can be fascinating, especially when new discoveries are made."
+    },
+    {
+      "word": "BIRDWATCHING",
+      "translation": "quan sát chim",
+      "mean": "the practice of observing birds in their natural environment as a hobby",
+      "pronunciation": "ˈbɜːrdˌwɒtʃɪŋ",
+      "example": "Birdwatching is a relaxing way to connect with nature."
+    },
+    {
+      "word": "CHESS",
+      "translation": "cờ vua",
+      "mean": "a board game of strategic skill for two players, played on a checkered board",
+      "pronunciation": "tʃes",
+      "example": "Chess is a game that improves your strategic thinking."
+    },
+    {
+      "word": "BLOGGING",
+      "translation": "viết blog",
+      "mean": "write about an event, situation, topic, etc., in a blog",
+      "pronunciation": "ˈblɒɡɪŋ",
+      "example": "Blogging about her travels has turned into a lucrative career."
+    },
+    {
+      "word": "SEWING",
+      "translation": "may vá",
+      "mean": "join, fasten, or repair something by making stitches with a needle and thread or a sewing machine",
+      "pronunciation": "ˈsoʊɪŋ",
+      "example": "Sewing her own clothes allows her to express her unique style."
+    },
+    {
+      "word": "POTTERY",
+      "translation": "gốm",
+      "mean": "the craft or profession of making pottery",
+      "pronunciation": "ˈpɒtəri",
+      "example": "Pottery is therapeutic and lets you create beautiful, functional art pieces."
+    },
+    {
+      "word": "SKETCHING",
+      "translation": "vẽ phác thảo",
+      "mean": "make a rough drawing of",
+      "pronunciation": "ˈskɛtʃɪŋ",
+      "example": "Sketching is a skill that she uses both in her career and as a hobby."
+    },
+    {
+      "word": "BOARD GAMES",
+      "translation": "trò chơi trên bàn cờ",
+      "mean": "games that are played on a board, often using dice and small pieces",
+      "pronunciation": "bɔːrd ɡeɪmz",
+      "example": "Playing board games is a fun way to spend time with family and friends."
+    },
+    {
+      "word": "MODEL BUILDING",
+      "translation": "lắp mô hình",
+      "mean": "the hobby of constructing models from kits or from materials and plans",
+      "pronunciation": "ˈmɒdəl ˈbɪldɪŋ",
+      "example": "Model building can be a meticulous but rewarding hobby."
+    },
+    {
+      "word": "PLAYING MUSIC",
+      "translation": "chơi nhạc cụ",
+      "mean": "perform music on a musical instrument",
+      "pronunciation": "ˈpleɪɪŋ ˈmjuːzɪk",
+      "example": "Playing music has always been his passion and a great stress reliever."
+    },
+    {
+      "word": "VIDEO GAMING",
+      "translation": "chơi game video",
+      "mean": "the act of playing games on a video console or computer",
+      "pronunciation": "ˈvɪdiəʊ ˈɡeɪmɪŋ",
+      "example": "Video gaming is popular among people of all ages."
+    },
+    {
+      "word": "SCRAPBOOKING",
+      "translation": "làm sổ tay",
+      "mean": "the hobby of keeping a scrapbook",
+      "pronunciation": "ˈskræpˌbʊkɪŋ",
+      "example": "Scrapbooking is a creative way to preserve memories and tell stories."
+    },
+    {
+      "word": "YOGA",
+      "translation": "yoga",
+      "mean": "a Hindu spiritual and ascetic discipline which includes breath control, meditation, and specific bodily postures",
+      "pronunciation": "ˈjəʊɡə",
+      "example": "Yoga is not only beneficial for the body but also for the mind."
+    },
+    {
+      "word": "JOGGING",
+      "translation": "chạy bộ",
+      "mean": "run at a steady gentle pace, especially on a regular basis as a form of physical exercise",
+      "pronunciation": "ˈdʒɒɡɪŋ",
+      "example": "Jogging every morning helps him stay active and healthy."
+    },
+    {
+      "word": "QUILTING",
+      "translation": "may chăn",
+      "mean": "join together (layers of fabric or padding) with lines of stitching to form a thick covering",
+      "pronunciation": "ˈkwɪltɪŋ",
+      "example": "Quilting bees are a wonderful way to socialize while crafting."
+    },
+    {
+      "word": "MAGIC",
+      "translation": "ảo thuật",
+      "mean": "the art of performing tricks and illusions for entertainment",
+      "pronunciation": "ˈmædʒɪk",
+      "example": "He entertains children at parties with his magic tricks."
+    },
+    {
+      "word": "LEATHERWORKING",
+      "translation": "thủ công da",
+      "mean": "the craft of making leather into craft objects or works of art, using shaping techniques, coloring, or both",
+      "pronunciation": "ˈlɛðərwɜːrkɪŋ",
+      "example": "Leatherworking allows him to create custom, handcrafted items."
+    },
+    {
+      "word": "ARCHERY",
+      "translation": "bắn cung",
+      "mean": "the sport or skill of shooting with a bow and arrows, especially at a target",
+      "pronunciation": "ˈɑːrtʃəri",
+      "example": "Archery requires precision and calm, which he finds meditative."
+    },
+    {
+      "word": "BEADING",
+      "translation": "đan hạt",
+      "mean": "the art of forming beadwork by stringing beads together",
+      "pronunciation": "ˈbiːdɪŋ",
+      "example": "Beading jewelry is her way of adding a personal touch to her outfits."
+    }
+  ]
+}

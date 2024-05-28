@@ -1,0 +1,225 @@
+{
+  "collectionID": "12",
+  "name": "Restaurant",
+  "desc": "This is a collection of Restaurant-related vocabulary",
+  "value": 30,
+  "vocabulary": [
+    {
+      "word": "APPETIZER",
+      "translation": "món khai vị",
+      "mean": "a small dish served before a meal",
+      "pronunciation": "ˈæpɪtaɪzər",
+      "example": "We ordered a shrimp appetizer to start."
+    },
+    {
+      "word": "BEVERAGE",
+      "translation": "đồ uống",
+      "mean": "a drink other than water",
+      "pronunciation": "ˈbɛvərɪdʒ",
+      "example": "Beverages will be served during the meal."
+    },
+    {
+      "word": "CHEF",
+      "translation": "đầu bếp",
+      "mean": "a professional cook",
+      "pronunciation": "ʃɛf",
+      "example": "The chef prepared a special dish for us."
+    },
+    {
+      "word": "DESSERT",
+      "translation": "món tráng miệng",
+      "mean": "a sweet course served at the end of a meal",
+      "pronunciation": "dɪˈzɜːrt",
+      "example": "For dessert, we had ice cream and cake."
+    },
+    {
+      "word": "ENTREE",
+      "translation": "món chính",
+      "mean": "the main course of a meal",
+      "pronunciation": "ˈɑːntrɪ",
+      "example": "The entree tonight is grilled salmon."
+    },
+    {
+      "word": "MENU",
+      "translation": "thực đơn",
+      "mean": "a list of dishes available in a restaurant",
+      "pronunciation": "ˈmɛnjuː",
+      "example": "Please take a look at our menu before ordering."
+    },
+    {
+      "word": "NAPKIN",
+      "translation": "khăn ăn",
+      "mean": "a cloth or paper used at meals to protect the clothing or wipe the lips and fingers",
+      "pronunciation": "ˈnæpkɪn",
+      "example": "Don't forget to place the napkin on your lap."
+    },
+    {
+      "word": "ORDER",
+      "translation": "đặt món",
+      "mean": "to request food or drink from a menu",
+      "pronunciation": "ˈɔːrdər",
+      "example": "We are ready to order our meals now."
+    },
+    {
+      "word": "RESERVATION",
+      "translation": "đặt bàn",
+      "mean": "an arrangement to have something, such as a table at a restaurant, held for one's use",
+      "pronunciation": "ˌrezərˈveɪʃən",
+      "example": "We have a reservation under the name Smith."
+    },
+    {
+      "word": "SERVICE",
+      "translation": "phục vụ",
+      "mean": "the action of helping or doing work for someone",
+      "pronunciation": "ˈsɜːrvɪs",
+      "example": "The service at this restaurant is always excellent."
+    },
+    {
+      "word": "TIP",
+      "translation": "tiền boa",
+      "mean": "a small amount of money given to someone for performing a service",
+      "pronunciation": "tɪp",
+      "example": "It's customary to leave a tip for the waiter."
+    },
+    {
+      "word": "WAITER",
+      "translation": "bồi bàn nam",
+      "mean": "a man who serves food and drinks at the tables in a restaurant",
+      "pronunciation": "ˈweɪtər",
+      "example": "Our waiter was very attentive throughout the meal."
+    },
+    {
+      "word": "WAITRESS",
+      "translation": "bồi bàn nữ",
+      "mean": "a woman who serves food and drinks at the tables in a restaurant",
+      "pronunciation": "ˈweɪtrɪs",
+      "example": "The waitress brought our drinks first."
+    },
+    {
+      "word": "BUFFET",
+      "translation": "tiệc buffet",
+      "mean": "a meal where people serve themselves from a variety of dishes set out on a table or sideboard",
+      "pronunciation": "ˈbʌfeɪ",
+      "example": "They offer a buffet on Sundays at the hotel."
+    },
+    {
+      "word": "COURSE",
+      "translation": "món ăn trong một bữa",
+      "mean": "each separate part of a meal",
+      "pronunciation": "kɔːrs",
+      "example": "The first course was a delicious soup."
+    },
+    {
+      "word": "CUISINE",
+      "translation": "ẩm thực",
+      "mean": "a style or method of cooking, especially as characteristic of a particular country, region, or establishment",
+      "pronunciation": "kwɪˈziːn",
+      "example": "The restaurant is known for its excellent Italian cuisine."
+    },
+    {
+      "word": "DINE",
+      "translation": "ăn tối",
+      "mean": "to eat dinner",
+      "pronunciation": "daɪn",
+      "example": "We plan to dine at a seaside restaurant tonight."
+    },
+    {
+      "word": "DINER",
+      "translation": "thực khách",
+      "mean": "a person eating a meal, especially in a restaurant",
+      "pronunciation": "ˈdaɪnər",
+      "example": "The diner left a very generous tip."
+    },
+    {
+      "word": "GRATUITY",
+      "translation": "tiền tip",
+      "mean": "money given for services rendered, as in a restaurant",
+      "pronunciation": "ɡrəˈtjuːɪti",
+      "example": "A 15% gratuity is automatically added for parties of six or more."
+    },
+    {
+      "word": "HOST",
+      "translation": "người tiếp đón",
+      "mean": "a person who receives or entertains guests",
+      "pronunciation": "hoʊst",
+      "example": "The host will show you to your table."
+    },
+    {
+      "word": "INGREDIENT",
+      "translation": "nguyên liệu",
+      "mean": "any of the foods or substances that are combined to make a particular dish",
+      "pronunciation": "ɪnˈɡriːdiənt",
+      "example": "Fresh ingredients are crucial for the recipe."
+    },
+    {
+      "word": "PLATE",
+      "translation": "đĩa",
+      "mean": "a flat dish from which food is eaten or served",
+      "pronunciation": "pleɪt",
+      "example": "Her plate was filled with vegetables and rice."
+    },
+    {
+      "word": "RECIPE",
+      "translation": "công thức nấu ăn",
+      "mean": "a set of instructions for preparing a particular dish, including a list of the ingredients required",
+      "pronunciation": "ˈresəpi",
+      "example": "I'll share my recipe for homemade pizza with you."
+    },
+    {
+      "word": "SERVE",
+      "translation": "phục vụ",
+      "mean": "to provide food or drinks",
+      "pronunciation": "sɜːrv",
+      "example": "The waiter served the meals promptly."
+    },
+    {
+      "word": "TABLE",
+      "translation": "bàn",
+      "mean": "a piece of furniture with a flat top and one or more legs, providing a level surface for eating, writing, or working at",
+      "pronunciation": "ˈteɪbl",
+      "example": "Could we have a table by the window?"
+    },
+    {
+      "word": "TAKEOUT",
+      "translation": "món mang về",
+      "mean": "prepared food that you take away from a restaurant to eat somewhere else",
+      "pronunciation": "ˈteɪkaʊt",
+      "example": "We decided to get takeout from our favorite Chinese restaurant."
+    },
+    {
+      "word": "TASTING",
+      "translation": "nếm thử",
+      "mean": "sampling a variety of foods or drinks to experience their flavors",
+      "pronunciation": "ˈteɪstɪŋ",
+      "example": "The wine tasting event was a great success."
+    },
+    {
+      "word": "VEGAN",
+      "translation": "người ăn chay trường",
+      "mean": "a person who does not eat or use animal products",
+      "pronunciation": "ˈviːɡən",
+      "example": "The restaurant offers several vegan options."
+    },
+    {
+      "word": "VEGETARIAN",
+      "translation": "người ăn chay",
+      "mean": "a person who does not eat meat, and sometimes other animal products, especially for moral, religious, or health reasons",
+      "pronunciation": "ˌvɛdʒɪˈteəriən",
+      "example": "She's a vegetarian, so please ensure there are suitable dishes for her."
+    },
+    {
+      "word": "WAITLIST",
+      "translation": "danh sách chờ",
+      "mean": "a list of people waiting for something, such as a table at a restaurant",
+      "pronunciation": "ˈweɪtlɪst",
+      "example": "We were on the waitlist for 30 minutes before getting a table."
+    },
+    {
+      "word": "WINE LIST",
+      "translation": "danh sách rượu vang",
+      "mean": "a list of wines available to order in a restaurant",
+      "pronunciation": "waɪn lɪst",
+      "example": "Let's take a look at the wine list to select a bottle for our meal."
+    }
+  ]
+}
