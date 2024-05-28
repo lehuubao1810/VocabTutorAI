@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,10 +20,15 @@ export const EditCollection: React.FC = () => {
   const { idCollection } = useParams();
   console.log("idCollection", idCollection);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     scrollTop();
     dispatch(getCollectionById(idCollection ?? "")).then((res) => {
       const data = res.payload as CollectionItemData;
+      if (data.isAdmin) {
+        navigate("/");
+      }
       setCollectionData(data);
       setNumWords(data.vocabulary.length);
     });

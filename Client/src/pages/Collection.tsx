@@ -84,7 +84,7 @@ export const Collection: React.FC<Props> = () => {
                                 max-sm:flex-col max-sm:gap-2"
                 >
                   <Link
-                    to={`/collection/${collection.id}/learn`}
+                    to={`/collection/${idCollection}/learn`}
                     state={collection.vocabulary}
                     className="w-full h-12 rounded-md border-2 pt-2 text-lg text-center font-semibold bg-white hover:bg-gray-300"
                   >

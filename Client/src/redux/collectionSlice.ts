@@ -166,6 +166,40 @@ export const addVocabulariesToCollection = createAsyncThunk(
   }
 );
 
+export const updateVocab = createAsyncThunk(
+  "updateVocab/collection",
+  async (
+    data: { vocab: VocabularyItem; vocabId: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const vocabRef = doc(db, "vocabularies", data.vocabId);
+      await updateDoc(vocabRef, { ...data.vocab });
+    } catch (error) {
+      const errorMessage = error as ErrorResponse;
+      return rejectWithValue(errorMessage.message);
+    }
+  }
+);
+
+export const updateCollection = createAsyncThunk(
+  "updateCollection/collection",
+  async (
+    data: { collection: CollectionItemData; collectionId: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      const vocabIds = data.collection.vocabulary.map((vocab) => vocab.id);
+
+      const collectionRef = doc(db, "collections", data.collectionId);
+      await updateDoc(collectionRef, { ...data.collection, vocabulary: vocabIds});
+    } catch (error) {
+      const errorMessage = error as ErrorResponse;
+      return rejectWithValue(errorMessage.message);
+    }
+  }
+);
+
 const collectionSlice = createSlice({
   name: "collection",
   initialState,
