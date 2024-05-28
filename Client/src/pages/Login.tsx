@@ -25,8 +25,8 @@ export const Login: React.FC<LoginProps> = () => {
     formState: { errors },
   } = useForm<FormState>({
     defaultValues: {
-      email: "clienttest@gmail.com",
-      password: "Bao1234@",
+      email: "client@gmail.com",
+      password: "Client@1",
     },
   });
 

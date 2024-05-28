@@ -84,6 +84,7 @@ export const signInEmailPassword = createAsyncThunk(
           email: user.email,
           username: userData?.username,
           uid: user.uid,
+          photoURL: userData?.photoURL,
         } as User;
       })
       .catch((error) => {
@@ -109,12 +110,14 @@ export const SignInWithGoogle = createAsyncThunk(
         setDoc(doc(db, "users", user.uid), {
           username: user.displayName,
           email: user.email,
+          photoURL: user.photoURL,
         });
 
         return {
           email: user.email,
           username: user.displayName,
           uid: user.uid,
+          photoURL: user.photoURL,
         } as User;
       })
       .catch((error) => {

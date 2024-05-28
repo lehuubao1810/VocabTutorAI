@@ -80,7 +80,7 @@ export const AddCollection: React.FC<Props> = () => {
       <ToastContainer />
       <Header />
       <main className="bg-gray-100">
-        <div className="pt-24 ml-auto mr-auto max-w-screen-xl py-4">
+        <div className="pt-24 ml-auto mr-auto max-w-screen-xl py-4 px-5">
           <div className="flex flex-col gap-3 py-6 ">
             <h1 className="text-3xl font-bold text-blue-500">
               <FontAwesomeIcon icon={faFolder} /> Add Collection
@@ -224,7 +224,7 @@ export const AddCollection: React.FC<Props> = () => {
                     onClick={handleSubmit}
                     className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
                   >
-                    Submit
+                    Add Collection
                   </button>
                 </div>
               </div>

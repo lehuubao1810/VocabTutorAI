@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { setCollection } from "../../redux/collectionSlice";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ModalConfirm } from "../common/ModalConfirm";
 import { Modal } from "../../type/Modal";
 // import { useAppDispatch } from "../../redux/hooks";
@@ -29,6 +29,7 @@ interface CollectionItemProps {
   // date: string;
   isAdmin: boolean;
   vocabulary: VocabularyItem[];
+  uid?: string;
 }
 
 const CollectionItem: React.FC<CollectionItemProps> = ({
@@ -39,6 +40,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   // date,
   vocabulary,
   isAdmin,
+  uid,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -50,6 +52,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     // date: date,
     vocabulary: vocabulary,
     isAdmin: isAdmin,
+    uid: uid,
   };
 
   const [modal, setModal] = useState<Modal>({
@@ -60,12 +63,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   });
 
   const dispatch = useAppDispatch();
-
-  const handleEditCollection = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigate(`/collection/${transferData.id}/edit`);
-  };
+  const { user } = useAppSelector((state) => state.authReducer);
 
   const handleDeleteCollection = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -106,15 +104,22 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     navigate(`/collection/${collectionID}`);
   };
 
+  const handleEditCollection = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(setCollection({}));
+    navigate(`/collection/${transferData.id}/edit`);
+  };
+
   return (
     <>
       <div onClick={(e) => handleClickCollection(e)} className="cursor-pointer">
         <div
-          className="relative w-70 min-h-[140px] bg-gray-100 rounded-lg shadow-lg ease-linear z-0"
+          className="relative w-70 min-h-[140px] bg-white rounded-lg shadow-lg ease-linear z-0"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          {!transferData.isAdmin
+          {!transferData.isAdmin && transferData.uid === user.uid
             ? isHovered && (
                 <div className="absolute top-1 right-1 z-10 flex ">
                   <button

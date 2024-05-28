@@ -2,27 +2,29 @@ import React, { useState, useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Vocabulary } from "../../type/Vocabulary";
+import { useNavigate } from "react-router-dom";
+
+import { faVolumeUp, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
 	LearningData: Vocabulary[];
 }
 
 export const Quizz: React.FC<Props> = ({ LearningData }) => {
-	const [currentVocabulary, setCurrentVocabulary] = useState<Vocabulary>(
-		LearningData[0]
-	);
 	const [randomVocabularies, setRandomVocabularies] = useState<Vocabulary[]>(
 		[]
 	);
 	const [correctAnswer, setCorrectAnswer] = useState<Vocabulary | null>(null);
 	const [isAnswered, setIsAnswered] = useState(false);
+	const [isMuted, setIsMuted] = useState(false);
+	const navigate = useNavigate();
 
-	const [currentVocabularyIndex, setCurrentVocabularyIndex] = useState(0);
-
-	console.log(isAnswered);
 	useEffect(() => {
-		setCurrentVocabulary(LearningData[currentVocabularyIndex]);
-		setIsAnswered(false);
+		generateNewQuestion();
+	}, []);
+
+	const generateNewQuestion = () => {
 		const randomIndexes: number[] = [];
 		while (randomIndexes.length < 4) {
 			const randomIndex = Math.floor(Math.random() * LearningData.length);
@@ -34,7 +36,6 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 			(index) => LearningData[index]
 		);
 
-		// Lấy một từ làm đáp án đúng
 		const randomCorrectIndex = Math.floor(
 			Math.random() * randomVocabularies.length
 		);
@@ -42,44 +43,58 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 
 		setRandomVocabularies(randomVocabularies);
 		setCorrectAnswer(correctAnswer);
-		console.log("curentVocabulary", currentVocabulary);
-	}, [LearningData, currentVocabularyIndex, currentVocabulary]);
+
+		setIsAnswered(false);
+	};
 
 	const handleAnswerClick = (selectedVocabulary: Vocabulary) => {
-		// Kiểm tra xem từ đã chọn có phải là đáp án đúng không
 		if (selectedVocabulary === correctAnswer) {
 			setIsAnswered(true);
-			setTimeout(() => {
-				setCurrentVocabularyIndex(currentVocabularyIndex + 1);
-				if (currentVocabularyIndex + 1 >= LearningData.length) {
-					toast.success("Congratulations, you have finished the Quizz!");
-					// do something in here
-				}
-			}, 2000);
 			toast.success("Correct!");
+
+			// Phát âm ngay lập tức khi chọn đúng
+			if (!isMuted && correctAnswer) {
+				const synth = window.speechSynthesis;
+				const utterance = new SpeechSynthesisUtterance(correctAnswer.word);
+				const voices = synth.getVoices();
+				// const voice = voices.find((v) => v.lang === "en-UK") || voices[0];
+				const voice = voices[7]; // UK voice
+				utterance.voice = voice;
+				synth.speak(utterance);
+			}
+
+			// Chờ vài giây trước khi chuyển sang từ mới
+			setTimeout(() => {
+				generateNewQuestion();
+			}, 2000);
 		} else {
 			setIsAnswered(false);
 			toast.error("Incorrect!");
 		}
 	};
 
-	// Kiểm tra nếu LearningData không phải là mảng hoặc rỗng, trả về một thông báo lỗi
+	const handleStop = () => {
+		toast.info("Quiz stopped");
+		navigate("/");
+	};
+
+	const toggleMute = () => {
+		setIsMuted((prev) => !prev);
+	};
+
 	if (!Array.isArray(LearningData) || LearningData.length === 0) {
 		return <div>No vocabulary data available</div>;
 	}
 
 	return (
 		<>
+			<ToastContainer />
 			{LearningData.length === 0 ? (
 				<div>
 					<h1>NO DATA TO LEARN</h1>
 				</div>
 			) : (
-				<div
-					className="mt-5 mb-10 h-full flex flex-col items-center
-                          "
-				>
-					<ToastContainer />
+				<div className="mt-5 mb-10 h-full flex flex-col items-center">
 					<div className="text-center mb-10">
 						<h1 className="text-3xl font-bold text-gray-600">
 							Study with Quizzes
@@ -88,26 +103,23 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 							Choose the correct answer to the question below.
 						</p>
 					</div>
-					<div
-						className="relative w-2/3 h-44 py-10 flex flex-col items-center gap-4 bg-white border-2 rounded-2xl
-                               max-sm:w-full max-sm:pt-14"
-					>
+					<div className="relative w-2/3 h-44 py-10 flex flex-col items-center gap-4 bg-white border-2 rounded-2xl max-sm:w-full max-sm:pt-14">
 						{correctAnswer && (
 							<div className="flex flex-col items-center gap-4">
-								<div className="absolute top-2 left-3 w-full h-full">
-									<p className="w-10 h-10 flex items-center justify-center rounded-full border-2 bg-slate-50 text-xl font-bold text-gray-500">
-										{currentVocabularyIndex + 1}
-									</p>
-								</div>
 								<p className="text-2xl font-semibold">{correctAnswer.word}</p>
 								<p>{correctAnswer.pronunciation}</p>
 							</div>
 						)}
+						<div className="absolute top-5 right-5">
+							<div
+								onClick={toggleMute}
+								className="text-gray-500 w-10 h-10 bg-slate-200 rounded-full p-2 hover:bg-slate-300 cursor-pointer"
+							>
+								<FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
+							</div>
+						</div>
 					</div>
-					<div
-						className="my-10 grid grid-cols-2 gap-4 w-2/3
-                            max-sm:grid-cols-1 max-sm:w-full max-sm:gap-1 max-sm:my-5"
-					>
+					<div className="my-10 grid grid-cols-2 gap-4 w-2/3 max-sm:grid-cols-1 max-sm:w-full max-sm:gap-1 max-sm:my-5">
 						{randomVocabularies.map((vocabulary, index) => (
 							<button
 								key={index}
@@ -124,6 +136,12 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 							</button>
 						))}
 					</div>
+					<button
+						className="px-5 py-3 mt-5 border-2 rounded-xl bg-red-300"
+						onClick={handleStop}
+					>
+						Stop Quiz
+					</button>
 				</div>
 			)}
 		</>

@@ -9,6 +9,10 @@ import {
 } from "../redux/conversationSlice";
 import { CircularProgress } from "@mui/material";
 import { scrollTop } from "../utils/scrollTop";
+import ModalComponent from "../components/common/ModalComponent";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLanguage } from "@fortawesome/free-solid-svg-icons";
+import { translateText } from "../redux/dictionarySlice";
 
 export const RoomAI: React.FC = () => {
   const { conversation, loaddingMessage } = useAppSelector(
@@ -57,6 +61,40 @@ export const RoomAI: React.FC = () => {
     scrollTop();
   }, []);
 
+  // highlight text function
+  const [selectedText, setSelectedText] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [buttonPosition, setButtonPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
+
+  const handleMouseUp = () => {
+    const selectedText = window.getSelection()?.toString();
+    if (selectedText) {
+      setSelectedText(selectedText);
+
+      // Get the position of the selected text
+      const rect = window.getSelection()?.getRangeAt(0).getBoundingClientRect();
+      if (rect) {
+        setButtonPosition({ x: rect.right + 10, y: rect.top + 30 });
+      }
+    } else {
+      setButtonPosition(null);
+    }
+  };
+
+  const handleButtonClick = () => {
+    setIsModalOpen(true);
+    setButtonPosition(null);
+    dispatch(translateText({ text: selectedText, language: "vi" }));
+  };
+
+  const handleClose = () => {
+    setIsModalOpen(false);
+    setSelectedText("");
+  };
+
   return (
     <>
       <Header />
@@ -84,6 +122,9 @@ export const RoomAI: React.FC = () => {
               <div
                 className="flex flex-col flex-grow overflow-auto mt-20 mb-16 px-2 pb-4"
                 ref={chatBoxRef}
+                onMouseUp={() => {
+                  handleMouseUp();
+                }}
               >
                 {conversation?.history.map((message, index) => (
                   <div
@@ -155,6 +196,20 @@ export const RoomAI: React.FC = () => {
             </div>
           )}
         </div>
+        {buttonPosition && (
+          <div
+            style={{ left: buttonPosition.x, top: buttonPosition.y }}
+            className={`rounded absolute cursor-pointer text-cyan-500`}
+            onClick={handleButtonClick}
+          >
+            <FontAwesomeIcon icon={faLanguage} style={{ fontSize: 24 }} />
+          </div>
+        )}
+        <ModalComponent
+          open={isModalOpen}
+          handleClose={handleClose}
+          selectedText={selectedText}
+        />
       </main>
       <footer></footer>
     </>
