@@ -26,7 +26,8 @@ const AuthGuard = (props: AuthGuardProps) => {
         return
       }
       const unsubscribe = onAuthStateChanged(auth, (user) => {
-        if (user) {
+        if (Auth.setUser) {
+          if (user) {
           Auth.setUser({
             username: user.displayName,
             email: user.email,
@@ -47,6 +48,8 @@ const AuthGuard = (props: AuthGuardProps) => {
 
           return fallback
         }
+        }
+        
       })
 
       return () => unsubscribe();
