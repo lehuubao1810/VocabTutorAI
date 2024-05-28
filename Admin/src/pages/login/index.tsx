@@ -96,9 +96,12 @@ const LoginPage = () => {
 
   const onSubmit = async (data: FormData) => {
     const { email, password } = data
-    auth.login({ email, password }).then(() => {
+    if (auth.login) {
+      auth.login({ email, password }).then(() => {
       router.replace('/')
     })
+    }
+    
   }
 
   return (
