@@ -87,7 +87,7 @@ const LoginPage = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors }
+    formState: { errors } 
   } = useForm({
     defaultValues,
     mode: 'onBlur',
@@ -212,6 +212,7 @@ const LoginPage = () => {
                 variant='contained'
                 sx={{ mb: 4 }}
               >
+                {/*  */}
                 {t('Login')}
               </Button>
             </form>
