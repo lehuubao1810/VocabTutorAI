@@ -127,7 +127,7 @@ const App = (props: ExtendedAppProps) => {
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
         <Head>
-          <title>{`SGOD`}</title>
+          <title>{`VocabTutorAI`}</title>
           <meta
             name='description'
           />
