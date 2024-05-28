@@ -88,7 +88,10 @@ const UserDropdown = (props: Props) => {
   }
 
   const handleLogout = () => {
-    logout()
+    if (logout) {
+      logout()
+    }
+    
     handleDropdownClose()
   }
 

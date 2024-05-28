@@ -26,11 +26,11 @@ export type UserDataType = {
 
 export type AuthValuesType = {
   loading: boolean
-  logout: () => void
+  logout?: () => void
   user: UserDataType | null
-  setLoading: (value: boolean) => void
-  setUser: (value: UserDataType | null) => void
-  login: (params: LoginParams) => Promise<void>
+  setLoading?: (value: boolean) => void
+  setUser?: (value: UserDataType | null) => void
+  login?: (params: LoginParams) => Promise<void>
 }
 
 export type Category = {

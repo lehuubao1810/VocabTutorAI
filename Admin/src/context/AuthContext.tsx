@@ -15,14 +15,6 @@ import toast from 'react-hot-toast'
 const defaultProvider: AuthValuesType = {
   user: null,
   loading: true,
-  setUser: (value: UserDataType | null) => {
-  },
-  setLoading: (value: boolean) => {
-  },
-  login: async (params: LoginParams) => {
-  },
-  logout: async () => {
-  }
 }
 
 const AuthContext = createContext(defaultProvider)
