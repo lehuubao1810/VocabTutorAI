@@ -1,16 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
+  faCopy,
   faEdit,
   faEnvelopeOpenText,
   faShare,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { setCollection } from "../../redux/collectionSlice";
+import {
+  deleteCollection,
+  setCollection,
+  setCollections,
+  shareCollection,
+} from "../../redux/collectionSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ModalConfirm } from "../common/ModalConfirm";
 import { Modal } from "../../type/Modal";
+import { toast } from "react-toastify";
 // import { useAppDispatch } from "../../redux/hooks";
 // import { getCollectionById } from "../../redux/collectionSlice";
 
@@ -30,6 +37,7 @@ interface CollectionItemProps {
   isAdmin: boolean;
   vocabulary: VocabularyItem[];
   uid?: string;
+  isPublish?: boolean;
 }
 
 const CollectionItem: React.FC<CollectionItemProps> = ({
@@ -41,6 +49,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   vocabulary,
   isAdmin,
   uid,
+  isPublish,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
@@ -53,17 +62,19 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     vocabulary: vocabulary,
     isAdmin: isAdmin,
     uid: uid,
+    isPublish: isPublish,
   };
 
   const [modal, setModal] = useState<Modal>({
     isOpen: false,
     title: "",
-    content: "",
+    content: [""],
     onConfirm: () => {},
   });
 
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authReducer);
+  const { collections } = useAppSelector((state) => state.collectionReducer);
 
   const handleDeleteCollection = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -71,14 +82,27 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     setModal({
       isOpen: true,
       title: "Delete Collection",
-      content: "Are you sure you want to delete this collection?",
+      content: ["Are you sure you want to delete this collection?"],
       onConfirm: () => {
-        // dispatch(deleteCollection(collectionID));
+        dispatch(deleteCollection(collectionID))
+          .then(() => {
+            const collectionsUpdated = collections.filter(
+              (collection) => collection.id !== collectionID
+            );
+            dispatch(setCollections(collectionsUpdated));
+            toast.success("Collection deleted successfully!", {
+              position: "bottom-right",
+            });
+          })
+          .catch((error) => {
+            toast.error(error.message, {
+              position: "bottom-right",
+            });
+          });
         console.log("Delete collection", collectionID);
         setModal({ ...modal, isOpen: false });
       },
     });
-    // dispatch(deleteCollection(collectionID));
   };
 
   const handleShareCollection = (e: React.MouseEvent) => {
@@ -87,9 +111,32 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     setModal({
       isOpen: true,
       title: "Share Collection",
-      content: "Are you sure you want to share this collection?",
+      content: [
+        "Are you sure you want to share this collection?",
+        "( Collection will be published)",
+      ],
       onConfirm: () => {
-        // dispatch(shareCollection(collectionID));
+        dispatch(shareCollection(collectionID))
+          .then(() => {
+            const collectionsUpdated = collections.map((collection) => {
+              if (collection.id === collectionID) {
+                return { ...collection, isPublish: true };
+              }
+              return collection;
+            });
+            dispatch(setCollections(collectionsUpdated));
+            toast.success(
+              "Collection shared successfully! Link copied to clipboard.",
+              {
+                position: "bottom-right",
+              }
+            );
+          })
+          .catch((error) => {
+            toast.error(error.message, {
+              position: "bottom-right",
+            });
+          });
         console.log("Share collection", collectionID);
         setModal({ ...modal, isOpen: false });
       },
@@ -114,6 +161,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
   return (
     <>
       <div onClick={(e) => handleClickCollection(e)} className="cursor-pointer">
+        {/* <ToastContainer /> */}
         <div
           className="relative w-70 min-h-[140px] bg-white rounded-lg shadow-lg ease-linear z-0"
           onMouseEnter={() => setIsHovered(true)}
@@ -121,7 +169,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
         >
           {!transferData.isAdmin && transferData.uid === user.uid
             ? isHovered && (
-                <div className="absolute top-1 right-1 z-10 flex ">
+                <div className="absolute top-2 right-2 z-10 flex ">
                   <button
                     type="button"
                     title="Edit"
@@ -138,14 +186,34 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
                   >
                     <FontAwesomeIcon icon={faTrash} />
                   </button>
-                  <button
-                    type="button"
-                    title="Share"
-                    className="text-blue-500 hover:text-red-700"
-                    onClick={handleShareCollection}
-                  >
-                    <FontAwesomeIcon icon={faShare} />
-                  </button>
+                  {transferData.isPublish ? (
+                    <button
+                      type="button"
+                      title="Copy"
+                      className="text-blue-500 hover:text-red-700"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        window.navigator.clipboard.writeText(
+                          `${window.location.origin}/collection/${collectionID}`
+                        );
+                        toast.success("Link copied to clipboard!", {
+                          position: "bottom-right",
+                        });
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faCopy} />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      title="Share"
+                      className="text-blue-500 hover:text-red-700"
+                      onClick={handleShareCollection}
+                    >
+                      <FontAwesomeIcon icon={faShare} />
+                    </button>
+                  )}
                 </div>
               )
             : null}

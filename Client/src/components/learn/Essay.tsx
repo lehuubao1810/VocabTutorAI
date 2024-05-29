@@ -126,6 +126,8 @@ export const Essay: React.FC<Props> = ({ LearningData }) => {
 							</button>
 
 							<button
+								type="button"
+								title="Mute/Unmute"
 								onClick={toggleMute}
 								className="text-gray-500 bg-slate-200 rounded-full p-2 hover:bg-slate-300"
 							>

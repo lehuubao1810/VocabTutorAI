@@ -72,7 +72,8 @@ export const Explore: React.FC<Props> = () => {
                     collectionID={item.id}
                     vocabulary={item.vocabulary}
                     isAdmin={item.isAdmin}
-					uid={item.uid}
+                    uid={item.uid}
+                    isPublish={item.isPublish}
                   />
                 ))}
               </div>

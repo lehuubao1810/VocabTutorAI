@@ -75,6 +75,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
               vocabulary={item.vocabulary}
               isAdmin={item.isAdmin}
               uid={item.uid}
+              isPublish={item.isPublish}
             />
           ))}
         </div>
@@ -117,6 +118,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
                   vocabulary={item.vocabulary}
                   isAdmin={item.isAdmin}
                   uid={item.uid}
+                  isPublish={item.isPublish}
                 />
               )
           )}

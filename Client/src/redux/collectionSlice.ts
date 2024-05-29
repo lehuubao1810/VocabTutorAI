@@ -11,6 +11,7 @@ import {
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   DocumentReference,
   getDoc,
@@ -192,7 +193,43 @@ export const updateCollection = createAsyncThunk(
       const vocabIds = data.collection.vocabulary.map((vocab) => vocab.id);
 
       const collectionRef = doc(db, "collections", data.collectionId);
-      await updateDoc(collectionRef, { ...data.collection, vocabulary: vocabIds});
+      await updateDoc(collectionRef, {
+        ...data.collection,
+        vocabulary: vocabIds,
+      });
+    } catch (error) {
+      const errorMessage = error as ErrorResponse;
+      return rejectWithValue(errorMessage.message);
+    }
+  }
+);
+
+export const deleteCollection = createAsyncThunk(
+  "deleteCollection/collection",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const collectionRef = doc(db, "collections", id);
+      await deleteDoc(collectionRef);
+      console.log("delete collection", id);
+      return id;
+    } catch (error) {
+      const errorMessage = error as ErrorResponse;
+      return rejectWithValue(errorMessage.message);
+    }
+  }
+);
+
+export const shareCollection = createAsyncThunk(
+  "shareCollection/collection",
+  async (id: string, { rejectWithValue }) => {
+    try {
+      const collectionRef = doc(db, "collections", id);
+      await updateDoc(collectionRef, { isPublish: true });
+      // copy link to clipboard
+      window.navigator.clipboard.writeText(
+        `${window.location.origin}/collection/${id}`
+      );
+      return id;
     } catch (error) {
       const errorMessage = error as ErrorResponse;
       return rejectWithValue(errorMessage.message);
@@ -208,6 +245,9 @@ const collectionSlice = createSlice({
     setCollection: (state, action) => {
       // action type is inferred
       state.collection = action.payload;
+    },
+    setCollections: (state, action) => {
+      state.collections = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -250,7 +290,7 @@ const collectionSlice = createSlice({
 });
 
 // export the action creators to be used in the components
-export const { setCollection } = collectionSlice.actions;
+export const { setCollection, setCollections } = collectionSlice.actions;
 
 // export the reducer to be used in the store
 const collectionReducer = collectionSlice.reducer;
