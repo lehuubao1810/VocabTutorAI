@@ -57,8 +57,11 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 				const synth = window.speechSynthesis;
 				const utterance = new SpeechSynthesisUtterance(correctAnswer.word);
 				const voices = synth.getVoices();
-				// const voice = voices.find((v) => v.lang === "en-UK") || voices[0];
-				const voice = voices[7]; // UK voice
+				const voice = voices.find((v) => v.lang === "en-US") || voices[0];
+				if (voice) {
+					utterance.voice = voice;
+					synth.speak(utterance);
+				}
 				utterance.voice = voice;
 				synth.speak(utterance);
 			}

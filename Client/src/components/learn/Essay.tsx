@@ -24,7 +24,7 @@ export const Essay: React.FC<Props> = ({ LearningData }) => {
 		setCurrentVocabulary(LearningData[currentVocabularyIndex]);
 		setUserInput("");
 		setHintLevel(0);
-	}, [currentVocabularyIndex]);
+	}, [LearningData, currentVocabularyIndex]);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUserInput(e.target.value);
