@@ -99,11 +99,11 @@ export const RoomAI: React.FC = () => {
     <>
       <Header />
       <main className="bg-gray-100">
-        <div className="pt-24 mx-auto max-w-screen-xl">
+        <div className="pt-24 ">
           {conversation._id !== undefined && (
-            <div className="bg-white shadow-lg rounded-lg max-h-screen mx-auto overflow-hidden flex flex-col">
+            <div className="bg-white shadow-lg rounded-lg h-[80vh] overflow-hidden flex flex-col">
               {/* Header chat */}
-              <div className="flex justify-between items-center bg-slate-200 py-2 px-5 fixed z-30 top-[73px] w-full max-w-screen-xl">
+              <div className="flex justify-between items-center bg-slate-200 py-2 px-5 fixed z-30 top-[85px] w-full">
                 <div className="flex items-center">
                   <img
                     src={
@@ -120,7 +120,7 @@ export const RoomAI: React.FC = () => {
               </div>
               {/* Body chat */}
               <div
-                className="flex flex-col flex-grow overflow-auto mt-20 mb-16 px-2 pb-4"
+                className="flex flex-col flex-grow overflow-auto mt-20 px-2 mb-6"
                 ref={chatBoxRef}
                 onMouseUp={() => {
                   handleMouseUp();
@@ -173,7 +173,7 @@ export const RoomAI: React.FC = () => {
                 )}
               </div>
               {/* Input chat */}
-              <div className="flex items-center bg-slate-200 p-2 py-4 gap-4 fixed bottom-0 z-40 w-full max-w-screen-xl">
+              <div className="flex items-center bg-slate-200 p-2 py-4 gap-4 fixed bottom-0 z-40 w-full">
                 <input
                   type="text"
                   placeholder="Type a message"
