@@ -24,7 +24,7 @@ export const Explore: React.FC<Props> = () => {
   useEffect(() => {
     scrollTop();
     dispatch(getListOfCollections());
-  }, [dispatch]);
+  }, []);
 
   // isAdmin === false && isPublish === true
   const collectionExplore = collections.filter(
@@ -65,7 +65,7 @@ export const Explore: React.FC<Props> = () => {
               <div className="relative z-0 grid grid-cols-4 gap-4 my-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
                 {collectionExplore.map((item) => (
                   <CollectionItem
-                    key={item.name}
+                    key={item.id}
                     name={item.name}
                     desc={item.desc}
                     value={item.value}

@@ -22,9 +22,9 @@ export const CollectionList: React.FC<CollectionProps> = () => {
   );
 
   // const data = dummyData;
-  const Navigate = useNavigate();
-  const HandleAddCollection = () => {
-    Navigate(`/add-collection`);
+  const navigate = useNavigate();
+  const handleAddCollection = () => {
+    navigate(`/add-collection`);
   };
   return (
     <>
@@ -35,7 +35,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
           </Link>
         </h1>
         <button
-          onClick={HandleAddCollection}
+          onClick={handleAddCollection}
           className="w-60 border-2 rounded-lg bg-blue-400 text-white 
 						font-medium py-2 px-4 hover:bg-blue-700 focus:outline-none focus:ring-2 
 						focus:ring-blue-600 focus:ring-opacity-75
@@ -66,7 +66,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
         <div className="relative z-0 grid grid-cols-4 gap-4 my-5 max-lg:grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1">
           {collectionUser.map((item) => (
             <CollectionItem
-              key={item.name}
+              key={item.id}
               name={item.name}
               desc={item.desc}
               value={item.value}
@@ -109,7 +109,7 @@ export const CollectionList: React.FC<CollectionProps> = () => {
             (item) =>
               item.isPublish && (
                 <CollectionItem
-                  key={item.name}
+                  key={item.id}
                   name={item.name}
                   desc={item.desc}
                   value={item.value}

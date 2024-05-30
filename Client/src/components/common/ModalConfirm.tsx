@@ -25,7 +25,7 @@ export const ModalConfirm: React.FC<Props> = (props) => {
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           {props.modal.content.map((content, index) => (
-            <div>
+            <div key={index}>
               <p key={index}>{content}</p>
               <br />
             </div>
