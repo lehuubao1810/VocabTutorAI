@@ -58,6 +58,12 @@ export default function CollectionDetail() {
     }, [selectedItems]);
 
     const getVocabularyDetails = async (vocabIds: string[]): Promise<VocabularyItem[]> => {
+        if (!Array.isArray(vocabIds)) {
+            console.error("Expected an array of vocabulary IDs");
+
+            return [];
+        }
+
         const vocabPromises = vocabIds.map(async (vocabId) => {
             try {
                 const vocabDoc = await getDoc(doc(db, "vocabularies", vocabId));
@@ -72,10 +78,12 @@ export default function CollectionDetail() {
                 return null;
             }
         });
+
         const vocabDetails = await Promise.all(vocabPromises);
 
         return vocabDetails.filter(item => item !== null) as VocabularyItem[];
     };
+
 
     const fetchData = async () => {
         const collectionRef = doc(db, "collections", router.query.id as string);
@@ -88,9 +96,18 @@ export default function CollectionDetail() {
         }
 
         const collectionData = collectionSnapshot.data();
-        const vocabularyDetails = await getVocabularyDetails(collectionData.vocabulary);
+
+        const vocabIds = collectionData.vocabulary || [];
+        if (!Array.isArray(vocabIds)) {
+            console.error("Vocabulary data is not an array");
+
+            return;
+        }
+
+        const vocabularyDetails = await getVocabularyDetails(vocabIds);
         setDataList(vocabularyDetails);
     };
+
 
     useEffect(() => {
         fetchData();
@@ -115,10 +132,8 @@ export default function CollectionDetail() {
 
     const handleDeleteSelectedItems = async () => {
         try {
-            // Xóa từ vựng từ bộ sưu tập "vocabularies"
             await Promise.all(selectedItems.map(id => deleteDoc(doc(db, 'vocabularies', id))));
 
-            // Cập nhật trường "vocabulary" trong các tài liệu của bộ sưu tập "collections"
             const collectionRef = doc(db, "collections", router.query.id as string);
             const collectionSnapshot = await getDoc(collectionRef);
 
@@ -133,14 +148,11 @@ export default function CollectionDetail() {
             const updatedVocabularyArray = vocabularyArray.filter((id: string) => !selectedItems.includes(id));
             await updateDoc(collectionRef, { vocabulary: updatedVocabularyArray });
 
-            // Cập nhật lại state dataList sau khi xóa
             const newDataList = dataList.filter(item => !selectedItems.includes(item.id));
             setDataList(newDataList);
 
-            // Đóng hộp thoại xóa
             setDeleteOpen(false);
 
-            // Xóa các mục đã chọn
             setSelectedItems([]);
         } catch (error) {
             console.error('Error deleting documents: ', error);

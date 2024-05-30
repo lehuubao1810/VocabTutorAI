@@ -32,5 +32,9 @@
     "Cancel": "Hủy",
     "Select Status": "Chọn Trạng Thái",
     "Public": "Công Khai",
-    "Private": "Riêng Tư"
+    "Private": "Riêng Tư",
+    "Name is required":"Bạn Cần Nhập Tên",
+    "Description is required":"Bạn Cần Nhập Mô Tả",
+    "":"",
+    "":""
 }

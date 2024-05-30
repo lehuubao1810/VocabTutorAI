@@ -13,8 +13,6 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, T
 // ** Icon Imports
 import Icon from 'src/@core/components/icon'
 import toast from 'react-hot-toast';
-import { Controller, useForm } from 'react-hook-form';
-import ButtonsFab from 'src/views/components/buttons/ButtonsFab';
 
 interface CardInfluencerProps {
   characterAI: CharacterAIType;
@@ -27,8 +25,6 @@ const CharacterCard = (props: CardInfluencerProps) => {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const [editedData, setEditedData] = useState(characterAI);
-  const { control, setValue } = useForm()
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
   const isMenuOpen = Boolean(menuAnchorEl);
 
@@ -47,48 +43,15 @@ const CharacterCard = (props: CardInfluencerProps) => {
   const handleUpdate = async () => {
     if (!editedData) return;
     try {
-      const formData = new FormData();
-      formData.append('name', editedData.name);
-      formData.append('personality', editedData.personality);
-      if (selectedFile) {
-        formData.append('image', selectedFile);
+      const data = {
+        name: editedData.name,
+        personality: editedData.personality
       }
-      await AxiosInstance.put(`${adminPathName.editCharacterAI}/${editedData._id}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        }
-      });
+      await AxiosInstance.put(`${adminPathName.editCharacterAI}/${editedData._id}`, data);
+      fetchData()
       toast.success('Update Successfully')
     } catch (error) {
       console.error('Error updating document: ', error);
-    }
-  };
-
-  const handleChooseFile = async () => {
-    try {
-      const fileInput = document.createElement('input');
-      fileInput.type = 'file';
-      fileInput.accept = 'image/*';
-      fileInput.click();
-      fileInput.addEventListener('change', async event => {
-        const target = event.target as HTMLInputElement;
-        const file = target.files?.[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            const binaryString = event.target?.result as string;
-            setEditedData(prevData => ({
-              ...prevData!,
-              image: binaryString
-            }));
-            setValue('image', binaryString);
-            setSelectedFile(file);
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    } catch (error) {
-      console.error('Error choosing file:', error);
     }
   };
 
@@ -220,40 +183,6 @@ const CharacterCard = (props: CardInfluencerProps) => {
                       onChange={(e) => {
                         setEditedData((prev: any) => ({ ...prev, personality: e.target.value }));
                       }}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <Controller
-                      name='image'
-                      control={control}
-                      defaultValue={editedData?.image || ''}
-                      render={({ field }) => (
-                        <Grid
-                          container
-                          alignItems='end'
-                          spacing={2}
-                          sx={{ display: 'flex', gap: 1 }}
-                        >
-                          <Grid item sx={{ position: 'relative', flex: 1 }} >
-                            <TextField
-                              fullWidth
-                              label={t('Image')}
-                              placeholder='/images/'
-                              value={field.value}
-                              onChange={e => {
-                                field.onChange(e)
-                                setValue('image', e.target.value)
-                              }}
-                              sx={{ mt: 2 }}
-                            />
-                            <Grid item className='buttonAvatar' onClick={handleChooseFile}
-                              sx={{ position: 'absolute', top: '35%', right: 3 }}
-                            >
-                              <ButtonsFab />
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      )}
                     />
                   </Grid>
                 </Grid>
