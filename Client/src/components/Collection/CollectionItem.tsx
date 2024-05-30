@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   faCopy,
   faEdit,
@@ -145,12 +145,6 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
     // dispatch(shareCollection(collectionID));
   };
 
-  const handleClickCollection = (e: React.MouseEvent) => {
-    e.preventDefault();
-    dispatch(setCollection({}));
-    navigate(`/collection/${collectionID}`);
-  };
-
   const handleEditCollection = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -160,7 +154,11 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
 
   return (
     <>
-      <div onClick={(e) => handleClickCollection(e)} className="cursor-pointer">
+      <Link
+        to={`/collection/${collectionID}`}
+        onClick={() => dispatch(setCollection({}))}
+        className="cursor-pointer"
+      >
         {/* <ToastContainer /> */}
         <div
           className="relative w-70 min-h-[140px] bg-white rounded-lg shadow-lg ease-linear z-0"
@@ -234,7 +232,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
             </div>
           </div>
         </div>
-      </div>
+      </Link>
       <ModalConfirm modal={modal} setModal={setModal} />
     </>
   );
