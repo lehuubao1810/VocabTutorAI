@@ -160,8 +160,8 @@ const Customizer = () => {
                 onChange={e => handleChange('mode', e.target.value as any)}
                 sx={{ '& .MuiFormControlLabel-label': { color: 'text.secondary' } }}
               >
-                <FormControlLabel value='light' label={t('Light')} control={<Radio />} />
                 <FormControlLabel value='dark' label={t('Dark')} control={<Radio />} />
+                <FormControlLabel value='light' label={t('Light')} control={<Radio />} />
                 {layout === 'horizontal' ? null : (
                   <FormControlLabel value='semi-dark' label={t('Semi Dark')} control={<Radio />} />
                 )}

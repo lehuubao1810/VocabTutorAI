@@ -1,4 +1,3 @@
-// ** MUI Imports
 import Drawer from '@mui/material/Drawer'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
@@ -6,21 +5,14 @@ import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import Box, { BoxProps } from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-
-// ** Third Party Imports
 import { useForm, Controller } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-
-// ** Icon Imports
 import Icon from 'src/@core/components/icon'
-
-// ** Types Imports
 import { CollectionItemData } from 'src/context/types'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from 'src/firebase'
-import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { useState } from 'react'
 
-// ** Define Header component using styled function
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
@@ -29,8 +21,11 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 }))
 
 const SidebarAddCollection = (props: any) => {
-  const { open, toggleAdd, fetchDataList, dataList } = props;
-  const { control, handleSubmit } = useForm()
+  const { open, toggleAdd, fetchDataList, dataList } = props
+  const { control, handleSubmit, setError, clearErrors } = useForm();
+
+  const [isNameEmpty, setIsNameEmpty] = useState(false);
+  const [isDescEmpty, setIsDescEmpty] = useState(false);
 
   const createCollection = async (newData: Omit<CollectionItemData, 'collectionID'>) => {
     try {
@@ -38,25 +33,46 @@ const SidebarAddCollection = (props: any) => {
         ...newData,
         isAdmin: true,
       }
-      const docRef = await addDoc(collection(db, 'collections'), data);
-      const newDocData = { collectionID: docRef.id, ...data };
-      fetchDataList([...dataList, newDocData]);
+      const docRef = await addDoc(collection(db, 'collections'), data)
+      const newDocData = { collectionID: docRef.id, ...data }
+      fetchDataList([...dataList, newDocData])
       handleClose()
     } catch (error) {
-      console.error('Error adding document: ', error);
+      console.error('Error adding document: ', error)
     }
-  };
+  }
 
   const handleClose = () => {
-    toggleAdd();
-  };
+    toggleAdd()
+  }
 
   const onSubmit = (data: any) => {
+    if (!data.name) {
+      setError('name', { type: 'required', message: 'Name is required' });
+      setIsNameEmpty(true);
+
+      return;
+    } else {
+      clearErrors('name');
+      setIsNameEmpty(false);
+    }
+
+    if (!data.desc) {
+      setError('desc', { type: 'required', message: 'Description is required' });
+      setIsDescEmpty(true);
+
+      return;
+    } else {
+      clearErrors('desc');
+      setIsDescEmpty(false);
+    }
+
     createCollection({
       ...data,
-      isPublish: data.isPublish === "1"
+      isPublish: false
     });
   };
+
 
   const { t } = useTranslation()
 
@@ -69,7 +85,7 @@ const SidebarAddCollection = (props: any) => {
       ModalProps={{ keepMounted: true }}
       sx={{ '& .MuiDrawer-paper': { width: { xs: 300, sm: 700 } } }}
     >
-      <Header sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px' }}>
+      <Header>
         <Typography variant='h5'>{t('Add New')} {t('Collection')}</Typography>
         <IconButton size='small' onClick={handleClose}>
           <Icon icon='tabler:x' fontSize='1.125rem' />
@@ -81,7 +97,6 @@ const SidebarAddCollection = (props: any) => {
             <Controller
               name='name'
               control={control}
-              rules={{ required: true }}
               render={({ field: { value, onChange } }) => (
                 <TextField
                   autoFocus
@@ -91,13 +106,14 @@ const SidebarAddCollection = (props: any) => {
                   label={t('Name')}
                   onChange={onChange}
                   placeholder='name'
+                  error={isNameEmpty}
+                  helperText={isNameEmpty ? t('Name is required') : ''}
                 />
               )}
             />
             <Controller
               name='desc'
               control={control}
-              rules={{ required: true }}
               render={({ field: { value, onChange } }) => (
                 <TextField
                   autoFocus
@@ -107,28 +123,17 @@ const SidebarAddCollection = (props: any) => {
                   label={t('Description')}
                   onChange={onChange}
                   placeholder='description'
+                  error={isDescEmpty}
+                  helperText={isDescEmpty ? t('Description is required') : ''}
                 />
               )}
             />
-            <Controller
-              name='isPublish'
-              control={control}
-              rules={{ required: true }}
-              defaultValue=''
-              render={({ field: { value, onChange } }) => (
-                <Select
-                  sx={{ mb: 8 }}
-                  value={value}
-                  onChange={(e: SelectChangeEvent<string>) => onChange(e.target.value)}
-                  displayEmpty
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  fullWidth
-                >
-                  <MenuItem value='' disabled>{t('Select Status')}</MenuItem>
-                  <MenuItem value={'1'}>{t('Public')}</MenuItem>
-                  <MenuItem value={'0'}>{t('Private')}</MenuItem>
-                </Select>
-              )}
+            <TextField
+              fullWidth
+              disabled
+              value={'Private'}
+              sx={{ marginBottom: '16px' }}
+              label={t('Status')}
             />
           </Box>
           <Box sx={{ mt: 8 }}>
@@ -141,8 +146,8 @@ const SidebarAddCollection = (props: any) => {
           </Box>
         </form>
       </Box>
-    </Drawer >
-  );
-};
+    </Drawer>
+  )
+}
 
-export default SidebarAddCollection;
+export default SidebarAddCollection

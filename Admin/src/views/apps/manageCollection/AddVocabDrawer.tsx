@@ -12,6 +12,7 @@ import { VocabularyItem } from 'src/context/types'
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from 'src/firebase'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
@@ -22,7 +23,9 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 
 const SidebarAddVocab = (props: any) => {
   const { open, toggleAdd, fetchDataList } = props;
-  const { control, handleSubmit } = useForm()
+  const { control, handleSubmit, setError, clearErrors } = useForm();
+  const [isWordEmpty, setIsWordEmpty] = useState(false);
+  const [isTranslationEmpty, setIsTranslationEmpty] = useState(false);
   const router = useRouter();
 
   const createVocabulary = async (newData: Omit<VocabularyItem, 'id'>) => {
@@ -57,6 +60,26 @@ const SidebarAddVocab = (props: any) => {
   };
 
   const onSubmit = (data: any) => {
+    if (!data.word) {
+      setError('word', { type: 'required', message: 'Word is required' });
+      setIsWordEmpty(true);
+
+      return;
+    } else {
+      clearErrors('word');
+      setIsWordEmpty(false);
+    }
+
+    if (!data.translation) {
+      setError('translation', { type: 'required', message: 'Translation is required' });
+      setIsTranslationEmpty(true);
+
+      return;
+    } else {
+      clearErrors('translation');
+      setIsTranslationEmpty(false);
+    }
+
     createVocabulary(data);
   };
 
@@ -83,7 +106,6 @@ const SidebarAddVocab = (props: any) => {
             <Controller
               name='word'
               control={control}
-              rules={{ required: true }}
               render={({ field: { value, onChange } }) => (
                 <TextField
                   autoFocus
@@ -93,6 +115,8 @@ const SidebarAddVocab = (props: any) => {
                   label={t('Word')}
                   onChange={onChange}
                   placeholder='word'
+                  error={isWordEmpty}
+                  helperText={isWordEmpty ? t('Name is required') : ''}
                 />
               )}
             />
@@ -125,6 +149,8 @@ const SidebarAddVocab = (props: any) => {
                   label={t('Translation')}
                   onChange={onChange}
                   placeholder='translation'
+                  error={isTranslationEmpty}
+                  helperText={isTranslationEmpty ? t('Description is required') : ''}
                 />
               )}
             />
