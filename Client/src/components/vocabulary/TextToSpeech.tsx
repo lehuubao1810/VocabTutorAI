@@ -20,9 +20,12 @@ const TextToSpeech: React.FC<Props> = ({ text }) => {
 
     const handleVoicesChanged = () => {
       const voices = synth.getVoices();
+      console.log("voices", voices);
+      const selectedVoiceUS = voices.find((v) => v.lang === "en-US");
+      const selectedVoiceUK = voices.find((v) => v.lang === "en-GB");
       if (voices.length > 0) {
-        setVoiceUS(voices[5]);
-        setVoiceUK(voices[7]);
+        setVoiceUS(selectedVoiceUS ?? voices[5]);
+        setVoiceUK(selectedVoiceUK ?? voices[7]);
       }
     };
 
