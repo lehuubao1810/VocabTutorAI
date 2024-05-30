@@ -13,6 +13,7 @@ import { scrollTop } from "../utils/scrollTop";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addCollection } from "../redux/collectionSlice";
 import { Switch } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   // type ....
@@ -33,6 +34,8 @@ export const AddCollection: React.FC<Props> = () => {
     uid: user.uid,
   });
   const [vocabularies, setVocabularies] = useState<VocabularyItemUpload[]>([]);
+
+  const navigate = useNavigate();
 
   const handleVocabularyChange = (
     index: number,
@@ -85,8 +88,16 @@ export const AddCollection: React.FC<Props> = () => {
 
       await dispatch(
         addCollection({ collection: collectionData, vocabularies })
-      ).unwrap();
-      toast.success("Collection created successfully!");
+      )
+        .unwrap()
+        .then(() => {
+          toast.success("Collection created successfully!");
+        })
+        .then(() => {
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        });
     } catch (error) {
       toast.error("Failed to create collection.");
     }

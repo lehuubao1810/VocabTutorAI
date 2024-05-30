@@ -6,12 +6,13 @@ import {
   // faCalendar,
   faShareFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { VocabularyFlipCard } from "../components/vocabulary/VocabularyCard";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getCollectionById } from "../redux/collectionSlice";
 import { Skeleton } from "@mui/material";
 import { scrollTop } from "../utils/scrollTop";
+import { CollectionItemData } from "../type/Collection";
 
 type Props = {
   //
@@ -21,12 +22,24 @@ export const Collection: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
 
   const { collection } = useAppSelector((state) => state.collectionReducer);
+  const { user } = useAppSelector((state) => state.authReducer);
 
   const { idCollection } = useParams();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     scrollTop();
-    dispatch(getCollectionById(idCollection ?? ""));
+    dispatch(getCollectionById(idCollection ?? "")).then((res) => {
+      const data = res.payload as CollectionItemData;
+      if (!data.isPublish) {
+        if (data.uid !== user.uid) {
+          navigate("/404");
+          return;
+        }
+        return;
+      }
+    });
   }, []);
 
   return (
@@ -69,7 +82,9 @@ export const Collection: React.FC<Props> = () => {
           ) : (
             <>
               <div className="py-6">
-                <h1 className="text-4xl font-bold text-blue-500">{collection.name}</h1>
+                <h1 className="text-4xl font-bold text-blue-500">
+                  {collection.name}
+                </h1>
                 <p className="text-xl font-semibold text-gray-600 pt-4 pb-2">
                   {collection.desc}
                 </p>
@@ -135,7 +150,9 @@ export const Collection: React.FC<Props> = () => {
               />
             </div>
           ) : collection.vocabulary.length === 0 ? (
-            <div className="mt-5 text-center text-2xl font-bold">No vocabulary in this collection</div>
+            <div className="mt-5 text-center text-2xl font-bold">
+              No vocabulary in this collection
+            </div>
           ) : (
             <div className="mt-5">
               {/* Flip card */}
