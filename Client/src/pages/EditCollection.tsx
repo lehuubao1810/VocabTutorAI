@@ -4,7 +4,7 @@ import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePen } from "@fortawesome/free-solid-svg-icons";
-import { CollectionItemData, VocabularyItem } from "../type/Collection";
+import { CollectionItemData, VocabularyItemUpload } from "../type/Collection";
 import { toast, ToastContainer } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { getCollectionById } from "../redux/collectionSlice";
@@ -16,6 +16,11 @@ export const EditCollection: React.FC = () => {
   const { collection, loading } = useAppSelector(
     (state) => state.collectionReducer
   );
+
+  const [vocabularies, setVocabularies] = useState<VocabularyItemUpload[]>([]);
+
+  const [collectionData, setCollectionData] =
+    useState<CollectionItemData>(collection);
 
   const { idCollection } = useParams();
   console.log("idCollection", idCollection);
@@ -30,45 +35,26 @@ export const EditCollection: React.FC = () => {
         navigate("/");
       }
       setCollectionData(data);
-      setNumWords(data.vocabulary.length);
     });
   }, []);
 
-  const [numWords, setNumWords] = useState<number>(0);
-
-  const [collectionData, setCollectionData] =
-    useState<CollectionItemData>(collection);
-
-  const handleNumWordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const num = parseInt(e.target.value);
-    setNumWords(num);
-    setCollectionData({
-      ...collectionData,
-      vocabulary: Array.from(
-        { length: num },
-        (_, i) =>
-          collectionData.vocabulary[i] || {
-            word: "",
-            translation: "",
-            mean: "",
-            pronunciation: "",
-            example: "",
-          }
-      ),
-    });
-  };
-
   const handleVocabularyChange = (
     index: number,
-    field: keyof VocabularyItem,
+    field: keyof VocabularyItemUpload,
     value: string
   ) => {
-    setCollectionData({
-      ...collectionData,
-      vocabulary: collectionData.vocabulary.map((item, i) =>
-        i === index ? { ...item, [field]: value } : item
-      ),
-    });
+    const newVocabularies = vocabularies.map((word, i) =>
+      i === index ? { ...word, [field]: value } : word
+    );
+    setVocabularies(newVocabularies);
+  };
+
+  const handleAddVocabulary = () => {
+    setVocabularies([
+      ...vocabularies,
+      { word: "", translation: "", mean: "", pronunciation: "", example: "" },
+    ]);
+    setCollectionData({ ...collectionData, value: vocabularies.length + 1 });
   };
 
   const handleSubmit = () => {
@@ -171,17 +157,6 @@ export const EditCollection: React.FC = () => {
                       />
                     </div>
                   </div>
-                  <div className="flex gap-4">
-                    <h2 className="font-semibold text-lg">Number of Words:</h2>
-                    <input
-                      placeholder="..."
-                      type="number"
-                      min="0"
-                      className="border-b-2 text-lg focus:border-blue-500 outline-none"
-                      value={numWords}
-                      onChange={handleNumWordsChange}
-                    />
-                  </div>
                   <p className="text-xl text-blue-500 font-bold pt-4">
                     Input Vocabulary part
                   </p>
@@ -246,6 +221,12 @@ export const EditCollection: React.FC = () => {
                         </div>
                       </div>
                     ))}
+                    <button
+                      onClick={handleAddVocabulary}
+                      className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
+                    >
+                      Add More Vocabulary
+                    </button>
                   </div>
                   <div className="flex justify-end mt-4">
                     <button

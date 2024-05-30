@@ -22,7 +22,7 @@ export const AddCollection: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.authReducer);
 
-  const [numWords, setNumWords] = useState<number>(0);
+  //   const [numWords, setNumWords] = useState<number>(0);
   const [collectionData, setCollectionData] = useState<CollectionItemUpload>({
     name: "",
     desc: "",
@@ -33,35 +33,6 @@ export const AddCollection: React.FC<Props> = () => {
     uid: user.uid,
   });
   const [vocabularies, setVocabularies] = useState<VocabularyItemUpload[]>([]);
-
-  const handleNumWordsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const num = parseInt(e.target.value);
-    if (num >= vocabularies.length) {
-      setNumWords(num);
-    } else {
-      toast.error(
-        "The number of words must be greater than the number of vocabularies you have added."
-      );
-    }
-  };
-
-  const addVocabularies = () => {
-    const num = numWords;
-    if (num > vocabularies.length) {
-      const newVocabularies = Array.from(
-        { length: num - vocabularies.length },
-        () => ({
-          word: "",
-          translation: "",
-          mean: "",
-          pronunciation: "",
-          example: "",
-        })
-      );
-      setVocabularies([...vocabularies, ...newVocabularies]);
-      setCollectionData({ ...collectionData, value: num });
-    }
-  };
 
   const handleVocabularyChange = (
     index: number,
@@ -90,6 +61,28 @@ export const AddCollection: React.FC<Props> = () => {
 
   const handleSubmit = async () => {
     try {
+      // check empty vocab field required
+      const emptyVocabField = vocabularies.find(
+        (word) => word.word.trim() === "" || word.translation.trim() === ""
+      );
+
+      // check empty collection field required
+      const emptyCollectionField =
+        collectionData.name.trim() === "" || collectionData.desc.trim() === "";
+
+      //
+      if (emptyVocabField || emptyCollectionField) {
+        toast.error("Please fill in all required fields.");
+        return;
+      }
+
+      // check have at least 2 vocabulary
+      const lessThanTwoVocab = vocabularies.length < 2;
+      if (lessThanTwoVocab) {
+        toast.error("Please add at least 2 vocabularies.");
+        return;
+      }
+
       await dispatch(
         addCollection({ collection: collectionData, vocabularies })
       ).unwrap();
@@ -124,11 +117,13 @@ export const AddCollection: React.FC<Props> = () => {
               </h2>
               <div className="flex flex-col gap-4 px-5">
                 <div className="flex gap-4">
-                  <h2 className="font-semibold text-lg">Name collection :</h2>
+                  <h2 className="font-semibold text-lg">
+                    Name collection: <span className="text-red-500">*</span>
+                  </h2>
                   <input
-                    placeholder="..."
+                    placeholder="Restaurant"
                     type="text"
-                    className="border-b-2 text-lg focus:border-blue-500 outline-none"
+                    className="border-b-2 text-lg focus:border-blue-500 outline-none w-1/3"
                     value={collectionData.name}
                     onChange={(e) =>
                       setCollectionData({
@@ -140,12 +135,13 @@ export const AddCollection: React.FC<Props> = () => {
                 </div>
                 <div className="flex gap-4">
                   <h2 className="font-semibold text-lg">
-                    Description of this collection :
+                    Description of this collection:{" "}
+                    <span className="text-red-500">*</span>
                   </h2>
                   <input
-                    placeholder="..."
+                    placeholder="This is a collection of Restaurant-related vocabulary"
                     type="text"
-                    className="border-b-2 text-lg focus:border-blue-500 outline-none"
+                    className="border-b-2 text-lg focus:border-blue-500 outline-none w-2/3"
                     value={collectionData.desc}
                     onChange={(e) =>
                       setCollectionData({
@@ -156,7 +152,7 @@ export const AddCollection: React.FC<Props> = () => {
                   />
                 </div>
                 <div className="flex gap-4 items-center">
-                  <h2 className="font-semibold text-lg">Publish :</h2>
+                  <h2 className="font-semibold text-lg">Publish:</h2>
                   <div>
                     <Switch
                       checked={collectionData.isPublish}
@@ -168,23 +164,6 @@ export const AddCollection: React.FC<Props> = () => {
                       }
                     />
                   </div>
-                </div>
-                <div className="flex gap-4">
-                  <h2 className="font-semibold text-lg">Number of Words:</h2>
-                  <input
-                    placeholder="..."
-                    type="number"
-                    min={vocabularies.length}
-                    className="border-b-2 text-lg focus:border-blue-500 outline-none"
-                    value={numWords}
-                    onChange={handleNumWordsChange}
-                  />
-                  <button
-                    onClick={addVocabularies}
-                    className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-700 focus:outline-none"
-                  >
-                    Add Vocabulary
-                  </button>
                 </div>
 
                 <p className="ml-4 text-2xl text-blue-500 pt-4">
