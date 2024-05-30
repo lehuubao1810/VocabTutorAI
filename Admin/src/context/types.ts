@@ -175,5 +175,5 @@ export type CollectionItemData = {
   isPublish: boolean;
   isAdmin: boolean;
   date: string;
-  vocabulary: VocabularyItem[];
+  vocabulary: VocabularyItem[] | [];
 }

@@ -15,6 +15,7 @@ import { scrollTop } from "../utils/scrollTop";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { addCollection } from "../redux/collectionSlice";
 import { Switch } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
 	// type ....
@@ -39,16 +40,18 @@ export const AddCollection: React.FC<Props> = () => {
 		{ word: "", translation: "", mean: "", pronunciation: "", example: "" },
 	]);
 
-	const handleVocabularyChange = (
-		index: number,
-		field: keyof VocabularyItemUpload,
-		value: string
-	) => {
-		const newVocabularies = vocabularies.map((word, i) =>
-			i === index ? { ...word, [field]: value } : word
-		);
-		setVocabularies(newVocabularies);
-	};
+  const navigate = useNavigate();
+
+  const handleVocabularyChange = (
+    index: number,
+    field: keyof VocabularyItemUpload,
+    value: string
+  ) => {
+    const newVocabularies = vocabularies.map((word, i) =>
+      i === index ? { ...word, [field]: value } : word
+    );
+    setVocabularies(newVocabularies);
+  };
 
 	const handleAddVocabulary = () => {
 		setVocabularies([
@@ -86,15 +89,22 @@ export const AddCollection: React.FC<Props> = () => {
 				toast.error("Please add at least 2 vocabularies.");
 				return;
 			}
-
-			await dispatch(
-				addCollection({ collection: collectionData, vocabularies })
-			).unwrap();
-			toast.success("Collection created successfully!");
-		} catch (error) {
-			toast.error("Failed to create collection.");
-		}
-	};
+      await dispatch(
+        addCollection({ collection: collectionData, vocabularies })
+      )
+        .unwrap()
+        .then(() => {
+          toast.success("Collection created successfully!");
+        })
+        .then(() => {
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        });
+    } catch (error) {
+      toast.error("Failed to create collection.");
+    }
+  };
 
 	useEffect(() => {
 		scrollTop();

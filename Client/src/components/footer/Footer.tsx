@@ -10,27 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 type FooterProps = {
-	//
-};
-
-const FooterList: React.FC<{
-	title: string;
-	items: { to: string; label: string }[];
-}> = ({ title, items }) => {
-	return (
-		<div className="flex flex-col gap-6">
-			<h3 className="text-xl">{title}</h3>
-			<ul className="flex flex-col gap-2">
-				{items.map((item, index) => (
-					<li key={index}>
-						<Link to={item.to} className="hover:text-blue-500">
-							{item.label}
-						</Link>
-					</li>
-				))}
-			</ul>
-		</div>
-	);
+  //
 };
 
 const Footer: React.FC<FooterProps> = () => {

@@ -42,7 +42,7 @@ export const signUpEmailPassword = createAsyncThunk(
         return user;
       })
       .then((user) => {
-        setDoc(doc(db, "admin", user.uid), {
+        setDoc(doc(db, "users", user.uid), {
           username: data.username,
           email: user.email,
         });

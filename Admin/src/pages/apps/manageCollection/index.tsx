@@ -74,10 +74,21 @@ export default function Collection() {
       console.error('Error updating document: ', error);
     }
   };
+  function filterDataList(dataList: CollectionItemData[], selectedItems: string[]): CollectionItemData[] {
+    return dataList.filter(item => selectedItems.includes(item.collectionID));
+  }
 
   const handleDeleteSelectedItems = async () => {
     try {
       await Promise.all(selectedItems.map(id => deleteDoc(doc(db, 'collections', id))));
+
+      const filteredDataList: CollectionItemData[] = filterDataList(dataList, selectedItems);
+      console.log("filteredDataList", filteredDataList)
+      filteredDataList.forEach(async (collection) => {
+        const vocabularies = collection.vocabulary as string[]
+        await Promise.all(vocabularies.map(id => deleteDoc(doc(db, 'vocabularies', id))));
+      })
+
       setDataList(dataList.filter(item => !selectedItems.includes(item.collectionID)));
       setDeleteOpen(false);
       setSelectedItems([]);
@@ -283,7 +294,9 @@ export default function Collection() {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <FormControl fullWidth>
+                <FormControl
+                  disabled={editedData?.vocabulary ? editedData?.vocabulary.length < 2 : true}
+                  fullWidth>
                   <Select
                     defaultValue={editedData?.isPublish}
                     value={editedData?.isPublish || false}

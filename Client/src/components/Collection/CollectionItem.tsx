@@ -18,6 +18,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ModalConfirm } from "../common/ModalConfirm";
 import { Modal } from "../../type/Modal";
 import { toast } from "react-toastify";
+import { CollectionItemData } from "../../type/Collection";
 // import { useAppDispatch } from "../../redux/hooks";
 // import { getCollectionById } from "../../redux/collectionSlice";
 
@@ -84,7 +85,7 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
       title: "Delete Collection",
       content: ["Are you sure you want to delete this collection?"],
       onConfirm: () => {
-        dispatch(deleteCollection(collectionID))
+        dispatch(deleteCollection(transferData as CollectionItemData))
           .then(() => {
             const collectionsUpdated = collections.filter(
               (collection) => collection.id !== collectionID
