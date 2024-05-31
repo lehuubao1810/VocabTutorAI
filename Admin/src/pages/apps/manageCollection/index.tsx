@@ -295,7 +295,7 @@ export default function Collection() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <FormControl
-                  disabled={editedData?.vocabulary ? editedData?.vocabulary.length < 2 : true}
+                  disabled={editedData?.vocabulary ? editedData?.vocabulary.length < 4 : true}
                   fullWidth>
                   <Select
                     defaultValue={editedData?.isPublish}
