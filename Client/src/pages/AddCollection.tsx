@@ -38,6 +38,8 @@ export const AddCollection: React.FC<Props> = () => {
 	const [vocabularies, setVocabularies] = useState<VocabularyItemUpload[]>([
 		{ word: "", translation: "", mean: "", pronunciation: "", example: "" },
 		{ word: "", translation: "", mean: "", pronunciation: "", example: "" },
+		{ word: "", translation: "", mean: "", pronunciation: "", example: "" },
+		{ word: "", translation: "", mean: "", pronunciation: "", example: "" },
 	]);
 
   const navigate = useNavigate();
@@ -62,12 +64,12 @@ export const AddCollection: React.FC<Props> = () => {
 	};
 
 	const handleRemoveVocabulary = (index: number) => {
-		if (vocabularies.length > 2) {
+		if (vocabularies.length > 4) {
 			const newVocabularies = vocabularies.filter((_, i) => i !== index);
 			setVocabularies(newVocabularies);
 			setCollectionData({ ...collectionData, value: newVocabularies.length });
 		} else {
-			toast.error("A collection must have at least 2 vocabularies.");
+			toast.error("A collection must have at least 4 vocabularies.");
 		}
 	};
 
@@ -85,8 +87,8 @@ export const AddCollection: React.FC<Props> = () => {
 				return;
 			}
 
-			if (vocabularies.length < 2) {
-				toast.error("Please add at least 2 vocabularies.");
+			if (vocabularies.length < 4) {
+				toast.error("Please add at least 4 vocabularies.");
 				return;
 			}
       await dispatch(

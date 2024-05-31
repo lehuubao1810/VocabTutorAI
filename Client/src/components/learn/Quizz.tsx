@@ -110,7 +110,7 @@ export const Quizz: React.FC<Props> = ({ LearningData }) => {
 						{correctAnswer && (
 							<div className="flex flex-col items-center gap-4">
 								<p className="text-2xl font-semibold">{correctAnswer.word}</p>
-								<p>{correctAnswer.pronunciation}</p>
+								<p>{correctAnswer?.pronunciation}</p>
 							</div>
 						)}
 						<div className="absolute top-5 right-5">

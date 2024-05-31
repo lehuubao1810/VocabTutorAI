@@ -1,11 +1,11 @@
 import {
   faArrowLeft,
   faArrowRight,
-  faArrowRotateLeft,
+  // faArrowRotateLeft,
   faGear,
-  faPenToSquare,
+  // faPenToSquare,
   faPlay,
-  faTrash,
+  // faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState, useEffect } from "react";
@@ -27,11 +27,11 @@ export const VocabularyFlipCard: React.FC<{
   };
 }> = ({ Data }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [isSetting, setSetting] = useState(false);
   const [currentVocabularyIndex, setCurrentVocabularyIndex] = useState(0);
   const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
   const vocabularyData = Data.vocabulary;
+  console.log("Data", Data);
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
@@ -48,10 +48,6 @@ export const VocabularyFlipCard: React.FC<{
       vocabularyData.length;
     setCurrentVocabularyIndex(newIndex);
     setIsFlipped(false);
-  };
-
-  const handleSetting = () => {
-    setSetting(!isSetting);
   };
 
   const handleEditCollection = (e: React.MouseEvent) => {
@@ -134,12 +130,12 @@ export const VocabularyFlipCard: React.FC<{
             <button
               type="button"
               title="tool"
-              onClick={handleSetting}
+              onClick={handleEditCollection}
               className=" text-gray-600 hover:transform-gpus hover:scale-110"
             >
               <FontAwesomeIcon icon={faGear} />
             </button>
-            <div
+            {/* <div
               className={`${
                 isSetting ? "flex" : "hidden"
               } flex-col gap-2 w-44 h-20 absolute -top-8 right-0 transition-all duration-300 ease-linear`}
@@ -167,7 +163,7 @@ export const VocabularyFlipCard: React.FC<{
               >
                 Back <FontAwesomeIcon icon={faArrowRotateLeft} />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="w-full h-1 rounded-sm bg-gray-200 mt-2">

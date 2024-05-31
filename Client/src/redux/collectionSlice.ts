@@ -79,6 +79,7 @@ export const getCollectionById = createAsyncThunk(
       return {
         ...collectionD,
         vocabulary: vocabularyDetails,
+        id: collectionSnapshot.id,
       };
     } catch (error) {
       const errorMessage = error as ErrorResponse;
@@ -259,7 +260,7 @@ export const updateCollection = createAsyncThunk(
       const collectionRef = doc(db, "collections", data.id);
       await updateDoc(collectionRef, {
         name: data.collection.name,
-        des: data.collection.desc,
+        desc: data.collection.desc,
         isPublish: data.collection.isPublish,
         vocabulary: data.vocabs.map((vocab) => vocab.id),
         value: data.vocabs.length,

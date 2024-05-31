@@ -109,9 +109,9 @@ export const EditCollection: React.FC = () => {
       }
 
       // check have at least 2 vocabulary
-      const lessThanTwoVocab = vocabularies.length < 2;
+      const lessThanTwoVocab = vocabularies.length < 4;
       if (lessThanTwoVocab) {
-        toast.error("Please add at least 2 vocabularies.");
+        toast.error("Please add at least 4 vocabularies.");
         return;
       }
 
@@ -135,8 +135,8 @@ export const EditCollection: React.FC = () => {
 
   const handleRemoveVocabulary = async (index: number) => {
     // check have at least 2 vocabulary
-    if (vocabularies.length < 3) {
-      toast.error("Please add at least 2 vocabularies.");
+    if (vocabularies.length < 5) {
+      toast.error("Please add at least 4 vocabularies.");
       return;
     }
     if (!collectionData.vocabulary[index]) {

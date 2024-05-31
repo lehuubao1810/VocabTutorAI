@@ -3,16 +3,18 @@ import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCopy,
   // faCalendar,
-  faShareFromSquare,
+  // faShareFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { VocabularyFlipCard } from "../components/vocabulary/VocabularyCard";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getCollectionById } from "../redux/collectionSlice";
+import { getCollectionById, setCollection } from "../redux/collectionSlice";
 import { Skeleton } from "@mui/material";
 import { scrollTop } from "../utils/scrollTop";
 import { CollectionItemData } from "../type/Collection";
+import { toast } from "react-toastify";
 
 type Props = {
   //
@@ -100,17 +102,24 @@ export const Collection: React.FC<Props> = () => {
                 >
                   <Link
                     to={`/collection/${idCollection}/learn`}
-                    state={collection.vocabulary}
+                    onClick={() => dispatch(setCollection({}))}
                     className="w-full h-12 rounded-md border-2 pt-2 text-lg text-center font-semibold bg-white hover:bg-gray-300"
                   >
                     Learn vocabulary
                   </Link>
-                  <button className="w-full h-12 rounded-md border-2 text-lg font-semibold bg-blue-400 text-white hover:bg-blue-300">
-                    Share this vocabulary
-                    <FontAwesomeIcon
-                      icon={faShareFromSquare}
-                      className="ml-3"
-                    />
+                  <button
+                    className="w-full h-12 rounded-md border-2 text-lg font-semibold bg-blue-400 text-white hover:bg-blue-300"
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        `${window.location.origin}/collection/${idCollection}`
+                      );
+                      toast.success("Link copied to clipboard!", {
+                        position: "bottom-right",
+                      });
+                    }}
+                  >
+                    Copy link to share
+                    <FontAwesomeIcon icon={faCopy} className="ml-3" />
                   </button>
                 </div>
               )}
