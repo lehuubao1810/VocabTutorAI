@@ -7,7 +7,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 type FooterProps = {
   //
@@ -15,10 +14,6 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = () => {
   const navigate = useNavigate();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toast.success("Thanks for your interest in TutorAI!");
-  };
 
   return (
     <footer className="bg-gray-800 text-white">
@@ -34,22 +29,6 @@ const Footer: React.FC<FooterProps> = () => {
             >
               TutorAI.
             </h1>
-            {/* Form nhập email */}
-            <form onSubmit={handleSubmit}>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Type your email"
-                className="bg-gray-900 text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 sm:max-w-40  "
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2"
-              >
-                Đăng ký
-              </button>
-            </form>
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">

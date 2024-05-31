@@ -18,17 +18,20 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { ModalConfirm } from "../common/ModalConfirm";
 import { Modal } from "../../type/Modal";
 import { toast } from "react-toastify";
-import { CollectionItemData } from "../../type/Collection";
+import {
+  // CollectionItemData,
+  CollectionItemDelete,
+} from "../../type/Collection";
 // import { useAppDispatch } from "../../redux/hooks";
 // import { getCollectionById } from "../../redux/collectionSlice";
 
-interface VocabularyItem {
-  word: string;
-  translation: string;
-  mean: string;
-  pronunciation: string;
-  example: string;
-}
+// interface VocabularyItem {
+//   word: string;
+//   translation: string;
+//   mean: string;
+//   pronunciation: string;
+//   example: string;
+// }
 interface CollectionItemProps {
   collectionID: string;
   name: string;
@@ -36,7 +39,7 @@ interface CollectionItemProps {
   value: number;
   // date: string;
   isAdmin: boolean;
-  vocabulary: VocabularyItem[];
+  vocabulary: string[];
   uid?: string;
   isPublish?: boolean;
 }
@@ -85,7 +88,12 @@ const CollectionItem: React.FC<CollectionItemProps> = ({
       title: "Delete Collection",
       content: ["Are you sure you want to delete this collection?"],
       onConfirm: () => {
-        dispatch(deleteCollection(transferData as CollectionItemData))
+        dispatch(
+          deleteCollection({
+            id: collectionID,
+            vocabulary: vocabulary,
+          } as CollectionItemDelete)
+        )
           .then(() => {
             const collectionsUpdated = collections.filter(
               (collection) => collection.id !== collectionID
