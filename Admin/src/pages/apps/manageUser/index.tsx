@@ -193,7 +193,7 @@ export default function UsersPage() {
               ) : (
                 <TableRow>
                   <TableCell colSpan={4} style={{ textAlign: 'center' }}>
-                    {t('No rows')}
+                    {t('No Rows')}
                   </TableCell>
                 </TableRow>
               )}

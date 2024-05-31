@@ -12,7 +12,6 @@ import { VocabularyItem } from 'src/context/types'
 import { addDoc, collection, doc, getDoc, updateDoc } from 'firebase/firestore'
 import { db } from 'src/firebase'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
@@ -23,37 +22,32 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 
 const SidebarAddVocab = (props: any) => {
   const { open, toggleAdd, fetchDataList } = props;
-  const { control, handleSubmit, setError, clearErrors } = useForm();
-  const [isWordEmpty, setIsWordEmpty] = useState(false);
-  const [isTranslationEmpty, setIsTranslationEmpty] = useState(false);
+  const { control, handleSubmit, setError, clearErrors, formState: { errors } } = useForm();
   const router = useRouter();
 
   const createVocabulary = async (newData: Omit<VocabularyItem, 'id'>) => {
     try {
-      // Add the new vocabulary item to the 'vocabularies' collection
       const docRef = await addDoc(collection(db, 'vocabularies'), newData);
       const newDocData = { id: docRef.id, ...newData };
 
-      // Fetch the existing vocabulary IDs from the collection document
       const collectionRef = doc(db, 'collections', router.query.id as string);
       const collectionDoc = await getDoc(collectionRef);
-      const existingVocabIds = collectionDoc.data()?.vocabulary || [];
+      const collectionData = collectionDoc.data();
+      const existingVocabIds = collectionData?.vocabulary || [];
+      const currentValue = collectionData?.value || 0;
 
-      // Update the collection document to include the new vocabulary ID
       await updateDoc(collectionRef, {
-        vocabulary: [...existingVocabIds, docRef.id] // Append new ID to existing array
+        vocabulary: [...existingVocabIds, docRef.id],
+        value: currentValue + 1
       });
 
-      // Update the local state with the new vocabulary data
       fetchDataList((prevDataList: VocabularyItem[]) => [...prevDataList, newDocData]);
 
-      // Close the add vocabulary drawer
       handleClose();
     } catch (error) {
       console.error('Error adding document: ', error);
     }
   };
-
 
   const handleClose = () => {
     toggleAdd();
@@ -61,27 +55,24 @@ const SidebarAddVocab = (props: any) => {
 
   const onSubmit = (data: any) => {
     if (!data.word) {
-      setError('word', { type: 'required', message: 'Word is required' });
-      setIsWordEmpty(true);
+      setError('word', { type: 'required', message: 'Word Is Required' });
 
       return;
     } else {
       clearErrors('word');
-      setIsWordEmpty(false);
     }
 
     if (!data.translation) {
-      setError('translation', { type: 'required', message: 'Translation is required' });
-      setIsTranslationEmpty(true);
+      setError('translation', { type: 'required', message: 'Translation Is Required' });
 
       return;
     } else {
       clearErrors('translation');
-      setIsTranslationEmpty(false);
     }
 
     createVocabulary(data);
   };
+
 
   const { t } = useTranslation()
 
@@ -106,17 +97,17 @@ const SidebarAddVocab = (props: any) => {
             <Controller
               name='word'
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: t('Word Is Required') || 'Word Is Required' }}
+              render={({ field }) => (
                 <TextField
                   autoFocus
                   fullWidth
-                  value={value}
+                  {...field}
                   sx={{ marginBottom: '16px' }}
                   label={t('Word')}
-                  onChange={onChange}
                   placeholder='word'
-                  error={isWordEmpty}
-                  helperText={isWordEmpty ? t('Name is required') : ''}
+                  error={!!errors.word}
+                  helperText={errors.word ? String(errors.word.message) : ''}
                 />
               )}
             />
@@ -139,18 +130,16 @@ const SidebarAddVocab = (props: any) => {
             <Controller
               name='translation'
               control={control}
-              rules={{ required: true }}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: t('Translation Is Required') || 'Translation Is Required' }}
+              render={({ field }) => (
                 <TextField
-                  autoFocus
                   fullWidth
-                  value={value}
+                  {...field}
                   sx={{ marginBottom: '16px' }}
                   label={t('Translation')}
-                  onChange={onChange}
                   placeholder='translation'
-                  error={isTranslationEmpty}
-                  helperText={isTranslationEmpty ? t('Description is required') : ''}
+                  error={!!errors.translation}
+                  helperText={errors.translation ? String(errors.translation.message) : ''}
                 />
               )}
             />
