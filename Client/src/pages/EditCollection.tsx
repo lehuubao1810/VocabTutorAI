@@ -4,12 +4,22 @@ import { Header } from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilePen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { CollectionItemData, VocabularyItemUpload } from "../type/Collection";
+import {
+  CollectionItemData,
+  VocabularyItem,
+  VocabularyItemUpload,
+} from "../type/Collection";
 import { toast, ToastContainer } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getCollectionById, updateCollection } from "../redux/collectionSlice";
+import {
+  addVocab,
+  deleteVocab,
+  getCollectionById,
+  updateCollection,
+} from "../redux/collectionSlice";
 import { scrollTop } from "../utils/scrollTop";
 import { Skeleton, Switch } from "@mui/material";
+import { LoadingScreen } from "../components/common/LoadingScreen";
 
 export const EditCollection: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +27,7 @@ export const EditCollection: React.FC = () => {
     (state) => state.collectionReducer
   );
 
-  const [vocabularies, setVocabularies] = useState<VocabularyItemUpload[]>([]);
+  const [vocabularies, setVocabularies] = useState<VocabularyItem[]>([]);
 
   const [collectionData, setCollectionData] =
     useState<CollectionItemData>(collection);
@@ -50,11 +60,34 @@ export const EditCollection: React.FC = () => {
     setVocabularies(newVocabularies);
   };
 
-  const handleAddVocabulary = () => {
-    setVocabularies([
-      ...vocabularies,
-      { word: "", translation: "", mean: "", pronunciation: "", example: "" },
-    ]);
+  const handleAddVocabulary = async () => {
+    await dispatch(
+      addVocab({
+        collectionId: idCollection ?? "",
+        vocab: {
+          word: "Word",
+          translation: "Translation",
+          mean: "",
+          pronunciation: "",
+          example: "",
+        },
+      })
+    )
+      .unwrap()
+      .then((res) => {
+        setVocabularies([
+          ...vocabularies,
+          {
+            id: res,
+            word: "Word",
+            translation: "Translation",
+            mean: "",
+            pronunciation: "",
+            example: "",
+          },
+        ]);
+      });
+
     setCollectionData({ ...collectionData, value: vocabularies.length + 1 });
   };
 
@@ -83,7 +116,13 @@ export const EditCollection: React.FC = () => {
       }
 
       // handle update collection
-      dispatch(updateCollection(collectionData))
+      dispatch(
+        updateCollection({
+          collection: collectionData,
+          id: idCollection ?? "",
+          vocabs: vocabularies,
+        })
+      )
         .unwrap()
         .then(() => {
           toast.success("Update collection successfully.");
@@ -94,7 +133,27 @@ export const EditCollection: React.FC = () => {
     }
   };
 
-  const handleRemoveVocabulary = (index: number) => {
+  const handleRemoveVocabulary = async (index: number) => {
+    // check have at least 2 vocabulary
+    if (vocabularies.length < 3) {
+      toast.error("Please add at least 2 vocabularies.");
+      return;
+    }
+    if (!collectionData.vocabulary[index]) {
+      await dispatch(
+        deleteVocab({
+          collectionId: idCollection ?? "",
+          vocabId: vocabularies[index].id,
+        })
+      );
+    } else {
+      await dispatch(
+        deleteVocab({
+          collectionId: idCollection ?? "",
+          vocabId: collectionData.vocabulary[index].id,
+        })
+      );
+    }
     const newVocabularies = vocabularies.filter((_, i) => i !== index);
     setVocabularies(newVocabularies);
     setCollectionData({ ...collectionData, value: newVocabularies.length });
@@ -104,6 +163,9 @@ export const EditCollection: React.FC = () => {
     <>
       <ToastContainer />
       <Header />
+      {
+        loading && <LoadingScreen />
+      }
       <main className="bg-gray-100">
         <div className="pt-24 ml-auto mr-auto max-w-screen-xl px-5 py-4">
           <div className="flex flex-col gap-3 py-6 ">
@@ -119,7 +181,7 @@ export const EditCollection: React.FC = () => {
               <h2 className="mb-5 text-3xl font-bold text-center">
                 Collection Information
               </h2>
-              {loading || !collectionData.name ? (
+              {!collectionData.name ? (
                 <div className="flex flex-col gap-4 px-5">
                   <div className="flex gap-4">
                     <h2 className="font-semibold text-lg">Name collection :</h2>

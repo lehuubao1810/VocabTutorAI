@@ -18,6 +18,22 @@ export interface CollectionItemData {
 	vocabulary: VocabularyItem[];
 }
 
+export interface CollectionListItemData {
+	id: string;
+	name: string;
+	desc: string;
+	value: number;
+	isAdmin: boolean;
+	isPublish: boolean;
+	uid: string | "";
+	vocabulary: string[];
+}
+
+export interface CollectionItemDelete {
+	id: string;
+	vocabulary: string[]
+}
+
 export interface CollectionItemUpload {
 	name: string;
 	desc: string;

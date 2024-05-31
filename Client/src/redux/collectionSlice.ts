@@ -4,7 +4,9 @@ import { FulfilledAction, PendingAction, RejectedAction } from "./store";
 import { ErrorResponse } from "../type/ErrorResponse";
 import {
   CollectionItemData,
+  CollectionItemDelete,
   CollectionItemUpload,
+  CollectionListItemData,
   VocabularyItem,
   VocabularyItemUpload,
 } from "../type/Collection";
@@ -22,7 +24,7 @@ import {
 import { db } from "../firebase";
 
 type collectionState = {
-  collections: CollectionItemData[]; // type of the main data
+  collections: CollectionListItemData[]; // type of the main data
   collection: CollectionItemData;
   loading: boolean;
   error: string | undefined;
@@ -91,10 +93,13 @@ export const getListOfCollections = createAsyncThunk(
     try {
       const collectionRef = collection(db, "collections");
       const collectionSnapshot: QuerySnapshot = await getDocs(collectionRef);
-      const collections: CollectionItemData[] = [];
+      const collections: CollectionListItemData[] = [];
 
       collectionSnapshot.forEach((doc) => {
-        collections.push({ id: doc.id, ...doc.data() } as CollectionItemData);
+        collections.push({
+          id: doc.id,
+          ...doc.data(),
+        } as CollectionListItemData);
       });
       console.log("collections", collections);
       return collections;
@@ -169,13 +174,72 @@ export const addVocabulariesToCollection = createAsyncThunk(
 
 export const updateVocab = createAsyncThunk(
   "updateVocab/collection",
+  async (vocab: VocabularyItem, { rejectWithValue }) => {
+    try {
+      console.log("update vocab", vocab);
+      const vocabRef = doc(db, "vocabularies", vocab.id);
+      await updateDoc(vocabRef, {
+        word: vocab.word,
+        translation: vocab.translation,
+        mean: vocab.mean,
+        pronunciation: vocab.pronunciation,
+        example: vocab.example,
+      });
+      return vocab;
+    } catch (error) {
+      const errorMessage = error as ErrorResponse;
+      return rejectWithValue(errorMessage.message);
+    }
+  }
+);
+
+export const addVocab = createAsyncThunk(
+  "addVocab/collection",
   async (
-    data: { vocab: VocabularyItem; vocabId: string },
+    data: { vocab: VocabularyItemUpload; collectionId: string },
     { rejectWithValue }
   ) => {
     try {
-      const vocabRef = doc(db, "vocabularies", data.vocabId);
-      await updateDoc(vocabRef, { ...data.vocab });
+      console.log("add vocab", data);
+      const vocabRef = collection(db, "vocabularies");
+      const vocabDocRef = await addDoc(vocabRef, data.vocab);
+      const collectionRef = doc(db, "collections", data.collectionId);
+      const collectionDoc = await getDoc(collectionRef);
+      if (!collectionDoc.exists()) {
+        throw new Error("Collection does not exist");
+      }
+      const collectionData = collectionDoc.data();
+      const vocabulary = collectionData?.vocabulary;
+      vocabulary.push(vocabDocRef.id);
+      await updateDoc(collectionRef, { vocabulary });
+      console.log("add vocab success", vocabDocRef.id);
+      return vocabDocRef.id;
+    } catch (error) {
+      const errorMessage = error as ErrorResponse;
+      return rejectWithValue(errorMessage.message);
+    }
+  }
+);
+
+export const deleteVocab = createAsyncThunk(
+  "deleteVocab/collection",
+  async (
+    data: { vocabId: string; collectionId: string },
+    { rejectWithValue }
+  ) => {
+    try {
+      console.log("delete vocab", data);
+      await deleteDoc(doc(db, "vocabularies", data.vocabId));
+      const collectionRef = doc(db, "collections", data.collectionId);
+      const collectionDoc = await getDoc(collectionRef);
+      if (!collectionDoc.exists()) {
+        throw new Error("Collection does not exist");
+      }
+      const collectionData = collectionDoc.data();
+      const vocabulary = collectionData?.vocabulary.filter(
+        (id: string) => id !== data.vocabId
+      );
+      await updateDoc(collectionRef, { vocabulary });
     } catch (error) {
       const errorMessage = error as ErrorResponse;
       return rejectWithValue(errorMessage.message);
@@ -185,16 +249,28 @@ export const updateVocab = createAsyncThunk(
 
 export const updateCollection = createAsyncThunk(
   "updateCollection/collection",
-  async (collection: CollectionItemData, { rejectWithValue }) => {
+  async (
+    data: { collection: CollectionItemData; id: string, vocabs: VocabularyItem[] },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
-      const vocabs = collection.vocabulary.filter((vocab) => vocab.id === "");
-      console.log("vocabs", vocabs);
+      console.log("update collection", data);
+      // update collection
+      const collectionRef = doc(db, "collections", data.id);
+      await updateDoc(collectionRef, {
+        name: data.collection.name,
+        des: data.collection.desc,
+        isPublish: data.collection.isPublish,
+        vocabulary: data.vocabs.map((vocab) => vocab.id),
+        value: data.vocabs.length,
+      });
 
-      // const collectionRef = doc(db, "collections", collection.collectionId);
-      // await updateDoc(collectionRef, {
-      //   ...collection,
-      //   vocabulary: vocabIds,
-      // });
+      // update vocabularies
+      await Promise.all(
+        data.vocabs.map((vocab) => {
+          dispatch(updateVocab(vocab));
+        })
+      );
     } catch (error) {
       const errorMessage = error as ErrorResponse;
       return rejectWithValue(errorMessage.message);
@@ -204,16 +280,18 @@ export const updateCollection = createAsyncThunk(
 
 export const deleteCollection = createAsyncThunk(
   "deleteCollection/collection",
-  async (collection: CollectionItemData, { rejectWithValue }) => {
+  async (collection: CollectionItemDelete, { rejectWithValue }) => {
     try {
-      const vocabRef = collection.vocabulary.map((vocab) =>
-        doc(db, "vocabularies", vocab.id)
-      );
-      await Promise.all(vocabRef.map((ref) => deleteDoc(ref)));
+      console.log("delete collection", collection);
+      const id = collection.id;
+      await deleteDoc(doc(db, "collections", id));
 
-      const collectionRef = doc(db, "collections", collection.id);
-      await deleteDoc(collectionRef);
-      console.log("delete collection", collection.id);
+      const vocabularies = collection.vocabulary;
+
+      await Promise.all(
+        vocabularies.map((id) => deleteDoc(doc(db, "vocabularies", id)))
+      );
+
       return collection;
     } catch (error) {
       const errorMessage = error as ErrorResponse;
