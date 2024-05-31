@@ -33,8 +33,16 @@
     "Select Status": "Chọn Trạng Thái",
     "Public": "Công Khai",
     "Private": "Riêng Tư",
-    "Name is required":"Bạn Cần Nhập Tên",
-    "Description is required":"Bạn Cần Nhập Mô Tả",
-    "":"",
-    "":""
+    "Name Is Required":"Bạn Cần Nhập Tên",
+    "Description Is Required":"Bạn Cần Nhập Mô Tả",
+    "Vocabulary": "Từ Vựng",
+    "Vocabularies": "Từ Vựng",
+    "Word": "Từ",
+    "Mean": "Nghĩa",
+    "Translation": "Bản Dịch",
+    "Example": "Ví Dụ",
+    "No Character Ai Available": "Không Có Ký Tự Ai Nào Khả Dụng",
+    "No Rows": "Không Có Hàng Nào",
+    "Word Is Required": "Bạn Cần Nhập Từ Vựng",
+    "Translation Is Required": "Bạn Cần Nhập Bản Dịch"
 }

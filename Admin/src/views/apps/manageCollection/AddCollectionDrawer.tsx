@@ -11,7 +11,6 @@ import Icon from 'src/@core/components/icon'
 import { CollectionItemData } from 'src/context/types'
 import { addDoc, collection } from 'firebase/firestore'
 import { db } from 'src/firebase'
-import { useState } from 'react'
 
 const Header = styled(Box)<BoxProps>(({ theme }) => ({
   display: 'flex',
@@ -22,10 +21,7 @@ const Header = styled(Box)<BoxProps>(({ theme }) => ({
 
 const SidebarAddCollection = (props: any) => {
   const { open, toggleAdd, fetchDataList, dataList } = props
-  const { control, handleSubmit, setError, clearErrors } = useForm();
-
-  const [isNameEmpty, setIsNameEmpty] = useState(false);
-  const [isDescEmpty, setIsDescEmpty] = useState(false);
+  const { control, handleSubmit, setError, clearErrors, formState: { errors } } = useForm();
 
   const createCollection = async (newData: Omit<CollectionItemData, 'collectionID'>) => {
     try {
@@ -49,22 +45,18 @@ const SidebarAddCollection = (props: any) => {
   const onSubmit = (data: any) => {
     if (!data.name) {
       setError('name', { type: 'required', message: 'Name is required' });
-      setIsNameEmpty(true);
 
       return;
     } else {
       clearErrors('name');
-      setIsNameEmpty(false);
     }
 
     if (!data.desc) {
       setError('desc', { type: 'required', message: 'Description is required' });
-      setIsDescEmpty(true);
 
       return;
     } else {
       clearErrors('desc');
-      setIsDescEmpty(false);
     }
 
     createCollection({
@@ -97,34 +89,34 @@ const SidebarAddCollection = (props: any) => {
             <Controller
               name='name'
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: t('Name Is Required') || 'Name Is Required' }}
+              render={({ field }) => (
                 <TextField
                   autoFocus
                   fullWidth
-                  value={value}
+                  {...field}
                   sx={{ marginBottom: '16px' }}
                   label={t('Name')}
-                  onChange={onChange}
                   placeholder='name'
-                  error={isNameEmpty}
-                  helperText={isNameEmpty ? t('Name is required') : ''}
+                  error={!!errors.name}
+                  helperText={errors.name ? String(errors.name.message) : ''}
                 />
               )}
             />
             <Controller
               name='desc'
               control={control}
-              render={({ field: { value, onChange } }) => (
+              rules={{ required: t('Description Is Required') || 'Description Is Required' }}
+              render={({ field }) => (
                 <TextField
                   autoFocus
                   fullWidth
-                  value={value}
+                  {...field}
                   sx={{ marginBottom: '16px' }}
                   label={t('Description')}
-                  onChange={onChange}
                   placeholder='description'
-                  error={isDescEmpty}
-                  helperText={isDescEmpty ? t('Description is required') : ''}
+                  error={!!errors.desc}
+                  helperText={errors.desc ? String(errors.desc.message) : ''}
                 />
               )}
             />

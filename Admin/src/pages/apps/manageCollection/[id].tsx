@@ -132,32 +132,34 @@ export default function CollectionDetail() {
 
     const handleDeleteSelectedItems = async () => {
         try {
-            await Promise.all(selectedItems.map(id => deleteDoc(doc(db, 'vocabularies', id))));
+            await Promise.all(selectedItems.map((id) => deleteDoc(doc(db, 'vocabularies', id))));
 
-            const collectionRef = doc(db, "collections", router.query.id as string);
+            const collectionRef = doc(db, 'collections', router.query.id as string);
             const collectionSnapshot = await getDoc(collectionRef);
 
-            if (!collectionSnapshot.exists()) {
-                console.error("Collection does not exist");
+            if (collectionSnapshot.exists()) {
+                const collectionData = collectionSnapshot.data();
+                const vocabularyArray = collectionData.vocabulary || [];
+                const updatedVocabularyArray = vocabularyArray.filter((id: string) => !selectedItems.includes(id));
 
-                return;
+                await updateDoc(collectionRef, {
+                    vocabulary: updatedVocabularyArray,
+                    value: updatedVocabularyArray.length // Update the value to the new length of the array
+                });
+
+                const newDataList = dataList.filter((item) => !selectedItems.includes(item.id));
+                setDataList(newDataList);
+
+                setDeleteOpen(false);
+                setSelectedItems([]);
+            } else {
+                console.error('Collection does not exist');
             }
-
-            const collectionData = collectionSnapshot.data();
-            const vocabularyArray = collectionData.vocabulary || [];
-            const updatedVocabularyArray = vocabularyArray.filter((id: string) => !selectedItems.includes(id));
-            await updateDoc(collectionRef, { vocabulary: updatedVocabularyArray });
-
-            const newDataList = dataList.filter(item => !selectedItems.includes(item.id));
-            setDataList(newDataList);
-
-            setDeleteOpen(false);
-
-            setSelectedItems([]);
         } catch (error) {
             console.error('Error deleting documents: ', error);
         }
     };
+
 
     return (
         <>
@@ -215,7 +217,7 @@ export default function CollectionDetail() {
                                 ))
                             ) : (
                                 <TableRow>
-                                    <TableCell colSpan={5} style={{ textAlign: 'center' }}>{t('No rows')}</TableCell>
+                                    <TableCell colSpan={5} style={{ textAlign: 'center' }}>{t('No Rows')}</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>

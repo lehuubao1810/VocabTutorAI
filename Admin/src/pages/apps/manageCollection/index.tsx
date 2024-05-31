@@ -193,7 +193,7 @@ export default function Collection() {
               ) : (
                 <TableRow>
                   <TableCell colSpan={4} style={{ fontSize: 15, textAlign: 'center' }}>
-                    {t('No rows')}
+                    {t('No Rows')}
                   </TableCell>
                 </TableRow>
               )}
